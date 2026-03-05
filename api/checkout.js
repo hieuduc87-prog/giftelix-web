@@ -1,5 +1,5 @@
 // Vercel Serverless - Create Stripe Checkout Session
-// Env: STRIPE_SECRET_KEY
+// Env: STRIPE_SECRET_KEY, optional STRIPE_CONNECTED_ACCOUNT
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -10,8 +10,10 @@ export default async function handler(req, res) {
 
     const STRIPE_KEY = process.env.STRIPE_SECRET_KEY;
     if (!STRIPE_KEY) {
-        return res.status(500).json({ error: 'Stripe not configured. Contact admin.' });
+        return res.status(500).json({ error: 'Stripe not configured. Complete setup at /setup.html' });
     }
+
+    const CONNECTED_ACCOUNT = process.env.STRIPE_CONNECTED_ACCOUNT;
 
     const { items, successUrl, cancelUrl } = req.body || {};
     if (!items || !items.length) {
@@ -48,12 +50,19 @@ export default async function handler(req, res) {
     });
 
     try {
+        const headers = {
+            'Authorization': `Bearer ${STRIPE_KEY}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        };
+
+        // If connected account exists, create session on their account (direct charges)
+        if (CONNECTED_ACCOUNT) {
+            headers['Stripe-Account'] = CONNECTED_ACCOUNT;
+        }
+
         const resp = await fetch('https://api.stripe.com/v1/checkout/sessions', {
             method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${STRIPE_KEY}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+            headers,
             body: params.toString()
         });
 
