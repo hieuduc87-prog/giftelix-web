@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIFTELIX - Meaningful Gifts & Keepsakes | Suncatchers, Ornaments & Photo Frames</title>
     <meta name="description" content="GIFTELIX creates heartfelt crystal suncatchers, glass ornaments, memorial keepsakes, and magnetic photo frames. Premium gifts for Mom, Dad, pets, and loved ones. Shop on Amazon.">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -106,9 +107,16 @@
         .rating-count{font-size:11px;color:var(--gray-500)}
         .product-price{font-size:17px;font-weight:700}
         .product-price .from{font-size:11px;font-weight:400;color:var(--gray-500)}
-        .product-footer{padding:0 14px 14px}
-        .product-btn{display:block;width:100%;text-align:center;padding:10px;background:var(--gray-100);color:var(--dark);border-radius:8px;font-size:13px;font-weight:600;transition:all .2s}
-        .product-card:hover .product-btn{background:var(--primary);color:var(--white)}
+        .product-footer{padding:0 14px 14px;display:flex;flex-direction:column;gap:6px}
+        .product-btn{display:block;width:100%;text-align:center;padding:10px;border-radius:8px;font-size:13px;font-weight:600;transition:all .2s;cursor:pointer;border:none;font-family:'Poppins',sans-serif}
+        .btn-cart{background:var(--primary);color:var(--white)}
+        .btn-cart:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(229,62,62,.3)}
+        .btn-amazon{background:var(--gray-100);color:var(--gray-700);font-size:11px;padding:8px}
+        .btn-amazon:hover{background:var(--gray-200)}
+        .cart-btn{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--gray-300);padding:8px 16px;border-radius:8px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:var(--dark);transition:all .2s}
+        .cart-btn:hover{border-color:var(--primary);color:var(--primary)}
+        .cart-btn svg{width:18px;height:18px}
+        .cart-count{background:var(--primary);color:var(--white);font-size:10px;font-weight:700;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center}
 
         /* FILTER */
         .filter-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap}
@@ -201,9 +209,13 @@
                 <li><a href="#products">Shop All</a></li>
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#occasions">Occasions</a></li>
-                <li><a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="nav-shop">Shop on Amazon</a></li>
+                <li><a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="nav-shop">Also on Amazon</a></li>
             </ul>
         </nav>
+        <button class="snipcart-checkout cart-btn" title="Shopping Cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span class="snipcart-items-count cart-count">0</span>
+        </button>
         <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('active')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
         </button>
@@ -216,7 +228,7 @@
         <h1>Gifts That Speak When Words Can't</h1>
         <p>Crystal suncatchers, stained-glass ornaments, and magnetic photo frames &mdash; handcrafted to celebrate love, honor memories, and brighten every day.</p>
         <div class="hero-btns">
-            <a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="btn btn-primary">Shop All Products &rarr;</a>
+            <a href="#products" class="btn btn-primary">Shop Now &rarr;</a>
             <a href="#collections" class="btn btn-outline">Browse Collections</a>
         </div>
     </div>
@@ -224,10 +236,10 @@
 
 <div class="trust">
     <div class="trust-inner">
-        <div class="trust-item">&#9733; Amazon Best Seller</div>
-        <div class="trust-item">&#128666; Free Prime Shipping</div>
+        <div class="trust-item">&#128274; Secure Checkout</div>
+        <div class="trust-item">&#128666; Fast US Shipping</div>
         <div class="trust-item">&#127873; Gift-Ready Packaging</div>
-        <div class="trust-item">&#128274; Easy Returns</div>
+        <div class="trust-item">&#128260; Easy Returns</div>
         <div class="trust-item">&#127482;&#127480; Designed in USA</div>
     </div>
 </div>
@@ -289,579 +301,1151 @@
     <div class="products-grid" id="productsGrid">
 
 <!-- ========== MAGNETIC FRAMES ========== -->
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0F3D1M8DW" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="1">
+<div class="product-card fade-in" data-cat="magnet dad" data-row="1">
     <div class="product-img"><img src="images/magnets/04032503.jpg" alt="Our First Father's Day Together" loading="lazy"><span class="product-badge badge-best">Best Seller</span></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Our First Father's Day Together</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(160+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-001"
+            data-item-name="Our First Father's Day Together"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/04032503.jpg"
+            data-item-description="Magnetic Frame - Our First Father's Day Together">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0F3D1M8DW" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ4ZTT8V" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="1">
+<div class="product-card fade-in" data-cat="magnet mom" data-row="1">
     <div class="product-img"><img src="images/magnets/20062503.jpg" alt="Best Mom Ever" loading="lazy"><span class="product-badge badge-hot">Popular</span></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Best Mom Ever - Birthday Gift for Mom</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(100+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-002"
+            data-item-name="Best Mom Ever - Birthday Gift for Mom"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/20062503.jpg"
+            data-item-description="Magnetic Frame - Best Mom Ever - Birthday Gift for Mom">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ4ZTT8V" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Encouragement/dp/B0FJ4Q2ZC2" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="1">
+<div class="product-card fade-in" data-cat="magnet" data-row="1">
     <div class="product-img"><img src="images/magnets/26062501.jpg" alt="Thank You For Being Part of Ours" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">It Takes a Village - Thank You Gift</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(90+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-003"
+            data-item-name="It Takes a Village - Thank You Gift"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/26062501.jpg"
+            data-item-description="Magnetic Frame - It Takes a Village - Thank You Gift">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Encouragement/dp/B0FJ4Q2ZC2" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Watching/dp/B0F3D8FY2C" target="_blank" class="product-card fade-in" data-cat="magnet pet" data-row="1">
+<div class="product-card fade-in" data-cat="magnet pet" data-row="1">
     <div class="product-img"><img src="images/magnets/28022505.jpg" alt="I'll Be Watching You" loading="lazy"><span class="product-badge badge-hot">Popular</span></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">I'll Be Watching You - Funny Pet Gift</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-004"
+            data-item-name="I'll Be Watching You - Funny Pet Gift"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/28022505.jpg"
+            data-item-description="Magnetic Frame - I'll Be Watching You - Funny Pet Gift">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Watching/dp/B0F3D8FY2C" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5CSK79" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="1">
+<div class="product-card fade-in" data-cat="magnet" data-row="1">
     <div class="product-img"><img src="images/magnets/27062504.jpg" alt="To My Love - Penguin Soulmates" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">To My Love - Penguin Soulmates Forever</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(75+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-005"
+            data-item-name="To My Love - Penguin Soulmates Forever"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/27062504.jpg"
+            data-item-description="Magnetic Frame - To My Love - Penguin Soulmates Forever">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5CSK79" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5M3Q5R" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="1">
+<div class="product-card fade-in" data-cat="magnet" data-row="1">
     <div class="product-img"><img src="images/magnets/25062503.jpg" alt="My Sister Forever" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">My Sister Forever - Never Apart</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-006"
+            data-item-name="My Sister Forever - Never Apart"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/25062503.jpg"
+            data-item-description="Magnetic Frame - My Sister Forever - Never Apart">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5M3Q5R" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Grandma-Ultrasound/dp/B0F3D92G57" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="1">
+<div class="product-card fade-in" data-cat="magnet" data-row="1">
     <div class="product-img"><img src="images/magnets/05032501.jpg" alt="Hi Grandma & Grandpa" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Hi Grandma & Grandpa - Pregnancy Announcement</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(85+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-007"
+            data-item-name="Hi Grandma & Grandpa - Pregnancy Announcement"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/05032501.jpg"
+            data-item-description="Magnetic Frame - Hi Grandma & Grandpa - Pregnancy Announcement">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Grandma-Ultrasound/dp/B0F3D92G57" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Awesome/dp/B0F3CZXXXN" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="1">
+<div class="product-card fade-in" data-cat="magnet dad" data-row="1">
     <div class="product-img"><img src="images/magnets/04032505.jpg" alt="Dear Dad You're Awesome" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Dear Dad, You're Awesome - Reminder</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-008"
+            data-item-name="Dear Dad, You're Awesome - Reminder"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/04032505.jpg"
+            data-item-description="Magnetic Frame - Dear Dad, You're Awesome - Reminder">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Awesome/dp/B0F3CZXXXN" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ4NMQ7Z" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="2">
+<div class="product-card fade-in" data-cat="magnet dad" data-row="2">
     <div class="product-img"><img src="images/magnets/24062503.jpg" alt="Daddy You Are The World" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Daddy - To Us You Are The World</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-009"
+            data-item-name="Daddy - To Us You Are The World"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/24062503.jpg"
+            data-item-description="Magnetic Frame - Daddy - To Us You Are The World">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ4NMQ7Z" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Daddy/dp/B0FJ4TJMV3" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="2">
+<div class="product-card fade-in" data-cat="magnet dad" data-row="2">
     <div class="product-img"><img src="images/magnets/18062501.jpg" alt="Daddy I Can't Wait to Meet You" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Daddy I Can't Wait to Meet You</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-010"
+            data-item-name="Daddy I Can't Wait to Meet You"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/18062501.jpg"
+            data-item-description="Magnetic Frame - Daddy I Can't Wait to Meet You">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Daddy/dp/B0FJ4TJMV3" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-GRANDPAW/dp/B0FJ535GKV" target="_blank" class="product-card fade-in" data-cat="magnet pet dad" data-row="2">
+<div class="product-card fade-in" data-cat="magnet pet dad" data-row="2">
     <div class="product-img"><img src="images/magnets/17062502.jpg" alt="Best GRANDPAW Ever" loading="lazy"><span class="product-badge badge-new">New</span></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Best GrandPAW Ever - Dog Grandpa Gift</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-011"
+            data-item-name="Best GrandPAW Ever - Dog Grandpa Gift"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/17062502.jpg"
+            data-item-description="Magnetic Frame - Best GrandPAW Ever - Dog Grandpa Gift">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-GRANDPAW/dp/B0FJ535GKV" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0F3CZCB3B" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="2">
+<div class="product-card fade-in" data-cat="magnet mom" data-row="2">
     <div class="product-img"><img src="images/magnets/26022508.jpg" alt="Everything I Am You Help Me to Be" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Everything I Am, You Helped Me to Be</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(60+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-012"
+            data-item-name="Everything I Am, You Helped Me to Be"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/26022508.jpg"
+            data-item-description="Magnetic Frame - Everything I Am, You Helped Me to Be">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0F3CZCB3B" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5JY52F" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="2">
+<div class="product-card fade-in" data-cat="magnet" data-row="2">
     <div class="product-img"><img src="images/magnets/23062502.jpg" alt="Always Close At Heart" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Friends Are Always Close At Heart</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-013"
+            data-item-name="Friends Are Always Close At Heart"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/23062502.jpg"
+            data-item-description="Magnetic Frame - Friends Are Always Close At Heart">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5JY52F" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ2FQKKF" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="2">
+<div class="product-card fade-in" data-cat="magnet mom" data-row="2">
     <div class="product-img"><img src="images/magnets/18062506.jpg" alt="Mom If You Were A Flower" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Mom - If You Were A Flower, I'd Pick You</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-014"
+            data-item-name="Mom - If You Were A Flower, I'd Pick You"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/18062506.jpg"
+            data-item-description="Magnetic Frame - Mom - If You Were A Flower, I'd Pick You">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ2FQKKF" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dad" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="2">
+<div class="product-card fade-in" data-cat="magnet dad" data-row="2">
     <div class="product-img"><img src="images/magnets/04032501.jpg" alt="Being a Dad Papa" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Being a Dad is an Honor, Papa is Priceless</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-015"
+            data-item-name="Being a Dad is an Honor, Papa is Priceless"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/04032501.jpg"
+            data-item-description="Magnetic Frame - Being a Dad is an Honor, Papa is Priceless">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dad" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+mom+puzzle" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="2">
+<div class="product-card fade-in" data-cat="magnet mom" data-row="2">
     <div class="product-img"><img src="images/magnets/26022503.jpg" alt="Mom Puzzle Piece" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Mom - You Are The Piece That Holds Us Together</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-016"
+            data-item-name="Mom - You Are The Piece That Holds Us Together"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/26022503.jpg"
+            data-item-description="Magnetic Frame - Mom - You Are The Piece That Holds Us Together">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+mom+puzzle" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog" target="_blank" class="product-card fade-in" data-cat="magnet pet" data-row="3">
+<div class="product-card fade-in" data-cat="magnet pet" data-row="3">
     <div class="product-img"><img src="images/magnets/16062501.jpg" alt="Woof Dog Frame" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Woof - Dog Lover Photo Frame</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-017"
+            data-item-name="Woof - Dog Lover Photo Frame"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/16062501.jpg"
+            data-item-description="Magnetic Frame - Woof - Dog Lover Photo Frame">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog+stalker" target="_blank" class="product-card fade-in" data-cat="magnet pet" data-row="3">
+<div class="product-card fade-in" data-cat="magnet pet" data-row="3">
     <div class="product-img"><img src="images/magnets/21062501.jpg" alt="Personal Stalker Dog" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Personal Stalker - Funny Dog Gift</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(35+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-018"
+            data-item-name="Personal Stalker - Funny Dog Gift"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/21062501.jpg"
+            data-item-description="Magnetic Frame - Personal Stalker - Funny Dog Gift">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog+stalker" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+grandkids" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="3">
+<div class="product-card fade-in" data-cat="magnet" data-row="3">
     <div class="product-img"><img src="images/magnets/03032502.jpg" alt="Better with Grandkids" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Life Is Just Better With Grandkids</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-019"
+            data-item-name="Life Is Just Better With Grandkids"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/03032502.jpg"
+            data-item-description="Magnetic Frame - Life Is Just Better With Grandkids">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+grandkids" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+memorial+wings" target="_blank" class="product-card fade-in" data-cat="magnet memorial" data-row="3">
+<div class="product-card fade-in" data-cat="magnet memorial" data-row="3">
     <div class="product-img"><img src="images/magnets/26022504.jpg" alt="Wings Were Ready" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Your Wings Were Ready, Our Hearts Were Not</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-020"
+            data-item-name="Your Wings Were Ready, Our Hearts Were Not"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/26022504.jpg"
+            data-item-description="Magnetic Frame - Your Wings Were Ready, Our Hearts Were Not">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+memorial+wings" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog+dad" target="_blank" class="product-card fade-in" data-cat="magnet pet dad" data-row="3">
+<div class="product-card fade-in" data-cat="magnet pet dad" data-row="3">
     <div class="product-img"><img src="images/magnets/24062501.jpg" alt="Best Dog Dad Ever" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Best Dog Dad Ever - I Love You Daddy</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-021"
+            data-item-name="Best Dog Dad Ever - I Love You Daddy"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/24062501.jpg"
+            data-item-description="Magnetic Frame - Best Dog Dad Ever - I Love You Daddy">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog+dad" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+family" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="3">
+<div class="product-card fade-in" data-cat="magnet" data-row="3">
     <div class="product-img"><img src="images/magnets/05032506.jpg" alt="Family Where Life Begins" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Family - Where Life Begins & Love Never Ends</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-022"
+            data-item-name="Family - Where Life Begins & Love Never Ends"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/05032506.jpg"
+            data-item-description="Magnetic Frame - Family - Where Life Begins & Love Never Ends">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+family" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+nana+grandma" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="3">
+<div class="product-card fade-in" data-cat="magnet mom" data-row="3">
     <div class="product-img"><img src="images/magnets/18062505.jpg" alt="Greatest Gifts Call Me Nana" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">My Greatest Gifts Call Me Nana</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-023"
+            data-item-name="My Greatest Gifts Call Me Nana"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/18062505.jpg"
+            data-item-description="Magnetic Frame - My Greatest Gifts Call Me Nana">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+nana+grandma" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+sister+funny" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="3">
+<div class="product-card fade-in" data-cat="magnet" data-row="3">
     <div class="product-img"><img src="images/magnets/25062505.jpg" alt="Sister Lucky" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Magnetic Frame</div>
         <div class="product-title">Congrats on Being My Sister - Funny Gift</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(35+)</span></div>
-        <div class="product-price"><span class="from">from </span>$12.99</div>
+        <div class="product-price">$12.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-024"
+            data-item-name="Congrats on Being My Sister - Funny Gift"
+            data-item-price="12.99"
+            data-item-url="/index.html"
+            data-item-image="images/magnets/25062505.jpg"
+            data-item-description="Magnetic Frame - Congrats on Being My Sister - Funny Gift">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+sister+funny" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
 <!-- ========== SUNCATCHERS ========== -->
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+sunshine" target="_blank" class="product-card fade-in" data-cat="suncatcher mom" data-row="1">
+<div class="product-card fade-in" data-cat="suncatcher mom" data-row="1">
     <div class="product-img"><img src="images/suncatchers/18032501.jpg" alt="You Are My Sunshine" loading="lazy"><span class="product-badge badge-best">Best Seller</span></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">You Are My Sunshine - Sunflower Suncatcher</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(120+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-025"
+            data-item-name="You Are My Sunshine - Sunflower Suncatcher"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/18032501.jpg"
+            data-item-description="Crystal Suncatcher - You Are My Sunshine - Sunflower Suncatcher">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+sunshine" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7XSVNJP" target="_blank" class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="1">
+<div class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="1">
     <div class="product-img"><img src="images/suncatchers/01082504.jpg" alt="Once by My Side" loading="lazy"><span class="product-badge badge-hot">Popular</span></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Once by My Side, Forever in My Heart - Pet Memorial</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(180+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-026"
+            data-item-name="Once by My Side, Forever in My Heart - Pet Memorial"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/01082504.jpg"
+            data-item-description="Crystal Suncatcher - Once by My Side, Forever in My Heart - Pet Memorial">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7XSVNJP" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Glass-Suncatcher-Ornament-Sympathy/dp/B0FM7T7GLJ" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="1">
+<div class="product-card fade-in" data-cat="suncatcher memorial" data-row="1">
     <div class="product-img"><img src="images/suncatchers/07082509.jpg" alt="Those We Love Don't Go Away" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Those We Love Don't Go Away - Memorial Angel</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-027"
+            data-item-name="Those We Love Don't Go Away - Memorial Angel"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/07082509.jpg"
+            data-item-description="Crystal Suncatcher - Those We Love Don't Go Away - Memorial Angel">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Glass-Suncatcher-Ornament-Sympathy/dp/B0FM7T7GLJ" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+grandma+garden" target="_blank" class="product-card fade-in" data-cat="suncatcher mom" data-row="1">
+<div class="product-card fade-in" data-cat="suncatcher mom" data-row="1">
     <div class="product-img"><img src="images/suncatchers/18032502.jpg" alt="Grandma's Garden" loading="lazy"><span class="product-badge badge-new">New</span></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Grandma's Garden - Heart Suncatcher</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-028"
+            data-item-name="Grandma's Garden - Heart Suncatcher"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/18032502.jpg"
+            data-item-description="Crystal Suncatcher - Grandma's Garden - Heart Suncatcher">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+grandma+garden" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7R3CMHX" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="1">
+<div class="product-card fade-in" data-cat="suncatcher memorial" data-row="1">
     <div class="product-img"><img src="images/suncatchers/06082504.jpg" alt="Look For Me In The Sunshine" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Look For Me In The Sunshine - Memorial Gift</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(200+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-029"
+            data-item-name="Look For Me In The Sunshine - Memorial Gift"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/06082504.jpg"
+            data-item-description="Crystal Suncatcher - Look For Me In The Sunshine - Memorial Gift">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7R3CMHX" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+friendship" target="_blank" class="product-card fade-in" data-cat="suncatcher" data-row="1">
+<div class="product-card fade-in" data-cat="suncatcher" data-row="1">
     <div class="product-img"><img src="images/suncatchers/01082507.jpg" alt="Thank You For Being In My Circle" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Thank You For Being In My Circle - Friendship</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-030"
+            data-item-name="Thank You For Being In My Circle - Friendship"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/01082507.jpg"
+            data-item-description="Crystal Suncatcher - Thank You For Being In My Circle - Friendship">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+friendship" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7QLX8LN" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="2">
+<div class="product-card fade-in" data-cat="suncatcher memorial" data-row="2">
     <div class="product-img"><img src="images/suncatchers/17032503.jpg" alt="Look For Me In Rainbows" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Look For Me In Rainbows - Rainbow Arch Memorial</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(90+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-031"
+            data-item-name="Look For Me In Rainbows - Rainbow Arch Memorial"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/17032503.jpg"
+            data-item-description="Crystal Suncatcher - Look For Me In Rainbows - Rainbow Arch Memorial">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7QLX8LN" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+sky+different" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="2">
+<div class="product-card fade-in" data-cat="suncatcher memorial" data-row="2">
     <div class="product-img"><img src="images/suncatchers/11082502.jpg" alt="The Sky Looks Different" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">The Sky Looks Different When You Have Someone Up There</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(60+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-032"
+            data-item-name="The Sky Looks Different When You Have Someone Up There"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/11082502.jpg"
+            data-item-description="Crystal Suncatcher - The Sky Looks Different When You Have Someone Up There">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+sky+different" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+guardian+angel" target="_blank" class="product-card fade-in" data-cat="suncatcher" data-row="2">
+<div class="product-card fade-in" data-cat="suncatcher" data-row="2">
     <div class="product-img"><img src="images/suncatchers/07082504.jpg" alt="Guardian Angels" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Guardian Angels - Protect & Guide</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-033"
+            data-item-name="Guardian Angels - Protect & Guide"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/07082504.jpg"
+            data-item-description="Crystal Suncatcher - Guardian Angels - Protect & Guide">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+guardian+angel" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+cat+memorial" target="_blank" class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="2">
+<div class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="2">
     <div class="product-img"><img src="images/suncatchers/01082511.jpg" alt="Cat Memorial Moon" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Cat Angel on Moon - Pet Memorial Suncatcher</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-034"
+            data-item-name="Cat Angel on Moon - Pet Memorial Suncatcher"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/01082511.jpg"
+            data-item-description="Crystal Suncatcher - Cat Angel on Moon - Pet Memorial Suncatcher">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+cat+memorial" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+mom+memories" target="_blank" class="product-card fade-in" data-cat="suncatcher mom memorial" data-row="2">
+<div class="product-card fade-in" data-cat="suncatcher mom memorial" data-row="2">
     <div class="product-img"><img src="images/suncatchers/17032513.jpg" alt="Mom Memorial" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Mom - Your Memories Are The Light That Leads My Way</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(75+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-035"
+            data-item-name="Mom - Your Memories Are The Light That Leads My Way"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/17032513.jpg"
+            data-item-description="Crystal Suncatcher - Mom - Your Memories Are The Light That Leads My Way">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+mom+memories" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+hummingbird" target="_blank" class="product-card fade-in" data-cat="suncatcher" data-row="2">
+<div class="product-card fade-in" data-cat="suncatcher" data-row="2">
     <div class="product-img"><img src="images/suncatchers/17032508.jpg" alt="Hummingbird Suncatcher" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Hummingbird - Stained Glass Crystal Suncatcher</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-036"
+            data-item-name="Hummingbird - Stained Glass Crystal Suncatcher"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/17032508.jpg"
+            data-item-description="Crystal Suncatcher - Hummingbird - Stained Glass Crystal Suncatcher">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+hummingbird" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+dog+memorial+rainbow" target="_blank" class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="2">
+<div class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="2">
     <div class="product-img"><img src="images/suncatchers/07082505.jpg" alt="Look For Me In Rainbows Pet" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Look For Me In The Rainbows - Cat Memorial Paw</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(85+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-037"
+            data-item-name="Look For Me In The Rainbows - Cat Memorial Paw"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/07082505.jpg"
+            data-item-description="Crystal Suncatcher - Look For Me In The Rainbows - Cat Memorial Paw">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+dog+memorial+rainbow" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+tree+of+life" target="_blank" class="product-card fade-in" data-cat="suncatcher" data-row="2">
+<div class="product-card fade-in" data-cat="suncatcher" data-row="2">
     <div class="product-img"><img src="images/suncatchers/11082501.jpg" alt="Tree of Life" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Tree of Life - Stained Glass Crystal Suncatcher</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-038"
+            data-item-name="Tree of Life - Stained Glass Crystal Suncatcher"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/11082501.jpg"
+            data-item-description="Crystal Suncatcher - Tree of Life - Stained Glass Crystal Suncatcher">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+tree+of+life" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+cardinal" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="3">
+<div class="product-card fade-in" data-cat="suncatcher memorial" data-row="3">
     <div class="product-img"><img src="images/suncatchers/19032512.jpg" alt="Cardinal Suncatcher" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Red Cardinal - Memorial Crystal Suncatcher</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-039"
+            data-item-name="Red Cardinal - Memorial Crystal Suncatcher"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/19032512.jpg"
+            data-item-description="Crystal Suncatcher - Red Cardinal - Memorial Crystal Suncatcher">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+cardinal" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+dog+memorial+moon" target="_blank" class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="3">
+<div class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="3">
     <div class="product-img"><img src="images/suncatchers/17032512.jpg" alt="Dog Angel Moon" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Crystal Suncatcher</div>
         <div class="product-title">Dog Angel on Moon - Pet Memorial Suncatcher</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
-        <div class="product-price"><span class="from">from </span>$16.99</div>
+        <div class="product-price">$16.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-040"
+            data-item-name="Dog Angel on Moon - Pet Memorial Suncatcher"
+            data-item-price="16.99"
+            data-item-url="/index.html"
+            data-item-image="images/suncatchers/17032512.jpg"
+            data-item-description="Crystal Suncatcher - Dog Angel on Moon - Pet Memorial Suncatcher">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+dog+memorial+moon" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
 <!-- ========== GLASS ORNAMENTS ========== -->
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+hummingbird" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+<div class="product-card fade-in" data-cat="ornament" data-row="1">
     <div class="product-img"><img src="images/ornaments/047202503.jpg" alt="Hummingbird Ornament" loading="lazy"><span class="product-badge badge-best">Best Seller</span></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Hummingbird - Stained Glass Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(95+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-041"
+            data-item-name="Hummingbird - Stained Glass Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/047202503.jpg"
+            data-item-description="Glass Ornament - Hummingbird - Stained Glass Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+hummingbird" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+butterfly" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+<div class="product-card fade-in" data-cat="ornament" data-row="1">
     <div class="product-img"><img src="images/ornaments/047202504.jpg" alt="Butterfly Ornament" loading="lazy"><span class="product-badge badge-hot">Popular</span></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Blue Morpho Butterfly - Stained Glass Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(80+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-042"
+            data-item-name="Blue Morpho Butterfly - Stained Glass Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/047202504.jpg"
+            data-item-description="Glass Ornament - Blue Morpho Butterfly - Stained Glass Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+butterfly" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+dragonfly" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+<div class="product-card fade-in" data-cat="ornament" data-row="1">
     <div class="product-img"><img src="images/ornaments/04072506.jpg" alt="Dragonfly Ornament" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Dragonfly Garden - Stained Glass Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-043"
+            data-item-name="Dragonfly Garden - Stained Glass Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/04072506.jpg"
+            data-item-description="Glass Ornament - Dragonfly Garden - Stained Glass Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+dragonfly" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+cardinal" target="_blank" class="product-card fade-in" data-cat="ornament memorial" data-row="1">
+<div class="product-card fade-in" data-cat="ornament memorial" data-row="1">
     <div class="product-img"><img src="images/ornaments/05072506.jpg" alt="Cardinal Birds" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Red Cardinals & Cherry Blossoms - Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(60+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-044"
+            data-item-name="Red Cardinals & Cherry Blossoms - Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/05072506.jpg"
+            data-item-description="Glass Ornament - Red Cardinals & Cherry Blossoms - Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+cardinal" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+tree+of+life" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+<div class="product-card fade-in" data-cat="ornament" data-row="1">
     <div class="product-img"><img src="images/ornaments/05072507.jpg" alt="Tree of Life" loading="lazy"><span class="product-badge badge-new">New</span></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Rainbow Tree of Life - Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-045"
+            data-item-name="Rainbow Tree of Life - Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/05072507.jpg"
+            data-item-description="Glass Ornament - Rainbow Tree of Life - Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+tree+of+life" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+lighthouse" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+<div class="product-card fade-in" data-cat="ornament" data-row="1">
     <div class="product-img"><img src="images/ornaments/05072503.jpg" alt="Lighthouse Ornament" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Coastal Lighthouse - Stained Glass Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-046"
+            data-item-name="Coastal Lighthouse - Stained Glass Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/05072503.jpg"
+            data-item-description="Glass Ornament - Coastal Lighthouse - Stained Glass Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+lighthouse" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+dragon" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+<div class="product-card fade-in" data-cat="ornament" data-row="2">
     <div class="product-img"><img src="images/ornaments/047202501.jpg" alt="Dragon Ornament" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Majestic Dragon - Stained Glass Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-047"
+            data-item-name="Majestic Dragon - Stained Glass Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/047202501.jpg"
+            data-item-description="Glass Ornament - Majestic Dragon - Stained Glass Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+dragon" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+christmas+bells" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+<div class="product-card fade-in" data-cat="ornament" data-row="2">
     <div class="product-img"><img src="images/ornaments/047202502.jpg" alt="Christmas Bells" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Christmas Bells & Holly - Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-048"
+            data-item-name="Christmas Bells & Holly - Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/047202502.jpg"
+            data-item-description="Glass Ornament - Christmas Bells & Holly - Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+christmas+bells" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+sunset+mountain" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+<div class="product-card fade-in" data-cat="ornament" data-row="2">
     <div class="product-img"><img src="images/ornaments/05072501.jpg" alt="Sunset Mountains" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Rainbow Mountain Sunrise - Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-049"
+            data-item-name="Rainbow Mountain Sunrise - Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/05072501.jpg"
+            data-item-description="Glass Ornament - Rainbow Mountain Sunrise - Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+sunset+mountain" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+angel+butterfly" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+<div class="product-card fade-in" data-cat="ornament" data-row="2">
     <div class="product-img"><img src="images/ornaments/05072502.jpg" alt="Angel Butterfly Wings" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Angel with Butterfly Wings - Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-050"
+            data-item-name="Angel with Butterfly Wings - Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/05072502.jpg"
+            data-item-description="Glass Ornament - Angel with Butterfly Wings - Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+angel+butterfly" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+gnome+coffee" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+<div class="product-card fade-in" data-cat="ornament" data-row="2">
     <div class="product-img"><img src="images/ornaments/04072508.jpg" alt="Coffee Gnome" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Coffee Gnome - Cute Crystal Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(35+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-051"
+            data-item-name="Coffee Gnome - Cute Crystal Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/04072508.jpg"
+            data-item-description="Glass Ornament - Coffee Gnome - Cute Crystal Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+gnome+coffee" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
-<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+lily+flower" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+<div class="product-card fade-in" data-cat="ornament" data-row="2">
     <div class="product-img"><img src="images/ornaments/05072505.jpg" alt="Lily of the Valley" loading="lazy"></div>
     <div class="product-body">
         <div class="product-cat">Glass Ornament</div>
         <div class="product-title">Lily of the Valley - Stained Glass Ornament</div>
         <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
-        <div class="product-price"><span class="from">from </span>$14.99</div>
+        <div class="product-price">$14.99</div>
     </div>
-    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-</a>
+    <div class="product-footer">
+        <button class="snipcart-add-item product-btn btn-cart"
+            data-item-id="GFX-052"
+            data-item-name="Lily of the Valley - Stained Glass Ornament"
+            data-item-price="14.99"
+            data-item-url="/index.html"
+            data-item-image="images/ornaments/05072505.jpg"
+            data-item-description="Glass Ornament - Lily of the Valley - Stained Glass Ornament">
+            Add to Cart
+        </button>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+lily+flower" target="_blank" class="product-btn btn-amazon">Also available on Amazon</a>
+    </div>
+</div>
 
     </div>
 
@@ -1007,5 +1591,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     });
 });
 </script>
+
+<!-- Snipcart -->
+<div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-currency="usd" data-config-modal-style="side"></div>
+<script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 </body>
 </html>
