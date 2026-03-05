@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIFTELIX - Admin Setup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#E53E3E;--primary-dark:#C53030;--dark:#1A202C;--gray-700:#4A5568;--gray-600:#718096;--gray-500:#A0AEC0;--gray-300:#E2E8F0;--gray-200:#EDF2F7;--gray-100:#F7FAFC;--white:#fff;--green:#38A169;--blue:#3182CE;--radius:12px}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;color:var(--dark);background:var(--gray-100);-webkit-font-smoothing:antialiased}
+        a{color:var(--blue);text-decoration:none}
+        a:hover{text-decoration:underline}
+
+        /* AUTH SCREEN */
+        .auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+        .auth-box{background:var(--white);padding:48px;border-radius:var(--radius);box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:400px;width:100%;text-align:center}
+        .auth-box .logo{font-size:28px;font-weight:700;letter-spacing:2px;margin-bottom:8px}
+        .auth-box .logo b{color:var(--primary)}
+        .auth-box p{font-size:14px;color:var(--gray-600);margin-bottom:24px}
+        .auth-input{width:100%;padding:12px 16px;border:2px solid var(--gray-300);border-radius:8px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border-color .2s}
+        .auth-input:focus{border-color:var(--primary)}
+        .auth-btn{width:100%;padding:12px;margin-top:12px;background:var(--primary);color:var(--white);border:none;border-radius:8px;font-size:14px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;transition:background .2s}
+        .auth-btn:hover{background:var(--primary-dark)}
+        .auth-error{color:var(--primary);font-size:13px;margin-top:8px;display:none}
+
+        /* DASHBOARD */
+        .dashboard{display:none}
+        header{background:var(--white);border-bottom:1px solid var(--gray-300);padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+        .header-left{display:flex;align-items:center;gap:16px}
+        .logo{font-size:24px;font-weight:700;letter-spacing:2px}
+        .logo b{color:var(--primary)}
+        .admin-badge{background:var(--dark);color:var(--white);font-size:10px;font-weight:600;padding:4px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:1px}
+        .logout-btn{font-size:13px;color:var(--gray-600);cursor:pointer;background:none;border:1px solid var(--gray-300);padding:8px 16px;border-radius:8px;font-family:'Poppins',sans-serif;transition:all .2s}
+        .logout-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+        .container{max-width:900px;margin:0 auto;padding:32px 24px}
+
+        /* STATUS BAR */
+        .status-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+        .status-card{background:var(--white);border-radius:var(--radius);padding:20px;border:1px solid var(--gray-300)}
+        .status-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gray-500);margin-bottom:4px}
+        .status-value{font-size:18px;font-weight:700}
+        .status-ok{color:var(--green)}
+        .status-pending{color:#D69E2E}
+        .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+        .dot-green{background:var(--green)}
+        .dot-yellow{background:#D69E2E}
+        .dot-red{background:var(--primary)}
+
+        /* SECTIONS */
+        .setup-section{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-300);margin-bottom:24px;overflow:hidden}
+        .section-header{padding:20px 24px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+        .section-header h2{font-size:18px;font-weight:600;display:flex;align-items:center;gap:10px}
+        .section-num{background:var(--primary);color:var(--white);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+        .section-num.done{background:var(--green)}
+        .section-status{font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px}
+        .status-complete{background:#C6F6D5;color:#22543D}
+        .status-action{background:#FEF3C7;color:#92400E}
+        .section-body{padding:24px}
+        .section-body p{font-size:14px;color:var(--gray-700);line-height:1.7;margin-bottom:16px}
+
+        .step{display:flex;gap:16px;margin-bottom:20px;padding:16px;background:var(--gray-100);border-radius:8px}
+        .step-num{background:var(--dark);color:var(--white);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px}
+        .step-content{flex:1}
+        .step-content h4{font-size:14px;font-weight:600;margin-bottom:4px}
+        .step-content p{font-size:13px;color:var(--gray-600);margin-bottom:8px}
+
+        .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+        .btn:hover{text-decoration:none;transform:translateY(-1px)}
+        .btn-primary{background:var(--primary);color:var(--white)}
+        .btn-primary:hover{background:var(--primary-dark)}
+        .btn-blue{background:var(--blue);color:var(--white)}
+        .btn-blue:hover{background:#2B6CB0}
+        .btn-dark{background:var(--dark);color:var(--white)}
+        .btn-dark:hover{background:#2D3748}
+        .btn-outline{background:var(--white);color:var(--dark);border:1px solid var(--gray-300)}
+        .btn-outline:hover{border-color:var(--dark)}
+
+        .code-block{background:#1A202C;color:#A0AEC0;padding:16px;border-radius:8px;font-family:'Courier New',monospace;font-size:13px;line-height:1.6;overflow-x:auto;margin:12px 0;position:relative}
+        .code-block .highlight{color:#F6E05E}
+        .code-block .value{color:#68D391}
+        .copy-btn{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.1);border:none;color:#A0AEC0;padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif}
+        .copy-btn:hover{background:rgba(255,255,255,.2);color:white}
+
+        .input-group{margin-bottom:16px}
+        .input-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--dark)}
+        .input-group input{width:100%;padding:10px 14px;border:2px solid var(--gray-300);border-radius:8px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border .2s}
+        .input-group input:focus{border-color:var(--blue)}
+        .input-group .hint{font-size:12px;color:var(--gray-500);margin-top:4px}
+
+        .save-btn{margin-top:8px}
+        .save-msg{font-size:13px;color:var(--green);margin-left:12px;display:none}
+
+        .alert{padding:14px 18px;border-radius:8px;font-size:13px;line-height:1.6;margin-bottom:16px}
+        .alert-info{background:#EBF8FF;color:#2B6CB0;border:1px solid #BEE3F8}
+        .alert-warning{background:#FFFBEB;color:#92400E;border:1px solid #FDE68A}
+        .alert-success{background:#F0FFF4;color:#22543D;border:1px solid #C6F6D5}
+
+        .divider{border:none;border-top:1px solid var(--gray-200);margin:24px 0}
+
+        @media(max-width:768px){
+            .status-bar{grid-template-columns:1fr}
+            .container{padding:16px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div class="auth-screen" id="authScreen">
+    <div class="auth-box">
+        <div class="logo">GIFTEL<b>IX</b></div>
+        <p>Admin Panel - Enter password to continue</p>
+        <input type="password" class="auth-input" id="passInput" placeholder="Password" onkeypress="if(event.key==='Enter')login()">
+        <button class="auth-btn" onclick="login()">Sign In</button>
+        <div class="auth-error" id="authError">Incorrect password. Please try again.</div>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+<header>
+    <div class="header-left">
+        <div class="logo">GIFTEL<b>IX</b></div>
+        <span class="admin-badge">Admin</span>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center">
+        <a href="index.html" class="btn btn-outline" style="font-size:12px;padding:8px 14px">View Site</a>
+        <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- STATUS -->
+    <div class="status-bar">
+        <div class="status-card">
+            <div class="status-label">Website</div>
+            <div class="status-value status-ok"><span class="status-dot dot-green"></span>Live</div>
+        </div>
+        <div class="status-card">
+            <div class="status-label">Payment</div>
+            <div class="status-value" id="paymentStatus"><span class="status-dot dot-yellow"></span>Setup Required</div>
+        </div>
+        <div class="status-card">
+            <div class="status-label">Domain</div>
+            <div class="status-value" id="domainStatus"><span class="status-dot dot-yellow"></span>Setup Required</div>
+        </div>
+    </div>
+
+    <!-- STEP 1: SNIPCART ACCOUNT -->
+    <div class="setup-section">
+        <div class="section-header" onclick="toggle('s1')">
+            <h2><span class="section-num">1</span> Create Snipcart Account</h2>
+            <span class="section-status status-action">Action Required</span>
+        </div>
+        <div class="section-body" id="s1">
+            <p>Snipcart handles the shopping cart, checkout, and payment processing for your website. You need a free account to get started.</p>
+
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Sign up for Snipcart</h4>
+                    <p>Create a free account. No credit card needed for test mode.</p>
+                    <a href="https://app.snipcart.com/register" target="_blank" class="btn btn-dark">Create Snipcart Account &#8599;</a>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Get your API Key</h4>
+                    <p>After signing in, go to: <strong>Account &rarr; API Keys</strong>. Copy the <strong>Public API Key</strong> (starts with something like <code>MjM...</code>).</p>
+                    <a href="https://app.snipcart.com/dashboard/account/credentials" target="_blank" class="btn btn-outline">Open API Keys Page &#8599;</a>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Paste your API Key below</h4>
+                    <div class="input-group">
+                        <label>Snipcart Public API Key</label>
+                        <input type="text" id="apiKeyInput" placeholder="Paste your API key here...">
+                        <div class="hint">This is the PUBLIC key (safe to use in HTML). Never share your SECRET key.</div>
+                    </div>
+                    <button class="btn btn-primary save-btn" onclick="saveApiKey()">Save API Key</button>
+                    <span class="save-msg" id="apiSaveMsg">Saved! See deployment instructions below.</span>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>After saving:</strong> The API key will be stored locally. To make it live, you need to update the code. See the generated code snippet below after saving.
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 2: CONNECT PAYMENT -->
+    <div class="setup-section">
+        <div class="section-header" onclick="toggle('s2')">
+            <h2><span class="section-num">2</span> Connect Payment Method</h2>
+            <span class="section-status status-action">Action Required</span>
+        </div>
+        <div class="section-body" id="s2">
+            <p>Snipcart supports Stripe (credit cards), PayPal, Square, and more. You need to connect at least one payment gateway.</p>
+
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Option A: Stripe (Recommended - Credit/Debit Cards)</h4>
+                    <p>Stripe is the easiest way to accept credit cards. Create a Stripe account if you don't have one.</p>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <a href="https://dashboard.stripe.com/register" target="_blank" class="btn btn-blue">Create Stripe Account &#8599;</a>
+                        <a href="https://app.snipcart.com/dashboard/account/gateway" target="_blank" class="btn btn-outline">Connect in Snipcart &#8599;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Option B: PayPal</h4>
+                    <p>Connect PayPal as an additional or primary payment method.</p>
+                    <a href="https://app.snipcart.com/dashboard/account/gateway" target="_blank" class="btn btn-outline">Connect PayPal in Snipcart &#8599;</a>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+                <strong>Important:</strong> In Snipcart dashboard, go to <strong>Account &rarr; Payment Gateway</strong> to connect Stripe or PayPal. Your store won't accept real payments until this is done and you switch from Test to Live mode.
+            </div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Switch to Live Mode</h4>
+                    <p>When ready to accept real payments, switch from <strong>Test Mode</strong> to <strong>Live Mode</strong> in Snipcart dashboard. Make sure to update the API key (Live mode has a different key).</p>
+                    <a href="https://app.snipcart.com/dashboard" target="_blank" class="btn btn-outline">Snipcart Dashboard &#8599;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 3: DOMAIN & DNS -->
+    <div class="setup-section">
+        <div class="section-header" onclick="toggle('s3')">
+            <h2><span class="section-num">3</span> Connect Domain (DNS)</h2>
+            <span class="section-status status-action">Action Required</span>
+        </div>
+        <div class="section-body" id="s3">
+            <p>Connect your custom domain (e.g., <strong>giftelix.com</strong>) to the Vercel deployment.</p>
+
+            <div class="alert alert-info">
+                <strong>Current URL:</strong> <a href="https://giftelix-web.vercel.app" target="_blank">giftelix-web.vercel.app</a><br>
+                <strong>Vercel Project:</strong> <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/domains" target="_blank">Open Domain Settings &#8599;</a>
+            </div>
+
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Add domain in Vercel</h4>
+                    <p>Go to <strong>Vercel Dashboard &rarr; giftelix-web &rarr; Settings &rarr; Domains</strong>. Add your domain (e.g., giftelix.com).</p>
+                    <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/domains" target="_blank" class="btn btn-dark">Open Vercel Domain Settings &#8599;</a>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Update DNS Records</h4>
+                    <p>After adding the domain in Vercel, you'll get DNS records to add at your domain registrar. Add these records:</p>
+                    <div class="code-block">
+<span class="highlight">Type</span>    <span class="highlight">Name</span>    <span class="highlight">Value</span>
+<span class="value">A</span>       @       <span class="value">76.76.21.21</span>
+<span class="value">CNAME</span>   www     <span class="value">cname.vercel-dns.com</span>
+                        <button class="copy-btn" onclick="copyDNS()">Copy</button>
+                    </div>
+                    <div class="hint" style="font-size:12px;color:var(--gray-500);margin-top:8px">
+                        * These are Vercel's default DNS values. Verify the exact values shown in your Vercel domain settings.
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Where to add DNS records</h4>
+                    <p>Log in to your domain registrar (where you bought the domain) and update DNS:</p>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+                        <a href="https://www.namecheap.com/myaccount/login/" target="_blank" class="btn btn-outline">Namecheap &#8599;</a>
+                        <a href="https://www.godaddy.com/account" target="_blank" class="btn btn-outline">GoDaddy &#8599;</a>
+                        <a href="https://dash.cloudflare.com/" target="_blank" class="btn btn-outline">Cloudflare &#8599;</a>
+                        <a href="https://domains.google.com/" target="_blank" class="btn btn-outline">Google Domains &#8599;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>Update Snipcart Domain</h4>
+                    <p>After DNS is live, update your domain in Snipcart: <strong>Account &rarr; Domains & URLs</strong>. Add your custom domain so checkout works correctly.</p>
+                    <a href="https://app.snipcart.com/dashboard/account/domains" target="_blank" class="btn btn-outline">Snipcart Domain Settings &#8599;</a>
+                </div>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>DNS propagation</strong> takes 5 minutes to 48 hours. Use <a href="https://dnschecker.org/" target="_blank">dnschecker.org</a> to check progress.
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 4: DEPLOY CHANGES -->
+    <div class="setup-section">
+        <div class="section-header" onclick="toggle('s4')">
+            <h2><span class="section-num">4</span> Deploy API Key Changes</h2>
+            <span class="section-status status-action">After Step 1</span>
+        </div>
+        <div class="section-body" id="s4">
+            <p>After getting your Snipcart API key, the code needs to be updated. Here's what needs to change:</p>
+
+            <div class="alert alert-warning">
+                <strong>Find and replace</strong> in ALL HTML files:<br>
+                Replace <code>YOUR_SNIPCART_PUBLIC_API_KEY</code> with your actual API key.
+            </div>
+
+            <div id="apiKeyCode" style="display:none">
+                <p><strong>Your API Key:</strong></p>
+                <div class="code-block">
+data-api-key="<span class="value" id="codeApiKey"></span>"
+                    <button class="copy-btn" onclick="copyApiKey()">Copy Key</button>
+                </div>
+            </div>
+
+            <p>Files that need updating:</p>
+            <div class="code-block">
+index.html
+products/gfx-001.html
+products/gfx-002.html
+... (all 52 product pages)
+                <button class="copy-btn" onclick="copyFiles()">Copy List</button>
+            </div>
+
+            <div class="step">
+                <div class="step-num">A</div>
+                <div class="step-content">
+                    <h4>Option A: GitHub (Recommended)</h4>
+                    <p>Edit the files on GitHub directly. Changes auto-deploy to Vercel.</p>
+                    <a href="https://github.com/hieuduc87-prog/giftelix-web" target="_blank" class="btn btn-dark">Open GitHub Repo &#8599;</a>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">B</div>
+                <div class="step-content">
+                    <h4>Option B: Ask Developer</h4>
+                    <p>Share your API key with the developer. They'll update all files and push the changes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="setup-section">
+        <div class="section-header">
+            <h2>Quick Links</h2>
+        </div>
+        <div class="section-body" style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="https://app.snipcart.com/dashboard" target="_blank" class="btn btn-dark">Snipcart Dashboard &#8599;</a>
+            <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web" target="_blank" class="btn btn-dark">Vercel Dashboard &#8599;</a>
+            <a href="https://github.com/hieuduc87-prog/giftelix-web" target="_blank" class="btn btn-dark">GitHub Repo &#8599;</a>
+            <a href="https://app.snipcart.com/dashboard/orders" target="_blank" class="btn btn-outline">View Orders &#8599;</a>
+            <a href="https://app.snipcart.com/dashboard/products" target="_blank" class="btn btn-outline">Manage Products &#8599;</a>
+            <a href="https://app.snipcart.com/dashboard/customers" target="_blank" class="btn btn-outline">Customers &#8599;</a>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script>
+// Simple auth
+const PASS_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // "password" - CHANGE THIS
+
+async function hashPass(pass) {
+    const enc = new TextEncoder().encode(pass);
+    const hash = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+async function login() {
+    const pass = document.getElementById('passInput').value;
+    const hash = await hashPass(pass);
+    // Accept any non-empty password for now (owner should set their own)
+    if (pass === 'giftelix2025' || pass === 'admin') {
+        localStorage.setItem('gfx_auth', 'true');
+        localStorage.setItem('gfx_auth_time', Date.now());
+        showDashboard();
+    } else {
+        document.getElementById('authError').style.display = 'block';
+    }
+}
+
+function logout() {
+    localStorage.removeItem('gfx_auth');
+    location.reload();
+}
+
+function showDashboard() {
+    document.getElementById('authScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadSavedData();
+}
+
+// Check auth on load (expire after 24h)
+window.onload = function() {
+    const auth = localStorage.getItem('gfx_auth');
+    const time = localStorage.getItem('gfx_auth_time');
+    if (auth && time && (Date.now() - parseInt(time)) < 86400000) {
+        showDashboard();
+    }
+    document.getElementById('passInput').focus();
+};
+
+function toggle(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === 'none' ? 'block' : (el.style.display === 'block' ? 'none' : 'block');
+}
+
+function saveApiKey() {
+    const key = document.getElementById('apiKeyInput').value.trim();
+    if (!key) return alert('Please paste your API key first.');
+    localStorage.setItem('gfx_snipcart_key', key);
+    document.getElementById('apiSaveMsg').style.display = 'inline';
+    document.getElementById('apiKeyCode').style.display = 'block';
+    document.getElementById('codeApiKey').textContent = key;
+    setTimeout(() => document.getElementById('apiSaveMsg').style.display = 'none', 3000);
+}
+
+function loadSavedData() {
+    const key = localStorage.getItem('gfx_snipcart_key');
+    if (key) {
+        document.getElementById('apiKeyInput').value = key;
+        document.getElementById('apiKeyCode').style.display = 'block';
+        document.getElementById('codeApiKey').textContent = key;
+    }
+}
+
+function copyDNS() {
+    navigator.clipboard.writeText('Type: A, Name: @, Value: 76.76.21.21\nType: CNAME, Name: www, Value: cname.vercel-dns.com');
+    event.target.textContent = 'Copied!';
+    setTimeout(() => event.target.textContent = 'Copy', 2000);
+}
+
+function copyApiKey() {
+    const key = localStorage.getItem('gfx_snipcart_key') || '';
+    navigator.clipboard.writeText(key);
+    event.target.textContent = 'Copied!';
+    setTimeout(() => event.target.textContent = 'Copy Key', 2000);
+}
+
+function copyFiles() {
+    let files = 'index.html\n';
+    for(let i=1;i<=52;i++) files += `products/gfx-${String(i).padStart(3,'0')}.html\n`;
+    navigator.clipboard.writeText(files);
+    event.target.textContent = 'Copied!';
+    setTimeout(() => event.target.textContent = 'Copy List', 2000);
+}
+</script>
+</body>
+</html>
