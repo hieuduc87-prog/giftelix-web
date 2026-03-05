@@ -51,13 +51,20 @@
         .hamburger{display:none;cursor:pointer;padding:8px;background:none;border:none}
         .hamburger svg{width:24px;height:24px}
 
-        /* HERO */
-        .hero{background:linear-gradient(135deg,#FFF5F5 0%,#FED7D7 30%,#FFF5F5 60%,#FEFCBF 100%);padding:80px 24px;text-align:center;overflow:hidden}
-        .hero-inner{max-width:720px;margin:0 auto;position:relative;z-index:2}
-        .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--white);padding:8px 20px;border-radius:50px;font-size:12px;font-weight:600;color:var(--primary);margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-        .hero h1{font-size:46px;font-weight:700;line-height:1.2;margin-bottom:16px}
-        .hero p{font-size:16px;color:var(--gray-600);line-height:1.7;margin-bottom:32px;max-width:540px;margin-left:auto;margin-right:auto}
-        .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+        /* HERO SLIDER */
+        .hero-slider{position:relative;width:100%;overflow:hidden;aspect-ratio:1440/420}
+        .hero-track{display:flex;width:300%;transition:transform .6s ease}
+        .hero-slide{width:100%;flex-shrink:0;position:relative}
+        .hero-slide img{width:100%;height:100%;object-fit:cover;display:block}
+        .hero-slide a{display:block;width:100%;height:100%}
+        .slider-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+        .slider-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);border:none;cursor:pointer;transition:all .3s;padding:0}
+        .slider-dot.active{background:var(--white);transform:scale(1.2)}
+        .slider-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.7);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--dark);transition:all .2s;backdrop-filter:blur(4px)}
+        .slider-arrow:hover{background:var(--white);box-shadow:0 2px 10px rgba(0,0,0,.15)}
+        .slider-prev{left:16px}
+        .slider-next{right:16px}
+        @media(max-width:768px){.hero-slider{aspect-ratio:auto;height:200px}.slider-arrow{width:32px;height:32px;font-size:14px}}
         .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:8px;font-size:14px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;border:none;transition:all .2s}
         .btn-primary{background:var(--primary);color:var(--white)}
         .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 20px rgba(229,62,62,.3)}
@@ -222,15 +229,18 @@
     </div>
 </header>
 
-<section class="hero">
-    <div class="hero-inner fade-in">
-        <div class="hero-badge">&#9733; #1 Best Seller on Amazon</div>
-        <h1>Gifts That Speak When Words Can't</h1>
-        <p>Crystal suncatchers, stained-glass ornaments, and magnetic photo frames &mdash; handcrafted to celebrate love, honor memories, and brighten every day.</p>
-        <div class="hero-btns">
-            <a href="#products" class="btn btn-primary">Shop Now &rarr;</a>
-            <a href="#collections" class="btn btn-outline">Browse Collections</a>
-        </div>
+<section class="hero-slider" id="heroSlider">
+    <div class="hero-track" id="heroTrack">
+        <div class="hero-slide"><a href="#products"><img src="images/banners/1.jpg" alt="GIFTELIX - Crystal Suncatchers & Ornaments"></a></div>
+        <div class="hero-slide"><a href="#products"><img src="images/banners/2.jpg" alt="GIFTELIX - Magnetic Photo Frames - Best Mom Ever"></a></div>
+        <div class="hero-slide"><a href="#products"><img src="images/banners/3.jpg" alt="GIFTELIX - Crystal Suncatchers - Once by My Side Forever in My Heart"></a></div>
+    </div>
+    <button class="slider-arrow slider-prev" onclick="slideHero(-1)">&#10094;</button>
+    <button class="slider-arrow slider-next" onclick="slideHero(1)">&#10095;</button>
+    <div class="slider-dots">
+        <button class="slider-dot active" onclick="goSlide(0)"></button>
+        <button class="slider-dot" onclick="goSlide(1)"></button>
+        <button class="slider-dot" onclick="goSlide(2)"></button>
     </div>
 </section>
 
@@ -1580,6 +1590,18 @@ function filterProducts(cat){
         c.style.display=cats.includes(cat)?'':'none';
     });
 }
+
+// Hero Slider
+let currentSlide=0;const totalSlides=3;
+function slideHero(dir){currentSlide=(currentSlide+dir+totalSlides)%totalSlides;updateSlider()}
+function goSlide(n){currentSlide=n;updateSlider()}
+function updateSlider(){
+    document.getElementById('heroTrack').style.transform=`translateX(-${currentSlide*33.333}%)`;
+    document.querySelectorAll('.slider-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+}
+let autoSlide=setInterval(()=>slideHero(1),5000);
+document.getElementById('heroSlider').addEventListener('mouseenter',()=>clearInterval(autoSlide));
+document.getElementById('heroSlider').addEventListener('mouseleave',()=>{autoSlide=setInterval(()=>slideHero(1),5000)});
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',function(e){
