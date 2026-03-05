@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIFTELIX - Domain Setup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;background:#F7FAFC;color:#1A202C;min-height:100vh;display:flex;flex-direction:column;align-items:center;-webkit-font-smoothing:antialiased}
+        .logo{font-size:28px;font-weight:700;letter-spacing:2px;margin:40px 0 8px}.logo b{color:#E53E3E}
+        .subtitle{font-size:14px;color:#718096;margin-bottom:40px}
+        .card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.06);max-width:560px;width:calc(100% - 48px);padding:36px;margin-bottom:24px}
+        h2{font-size:20px;font-weight:700;margin-bottom:6px}
+        .desc{font-size:14px;color:#718096;margin-bottom:28px;line-height:1.6}
+
+        .dns-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+        .dns-table th{text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#A0AEC0;padding:0 0 10px}
+        .dns-table td{padding:12px 16px;font-size:14px;font-weight:500;background:#F7FAFC;border-radius:8px}
+        .dns-table tr td:first-child{border-radius:8px 0 0 8px;width:80px}
+        .dns-table tr td:nth-child(2){width:60px}
+        .dns-table tr td:last-child{border-radius:0 8px 8px 0;font-family:'Courier New',monospace;font-weight:600;color:#2D3748}
+        .dns-row{margin-bottom:4px;display:contents}
+        .type-badge{display:inline-block;background:#E53E3E;color:#fff;padding:2px 10px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.5px}
+        .type-cname{background:#3182CE}
+        .copy-btn{background:none;border:1px solid #E2E8F0;padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;color:#718096;font-family:'Poppins',sans-serif;transition:all .2s}
+        .copy-btn:hover{border-color:#E53E3E;color:#E53E3E}
+        .copy-btn.copied{border-color:#38A169;color:#38A169}
+
+        .step-label{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#4A5568;margin-bottom:16px}
+        .step-num{width:24px;height:24px;border-radius:50%;background:#1A202C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+
+        .registrars{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+        .reg-btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid #E2E8F0;color:#4A5568;background:#fff;text-decoration:none;transition:all .2s;font-family:'Poppins',sans-serif}
+        .reg-btn:hover{border-color:#E53E3E;color:#E53E3E;text-decoration:none}
+
+        .check-section{text-align:center;padding:24px 0 0}
+        .domain-input{padding:10px 16px;border:2px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:'Poppins',sans-serif;width:220px;outline:none;text-align:center;transition:border .2s}
+        .domain-input:focus{border-color:#3182CE}
+        .check-btn{padding:10px 24px;border:none;border-radius:8px;background:#1A202C;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;margin-left:8px}
+        .check-btn:hover{background:#2D3748;transform:translateY(-1px)}
+        .check-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+        .result{margin-top:16px;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;display:none}
+        .result-ok{background:#F0FFF4;color:#22543D;border:1px solid #C6F6D5;display:block}
+        .result-wait{background:#FFFBEB;color:#92400E;border:1px solid #FDE68A;display:block}
+        .result-err{background:#FFF5F5;color:#9B2C2C;border:1px solid #FED7D7;display:block}
+
+        .help{font-size:12px;color:#A0AEC0;line-height:1.6;margin-top:12px}
+        .footer{margin:20px 0 40px;font-size:12px;color:#A0AEC0}
+        .footer a{color:#A0AEC0}
+
+        @media(max-width:480px){
+            .card{padding:24px}
+            .domain-input{width:100%;margin-bottom:8px}
+            .check-btn{width:100%;margin-left:0}
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo">GIFTEL<b>IX</b></div>
+<div class="subtitle">Domain Setup Guide</div>
+
+<!-- STEP 1: DNS RECORDS -->
+<div class="card">
+    <div class="step-label"><span class="step-num">1</span> Add these DNS records</div>
+    <p class="desc">Log in to your domain registrar and add these 2 records. This connects your domain to the GIFTELIX website.</p>
+
+    <table class="dns-table">
+        <thead><tr><th>Type</th><th>Name</th><th>Value</th><th></th></tr></thead>
+        <tbody>
+            <tr class="dns-row">
+                <td><span class="type-badge">A</span></td>
+                <td><strong>@</strong></td>
+                <td>76.76.21.21</td>
+                <td><button class="copy-btn" onclick="copyText('76.76.21.21',this)">Copy</button></td>
+            </tr>
+            <tr><td colspan="4" style="padding:4px;background:none"></td></tr>
+            <tr class="dns-row">
+                <td><span class="type-badge type-cname">CNAME</span></td>
+                <td><strong>www</strong></td>
+                <td>cname.vercel-dns.com</td>
+                <td><button class="copy-btn" onclick="copyText('cname.vercel-dns.com',this)">Copy</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="help">
+        <strong>A record</strong> = points your main domain (giftelix.com) to the server.<br>
+        <strong>CNAME</strong> = points www.giftelix.com to the same place.<br>
+        TTL: leave as default or set to 300 (5 min).
+    </p>
+</div>
+
+<!-- STEP 2: WHERE -->
+<div class="card">
+    <div class="step-label"><span class="step-num">2</span> Where to add DNS records</div>
+    <p class="desc">Click your domain registrar below to open their DNS settings page:</p>
+    <div class="registrars">
+        <a href="https://dash.cloudflare.com/" target="_blank" class="reg-btn">Cloudflare</a>
+        <a href="https://ap.www.namecheap.com/domains/list/" target="_blank" class="reg-btn">Namecheap</a>
+        <a href="https://dcc.godaddy.com/control/portfolio" target="_blank" class="reg-btn">GoDaddy</a>
+        <a href="https://domains.google.com/registrar/" target="_blank" class="reg-btn">Google Domains</a>
+        <a href="https://www.hostinger.com/cpanel-login" target="_blank" class="reg-btn">Hostinger</a>
+    </div>
+    <p class="help">Don't see yours? Search "[your registrar] add DNS record" on Google.</p>
+</div>
+
+<!-- STEP 3: CHECK -->
+<div class="card">
+    <div class="step-label"><span class="step-num">3</span> Check if DNS is working</div>
+    <p class="desc">After adding the records, enter your domain below to check. DNS can take 5 min to 48 hours to propagate.</p>
+    <div class="check-section">
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
+            <input type="text" class="domain-input" id="domainInput" placeholder="giftelix.com" value="giftelix.com">
+            <button class="check-btn" id="checkBtn" onclick="checkDNS()">Check DNS</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+</div>
+
+<div class="footer">GIFTELIX LLC &bull; <a href="index.html">Back to Website</a></div>
+
+<script>
+function copyText(text, btn) {
+    navigator.clipboard.writeText(text);
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+}
+
+async function checkDNS() {
+    const domain = document.getElementById('domainInput').value.trim().replace(/^https?:\/\//, '').replace(/\/.*/, '');
+    if (!domain) return;
+    const btn = document.getElementById('checkBtn');
+    const result = document.getElementById('result');
+    btn.disabled = true;
+    btn.textContent = 'Checking...';
+    result.className = 'result';
+    result.style.display = 'none';
+
+    try {
+        const resp = await fetch(`https://dns.google/resolve?name=${domain}&type=A`);
+        const data = await resp.json();
+        const answers = (data.Answer || []).map(a => a.data);
+
+        if (answers.includes('76.76.21.21')) {
+            result.className = 'result result-ok';
+            result.innerHTML = '<strong>&#10003; DNS is configured correctly!</strong><br>Your domain is pointing to Vercel. The website should be live at <a href="https://' + domain + '" target="_blank">' + domain + '</a> shortly.';
+        } else if (answers.length > 0) {
+            result.className = 'result result-wait';
+            result.innerHTML = '<strong>&#9888; DNS found but pointing elsewhere</strong><br>Current A record: ' + answers.join(', ') + '<br>Expected: 76.76.21.21. Please update your A record.';
+        } else {
+            result.className = 'result result-wait';
+            result.innerHTML = '<strong>&#9203; No A record found yet</strong><br>DNS may still be propagating. Wait 5-30 minutes and check again. If it\'s been over 2 hours, double-check your DNS settings.';
+        }
+    } catch (e) {
+        result.className = 'result result-err';
+        result.innerHTML = '<strong>Could not check DNS.</strong> Try again or check manually at <a href="https://dnschecker.org/#A/' + domain + '" target="_blank">dnschecker.org</a>';
+    }
+
+    result.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Check DNS';
+}
+</script>
+</body>
+</html>
