@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIFTELIX - Meaningful Gifts & Keepsakes | Suncatchers, Memorial Gifts & Photo Frames</title>
-    <meta name="description" content="GIFTELIX creates heartfelt crystal suncatchers, memorial keepsakes, and magnetic photo frames. Premium gifts for Mom, Dad, pets, and loved ones. Shop on Amazon.">
-    <meta name="keywords" content="gifts for mom, suncatcher ornaments, memorial gifts, pet memorial, magnetic picture frames, sympathy gifts, keepsakes, rainbow maker, crystal prism">
+    <title>GIFTELIX - Meaningful Gifts & Keepsakes | Suncatchers, Ornaments & Photo Frames</title>
+    <meta name="description" content="GIFTELIX creates heartfelt crystal suncatchers, glass ornaments, memorial keepsakes, and magnetic photo frames. Premium gifts for Mom, Dad, pets, and loved ones. Shop on Amazon.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -25,679 +24,197 @@
             --gray-100: #F7FAFC;
             --white: #FFFFFF;
             --gold: #D69E2E;
-            --gold-light: #F6E05E;
             --green: #38A169;
             --blue: #3182CE;
-            --pink: #ED64A6;
             --orange: #DD6B20;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
-            --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
-            --shadow-xl: 0 20px 50px rgba(0,0,0,0.12);
             --radius: 12px;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; color: var(--dark); background: var(--white); -webkit-font-smoothing: antialiased; }
-        a { text-decoration: none; color: inherit; }
-        img { max-width: 100%; display: block; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Poppins',sans-serif;color:var(--dark);background:var(--white);-webkit-font-smoothing:antialiased}
+        a{text-decoration:none;color:inherit}
+        img{max-width:100%;display:block}
 
-        /* ===== HEADER ===== */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-200);
-            transition: box-shadow 0.3s;
-        }
-        header.scrolled { box-shadow: var(--shadow-md); }
-        .header-top {
-            background: var(--dark);
-            color: var(--white);
-            text-align: center;
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-        .header-top span { color: var(--gold-light); }
-        .header-main {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 12px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--dark);
-        }
-        .logo b { color: var(--primary); }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 32px;
-            align-items: center;
-        }
-        nav a {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--gray-700);
-            transition: color 0.2s;
-            position: relative;
-        }
-        nav a:hover { color: var(--primary); }
-        nav a.active { color: var(--primary); font-weight: 600; }
-        .nav-shop {
-            background: var(--primary);
-            color: var(--white) !important;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 600 !important;
-            font-size: 13px !important;
-            transition: all 0.2s !important;
-        }
-        .nav-shop:hover { background: var(--primary-dark); transform: translateY(-1px); }
-        .hamburger { display: none; cursor: pointer; padding: 8px; }
-        .hamburger svg { width: 24px; height: 24px; }
+        /* HEADER */
+        header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-200);transition:box-shadow .3s}
+        header.scrolled{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+        .header-top{background:var(--dark);color:var(--white);text-align:center;padding:8px 16px;font-size:12px;font-weight:500}
+        .header-top span{color:#F6E05E}
+        .header-main{max-width:1280px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
+        .logo{font-size:24px;font-weight:700;letter-spacing:2px}.logo b{color:var(--primary)}
+        nav ul{display:flex;list-style:none;gap:28px;align-items:center}
+        nav a{font-size:13px;font-weight:500;color:var(--gray-700);transition:color .2s}
+        nav a:hover{color:var(--primary)}
+        .nav-shop{background:var(--primary);color:var(--white)!important;padding:10px 22px;border-radius:8px;font-weight:600!important;transition:all .2s!important}
+        .nav-shop:hover{background:var(--primary-dark);transform:translateY(-1px)}
+        .hamburger{display:none;cursor:pointer;padding:8px;background:none;border:none}
+        .hamburger svg{width:24px;height:24px}
 
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 30%, #FFF5F5 60%, #FEFCBF 100%);
-            padding: 80px 24px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(214,158,46,0.08) 0%, transparent 70%);
-            top: -200px; right: -100px;
-            border-radius: 50%;
-        }
-        .hero-inner {
-            max-width: 720px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--white);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 24px;
-            box-shadow: var(--shadow-sm);
-        }
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--dark);
-            margin-bottom: 16px;
-        }
-        .hero p {
-            font-size: 16px;
-            color: var(--gray-600);
-            line-height: 1.7;
-            margin-bottom: 32px;
-            max-width: 540px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-        }
-        .btn-primary { background: var(--primary); color: var(--white); }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(229,62,62,0.3); }
-        .btn-outline { background: var(--white); color: var(--dark); border: 2px solid var(--gray-300); }
-        .btn-outline:hover { border-color: var(--dark); transform: translateY(-2px); }
-        .btn-dark { background: var(--dark); color: var(--white); }
-        .btn-dark:hover { background: var(--gray-800); transform: translateY(-2px); }
+        /* HERO */
+        .hero{background:linear-gradient(135deg,#FFF5F5 0%,#FED7D7 30%,#FFF5F5 60%,#FEFCBF 100%);padding:80px 24px;text-align:center;overflow:hidden}
+        .hero-inner{max-width:720px;margin:0 auto;position:relative;z-index:2}
+        .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--white);padding:8px 20px;border-radius:50px;font-size:12px;font-weight:600;color:var(--primary);margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+        .hero h1{font-size:46px;font-weight:700;line-height:1.2;margin-bottom:16px}
+        .hero p{font-size:16px;color:var(--gray-600);line-height:1.7;margin-bottom:32px;max-width:540px;margin-left:auto;margin-right:auto}
+        .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:8px;font-size:14px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;border:none;transition:all .2s}
+        .btn-primary{background:var(--primary);color:var(--white)}
+        .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 20px rgba(229,62,62,.3)}
+        .btn-outline{background:var(--white);color:var(--dark);border:2px solid var(--gray-300)}
+        .btn-outline:hover{border-color:var(--dark);transform:translateY(-2px)}
 
-        /* ===== TRUST BAR ===== */
-        .trust {
-            border-bottom: 1px solid var(--gray-200);
-            padding: 20px 24px;
-            background: var(--gray-100);
-        }
-        .trust-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--gray-700);
-        }
-        .trust-icon {
-            width: 20px; height: 20px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 14px;
-        }
+        /* TRUST */
+        .trust{border-bottom:1px solid var(--gray-200);padding:18px 24px;background:var(--gray-100)}
+        .trust-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
+        .trust-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--gray-700)}
 
-        /* ===== SECTION COMMON ===== */
-        .section { padding: 80px 24px; }
-        .section-gray { background: var(--gray-100); }
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 48px;
-        }
-        .section-tag {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-        .section-header h2 {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-        .section-header p {
-            font-size: 15px;
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
+        /* SECTIONS */
+        .section{padding:80px 24px}
+        .section-gray{background:var(--gray-100)}
+        .section-header{text-align:center;max-width:600px;margin:0 auto 40px}
+        .section-tag{font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+        .section-header h2{font-size:32px;font-weight:700;margin-bottom:12px;line-height:1.3}
+        .section-header p{font-size:15px;color:var(--gray-600);line-height:1.6}
 
-        /* ===== COLLECTIONS ===== */
-        .collections-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        .collection-card {
-            border-radius: var(--radius);
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .collection-card:hover { transform: translateY(-6px); }
-        .collection-card:hover .collection-bg { transform: scale(1.05); }
-        .collection-bg {
-            position: absolute;
-            inset: 0;
-            transition: transform 0.5s;
-        }
-        .col-suncatcher { background: linear-gradient(135deg, #FEFCBF, #F6E05E, #ECC94B); }
-        .col-memorial { background: linear-gradient(135deg, #E9D8FD, #D6BCFA, #B794F4); }
-        .col-frames { background: linear-gradient(135deg, #C6F6D5, #9AE6B4, #68D391); }
-        .col-pet { background: linear-gradient(135deg, #FED7D7, #FEB2B2, #FC8181); }
-        .collection-emoji {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -60%);
-            font-size: 64px;
-            opacity: 0.6;
-        }
-        .collection-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 24px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            color: var(--white);
-        }
-        .collection-overlay h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .collection-overlay p {
-            font-size: 13px;
-            opacity: 0.85;
-        }
-        .collection-count {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: var(--white);
-            color: var(--dark);
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 600;
-        }
+        /* COLLECTIONS */
+        .collections-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .collection-card{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;transition:transform .3s;display:block}
+        .collection-card:hover{transform:translateY(-6px)}
+        .collection-card:hover .col-img{transform:scale(1.05)}
+        .col-img{position:absolute;inset:0;transition:transform .5s;background-size:cover;background-position:center}
+        .collection-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:var(--white)}
+        .collection-overlay h3{font-size:20px;font-weight:600;margin-bottom:4px}
+        .collection-overlay p{font-size:13px;opacity:.85}
+        .collection-count{position:absolute;top:16px;right:16px;background:var(--white);color:var(--dark);padding:4px 12px;border-radius:50px;font-size:11px;font-weight:600}
 
-        /* ===== PRODUCT GRID ===== */
-        .products-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        .product-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--gray-200);
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-card:hover {
-            border-color: var(--gray-300);
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-4px);
-        }
-        .product-img {
-            aspect-ratio: 1;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .product-img .img-bg {
-            width: 100%; height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            transition: transform 0.4s;
-        }
-        .product-card:hover .img-bg { transform: scale(1.08); }
-        .bg-warm { background: linear-gradient(145deg, #FFFBEB, #FEF3C7); }
-        .bg-cool { background: linear-gradient(145deg, #EBF4FF, #DBEAFE); }
-        .bg-pink { background: linear-gradient(145deg, #FFF1F2, #FFE4E6); }
-        .bg-green { background: linear-gradient(145deg, #ECFDF5, #D1FAE5); }
-        .bg-purple { background: linear-gradient(145deg, #F5F3FF, #EDE9FE); }
-        .bg-orange { background: linear-gradient(145deg, #FFF7ED, #FFEDD5); }
-        .product-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .badge-best { background: var(--primary); color: var(--white); }
-        .badge-new { background: var(--green); color: var(--white); }
-        .badge-hot { background: var(--orange); color: var(--white); }
-        .product-body {
-            padding: 16px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-cat {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gray-500);
-            margin-bottom: 6px;
-        }
-        .product-title {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--dark);
-            line-height: 1.4;
-            margin-bottom: 8px;
-            flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .product-rating {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            margin-bottom: 8px;
-        }
-        .stars { color: #F59E0B; font-size: 12px; letter-spacing: 1px; }
-        .rating-count { font-size: 11px; color: var(--gray-500); }
-        .product-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-        .product-price .from { font-size: 12px; font-weight: 400; color: var(--gray-500); }
-        .product-footer {
-            padding: 0 16px 16px;
-        }
-        .product-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 10px;
-            background: var(--gray-100);
-            color: var(--dark);
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .product-card:hover .product-btn {
-            background: var(--primary);
-            color: var(--white);
-        }
+        /* PRODUCTS */
+        .products-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+        .product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--gray-200);transition:all .3s;display:flex;flex-direction:column}
+        .product-card:hover{border-color:var(--gray-300);box-shadow:0 10px 30px rgba(0,0,0,.1);transform:translateY(-4px)}
+        .product-img{aspect-ratio:1;overflow:hidden;position:relative}
+        .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+        .product-card:hover .product-img img{transform:scale(1.06)}
+        .product-badge{position:absolute;top:10px;left:10px;font-size:10px;font-weight:600;padding:4px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
+        .badge-best{background:var(--primary);color:var(--white)}
+        .badge-new{background:var(--green);color:var(--white)}
+        .badge-hot{background:var(--orange);color:var(--white)}
+        .product-body{padding:14px;flex:1;display:flex;flex-direction:column}
+        .product-cat{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gray-500);margin-bottom:4px}
+        .product-title{font-size:13px;font-weight:500;line-height:1.4;margin-bottom:6px;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .product-rating{display:flex;align-items:center;gap:4px;margin-bottom:6px}
+        .stars{color:#F59E0B;font-size:12px;letter-spacing:1px}
+        .rating-count{font-size:11px;color:var(--gray-500)}
+        .product-price{font-size:17px;font-weight:700}
+        .product-price .from{font-size:11px;font-weight:400;color:var(--gray-500)}
+        .product-footer{padding:0 14px 14px}
+        .product-btn{display:block;width:100%;text-align:center;padding:10px;background:var(--gray-100);color:var(--dark);border-radius:8px;font-size:13px;font-weight:600;transition:all .2s}
+        .product-card:hover .product-btn{background:var(--primary);color:var(--white)}
 
-        /* ===== SECTION: HOW IT WORKS ===== */
-        .steps-grid {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-        .step-num {
-            width: 48px; height: 48px;
-            background: var(--primary);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 700;
-            margin: 0 auto 16px;
-        }
-        .step h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .step p {
-            font-size: 14px;
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
+        /* FILTER */
+        .filter-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+        .filter-tab{padding:8px 20px;border-radius:50px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--gray-300);background:var(--white);color:var(--gray-700);transition:all .2s;font-family:'Poppins',sans-serif}
+        .filter-tab:hover{border-color:var(--primary);color:var(--primary)}
+        .filter-tab.active{background:var(--primary);color:var(--white);border-color:var(--primary)}
 
-        /* ===== WHY US ===== */
-        .features-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-        .feature-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            padding: 28px 24px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .feature-card:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-3px);
-        }
-        .feature-icon { font-size: 32px; margin-bottom: 16px; }
-        .feature-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-        .feature-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+        /* FEATURES */
+        .features-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+        .feature-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px 24px;text-align:center;transition:all .3s}
+        .feature-card:hover{border-color:var(--primary);box-shadow:0 4px 14px rgba(0,0,0,.08);transform:translateY(-3px)}
+        .feature-icon{font-size:32px;margin-bottom:16px}
+        .feature-card h3{font-size:15px;font-weight:600;margin-bottom:8px}
+        .feature-card p{font-size:13px;color:var(--gray-600);line-height:1.6}
 
-        /* ===== REVIEWS ===== */
-        .reviews-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        .review-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            padding: 28px;
-            transition: all 0.3s;
-        }
-        .review-card:hover { box-shadow: var(--shadow-md); }
-        .review-stars { color: #F59E0B; font-size: 14px; margin-bottom: 12px; }
-        .review-text {
-            font-size: 14px;
-            color: var(--gray-700);
-            line-height: 1.7;
-            margin-bottom: 16px;
-            font-style: italic;
-        }
-        .review-author { display: flex; align-items: center; gap: 12px; }
-        .review-avatar {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; font-weight: 600;
-            color: var(--white);
-        }
-        .review-name { font-size: 14px; font-weight: 600; }
-        .review-label { font-size: 11px; color: var(--gray-500); }
+        /* REVIEWS */
+        .reviews-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .review-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px;transition:all .3s}
+        .review-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+        .review-stars{color:#F59E0B;font-size:14px;margin-bottom:12px}
+        .review-text{font-size:14px;color:var(--gray-700);line-height:1.7;margin-bottom:16px;font-style:italic}
+        .review-author{display:flex;align-items:center;gap:12px}
+        .review-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;color:var(--white)}
+        .review-name{font-size:14px;font-weight:600}
+        .review-label{font-size:11px;color:var(--gray-500)}
 
-        /* ===== OCCASIONS ===== */
-        .occasions-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-        .occasion {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            padding: 24px 16px;
-            text-align: center;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        .occasion:hover { border-color: var(--primary); background: #FFF5F5; transform: translateY(-3px); }
-        .occasion-icon { font-size: 32px; margin-bottom: 10px; }
-        .occasion h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-        .occasion p { font-size: 12px; color: var(--gray-500); }
+        /* OCCASIONS */
+        .occasions-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+        .occasion{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:24px 16px;text-align:center;transition:all .2s;display:block}
+        .occasion:hover{border-color:var(--primary);background:#FFF5F5;transform:translateY(-3px)}
+        .occasion-icon{font-size:32px;margin-bottom:10px}
+        .occasion h4{font-size:14px;font-weight:600;margin-bottom:4px}
+        .occasion p{font-size:12px;color:var(--gray-500)}
 
-        /* ===== CTA BANNER ===== */
-        .cta-banner {
-            background: var(--dark);
-            color: var(--white);
-            padding: 80px 24px;
-            text-align: center;
-        }
-        .cta-banner h2 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
-        .cta-banner p { font-size: 16px; color: var(--gray-500); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-banner .btn-primary { background: var(--primary); font-size: 16px; padding: 16px 40px; }
+        /* CTA */
+        .cta-banner{background:var(--dark);color:var(--white);padding:80px 24px;text-align:center}
+        .cta-banner h2{font-size:36px;font-weight:700;margin-bottom:12px}
+        .cta-banner p{font-size:16px;color:var(--gray-500);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
 
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--gray-900);
-            color: var(--gray-500);
-            padding: 64px 24px 24px;
-        }
-        .footer-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 48px;
-        }
-        .footer-brand p { font-size: 14px; line-height: 1.7; margin-top: 12px; }
-        .footer-col h4 {
-            color: var(--white);
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 10px; }
-        .footer-col a { font-size: 14px; color: var(--gray-500); transition: color 0.2s; }
-        .footer-col a:hover { color: var(--white); }
-        .footer-bottom {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .footer-social { display: flex; gap: 12px; }
-        .footer-social a {
-            width: 36px; height: 36px;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--gray-500);
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .footer-social a:hover { border-color: var(--primary); color: var(--primary); background: rgba(229,62,62,0.1); }
+        /* FOOTER */
+        footer{background:var(--gray-900);color:var(--gray-500);padding:64px 24px 24px}
+        .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+        .footer-brand p{font-size:14px;line-height:1.7;margin-top:12px}
+        .footer-col h4{color:var(--white);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+        .footer-col ul{list-style:none}
+        .footer-col li{margin-bottom:10px}
+        .footer-col a{font-size:14px;color:var(--gray-500);transition:color .2s}
+        .footer-col a:hover{color:var(--white)}
+        .footer-bottom{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;font-size:13px;flex-wrap:wrap;gap:12px}
+        .footer-social{display:flex;gap:12px}
+        .footer-social a{width:36px;height:36px;border:1px solid rgba(255,255,255,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gray-500);font-size:13px;font-weight:600;transition:all .2s}
+        .footer-social a:hover{border-color:var(--primary);color:var(--primary)}
+        .view-all{text-align:center;margin-top:40px}
+        .show-more-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:2px solid var(--gray-300);background:var(--white);color:var(--dark);font-family:'Poppins',sans-serif;transition:all .2s}
+        .show-more-btn:hover{border-color:var(--primary);color:var(--primary)}
+        .hidden{display:none!important}
 
-        /* ===== VIEW ALL ===== */
-        .view-all {
-            text-align: center;
-            margin-top: 40px;
+        /* RESPONSIVE */
+        @media(max-width:1024px){.products-grid{grid-template-columns:repeat(3,1fr)}.features-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){
+            .hamburger{display:block}
+            nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;padding:24px;gap:16px;border-bottom:1px solid var(--gray-200);box-shadow:0 10px 30px rgba(0,0,0,.1)}
+            nav ul.active{display:flex}
+            .hero{padding:60px 24px}.hero h1{font-size:30px}
+            .collections-grid{grid-template-columns:1fr}
+            .products-grid{grid-template-columns:repeat(2,1fr)}
+            .features-grid,.reviews-grid{grid-template-columns:1fr}
+            .occasions-grid{grid-template-columns:repeat(2,1fr)}
+            .footer-grid{grid-template-columns:1fr 1fr}
+            .section-header h2{font-size:26px}.trust-inner{gap:16px}
         }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .products-grid { grid-template-columns: repeat(3, 1fr); }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        @media(max-width:480px){
+            .products-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+            .footer-grid{grid-template-columns:1fr}.hero h1{font-size:26px}
+            .cta-banner h2{font-size:26px}
         }
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            nav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 24px; gap: 16px; border-bottom: 1px solid var(--gray-200); box-shadow: var(--shadow-lg); }
-            nav ul.active { display: flex; }
-            .hero { padding: 60px 24px; }
-            .hero h1 { font-size: 32px; }
-            .collections-grid { grid-template-columns: 1fr; }
-            .products-grid { grid-template-columns: repeat(2, 1fr); }
-            .steps-grid { grid-template-columns: 1fr; gap: 24px; }
-            .features-grid { grid-template-columns: 1fr; }
-            .reviews-grid { grid-template-columns: 1fr; }
-            .occasions-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .section-header h2 { font-size: 26px; }
-            .trust-inner { gap: 20px; }
-        }
-        @media (max-width: 480px) {
-            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .occasions-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 28px; }
-            .product-body { padding: 12px; }
-            .product-title { font-size: 13px; }
-            .product-price { font-size: 16px; }
-            .cta-banner h2 { font-size: 28px; }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== FILTER TABS ===== */
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-        }
-        .filter-tab {
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            border: 1px solid var(--gray-300);
-            background: var(--white);
-            color: var(--gray-700);
-            transition: all 0.2s;
-            font-family: 'Poppins', sans-serif;
-        }
-        .filter-tab:hover { border-color: var(--primary); color: var(--primary); }
-        .filter-tab.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+        .fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
     </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header id="header">
-    <div class="header-top">
-        Free Shipping with Amazon Prime &bull; <span>&#9733; Thousands of 5-Star Reviews</span>
-    </div>
+    <div class="header-top">Free Shipping with Amazon Prime &bull; <span>&#9733; Thousands of 5-Star Reviews</span></div>
     <div class="header-main">
         <a href="#" class="logo">GIFTEL<b>IX</b></a>
         <nav>
             <ul id="navMenu">
                 <li><a href="#collections">Collections</a></li>
-                <li><a href="#products">Shop</a></li>
-                <li><a href="#occasions">Occasions</a></li>
+                <li><a href="#products">Shop All</a></li>
                 <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#occasions">Occasions</a></li>
                 <li><a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="nav-shop">Shop on Amazon</a></li>
             </ul>
         </nav>
-        <div class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('active')">
+        <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('active')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-        </div>
+        </button>
     </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
     <div class="hero-inner fade-in">
         <div class="hero-badge">&#9733; #1 Best Seller on Amazon</div>
         <h1>Gifts That Speak When Words Can't</h1>
-        <p>Crystal suncatchers, memorial keepsakes, and magnetic photo frames &mdash; handcrafted to celebrate love, honor memories, and brighten every day.</p>
+        <p>Crystal suncatchers, stained-glass ornaments, and magnetic photo frames &mdash; handcrafted to celebrate love, honor memories, and brighten every day.</p>
         <div class="hero-btns">
             <a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="btn btn-primary">Shop All Products &rarr;</a>
             <a href="#collections" class="btn btn-outline">Browse Collections</a>
@@ -705,14 +222,13 @@
     </div>
 </section>
 
-<!-- TRUST -->
 <div class="trust">
     <div class="trust-inner">
-        <div class="trust-item"><span class="trust-icon">&#9733;</span> Amazon Best Seller</div>
-        <div class="trust-item"><span class="trust-icon">&#128666;</span> Free Prime Shipping</div>
-        <div class="trust-item"><span class="trust-icon">&#127873;</span> Gift-Ready Packaging</div>
-        <div class="trust-item"><span class="trust-icon">&#128274;</span> Easy Returns</div>
-        <div class="trust-item"><span class="trust-icon">&#127482;&#127480;</span> Designed in USA</div>
+        <div class="trust-item">&#9733; Amazon Best Seller</div>
+        <div class="trust-item">&#128666; Free Prime Shipping</div>
+        <div class="trust-item">&#127873; Gift-Ready Packaging</div>
+        <div class="trust-item">&#128274; Easy Returns</div>
+        <div class="trust-item">&#127482;&#127480; Designed in USA</div>
     </div>
 </div>
 
@@ -721,31 +237,28 @@
     <div class="section-header fade-in">
         <div class="section-tag">Explore Collections</div>
         <h2>Curated for Every Heart</h2>
-        <p>Browse our signature collections, each designed to bring light, love, and comfort.</p>
+        <p>Three signature collections &mdash; each crafted to bring light, love, and comfort.</p>
     </div>
     <div class="collections-grid">
-        <a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+mom" target="_blank" class="collection-card fade-in">
-            <div class="collection-bg col-suncatcher"></div>
-            <div class="collection-emoji">&#127774;</div>
-            <div class="collection-count">12+ items</div>
+        <a href="#products" onclick="setTimeout(()=>filterProducts('suncatcher'),100)" class="collection-card fade-in">
+            <div class="col-img" style="background-image:url('images/suncatchers/18032501.jpg')"></div>
+            <div class="collection-count">28+ designs</div>
             <div class="collection-overlay">
                 <h3>Crystal Suncatchers</h3>
-                <p>Rainbow-making ornaments with heartfelt messages</p>
+                <p>Rainbow-making wooden ornaments with crystal prisms</p>
             </div>
         </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+memorial+sympathy" target="_blank" class="collection-card fade-in">
-            <div class="collection-bg col-memorial"></div>
-            <div class="collection-emoji">&#128330;</div>
-            <div class="collection-count">10+ items</div>
+        <a href="#products" onclick="setTimeout(()=>filterProducts('ornament'),100)" class="collection-card fade-in">
+            <div class="col-img" style="background-image:url('images/ornaments/047202503.jpg')"></div>
+            <div class="collection-count">40+ designs</div>
             <div class="collection-overlay">
-                <h3>Memorial & Sympathy</h3>
-                <p>Comfort gifts honoring loved ones & pets</p>
+                <h3>Glass Ornaments</h3>
+                <p>Stunning stained-glass crystal ornaments</p>
             </div>
         </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+picture+frame" target="_blank" class="collection-card fade-in">
-            <div class="collection-bg col-frames"></div>
-            <div class="collection-emoji">&#128248;</div>
-            <div class="collection-count">14+ items</div>
+        <a href="#products" onclick="setTimeout(()=>filterProducts('magnet'),100)" class="collection-card fade-in">
+            <div class="col-img" style="background-image:url('images/magnets/04032503.jpg')"></div>
+            <div class="collection-count">46+ designs</div>
             <div class="collection-overlay">
                 <h3>Magnetic Photo Frames</h3>
                 <p>Adorable fridge magnets with loving messages</p>
@@ -754,491 +267,663 @@
     </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- ALL PRODUCTS -->
 <section class="section section-gray" id="products">
     <div class="section-header fade-in">
         <div class="section-tag">Shop Our Products</div>
-        <h2>Customer Favorites</h2>
-        <p>Our most-loved pieces, chosen by thousands of happy gift-givers.</p>
+        <h2>The Full Collection</h2>
+        <p>Over 100 unique designs. Find the perfect gift for every occasion.</p>
     </div>
 
     <div class="filter-tabs fade-in">
-        <button class="filter-tab active" onclick="filterProducts('all')">All Products</button>
+        <button class="filter-tab active" onclick="filterProducts('all')">All</button>
+        <button class="filter-tab" onclick="filterProducts('magnet')">Magnetic Frames</button>
         <button class="filter-tab" onclick="filterProducts('suncatcher')">Suncatchers</button>
+        <button class="filter-tab" onclick="filterProducts('ornament')">Glass Ornaments</button>
         <button class="filter-tab" onclick="filterProducts('memorial')">Memorial</button>
-        <button class="filter-tab" onclick="filterProducts('frame')">Magnetic Frames</button>
-        <button class="filter-tab" onclick="filterProducts('pet')">Pet Memorial</button>
+        <button class="filter-tab" onclick="filterProducts('pet')">Pet Lovers</button>
+        <button class="filter-tab" onclick="filterProducts('mom')">For Mom</button>
+        <button class="filter-tab" onclick="filterProducts('dad')">For Dad</button>
     </div>
 
     <div class="products-grid" id="productsGrid">
 
-        <!-- SUNCATCHERS -->
-        <a href="https://www.amazon.com/GIFTELIX-Gifts-Mom-Suncatcher-Sentimental/dp/B0F7RCND92" target="_blank" class="product-card fade-in" data-cat="suncatcher">
-            <div class="product-img"><div class="img-bg bg-warm">&#127774;</div><span class="product-badge badge-best">Best Seller</span></div>
-            <div class="product-body">
-                <div class="product-cat">Suncatcher</div>
-                <div class="product-title">Gifts for Mom - Crystal Suncatcher Rainbow Maker - Hanging Window Decor</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(120+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<!-- ========== MAGNETIC FRAMES ========== -->
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0F3D1M8DW" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="1">
+    <div class="product-img"><img src="images/magnets/04032503.jpg" alt="Our First Father's Day Together" loading="lazy"><span class="product-badge badge-best">Best Seller</span></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Our First Father's Day Together</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(160+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Glass-Ornament-Suncatcher-Thanksgiving/dp/B0FM82K2NS" target="_blank" class="product-card fade-in" data-cat="suncatcher">
-            <div class="product-img"><div class="img-bg bg-pink">&#10084;&#65039;</div><span class="product-badge badge-hot">Popular</span></div>
-            <div class="product-body">
-                <div class="product-cat">Glass Suncatcher</div>
-                <div class="product-title">To My Mom - Glass Ornament Suncatcher - Mother's Day Christmas Gift</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(85+)</span></div>
-                <div class="product-price"><span class="from">from </span>$17.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ4ZTT8V" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="1">
+    <div class="product-img"><img src="images/magnets/20062503.jpg" alt="Best Mom Ever" loading="lazy"><span class="product-badge badge-hot">Popular</span></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Best Mom Ever - Birthday Gift for Mom</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(100+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Glass-Ornament-Suncatcher-Bereavement/dp/B0FM7F3VQK" target="_blank" class="product-card fade-in" data-cat="suncatcher pet">
-            <div class="product-img"><div class="img-bg bg-purple">&#128049;</div><span class="product-badge badge-new">New</span></div>
-            <div class="product-body">
-                <div class="product-cat">Suncatcher</div>
-                <div class="product-title">Cat Memorial Sympathy Gift - Glass Ornament Rainbow Maker for Cat Lovers</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
-                <div class="product-price"><span class="from">from </span>$17.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Encouragement/dp/B0FJ4Q2ZC2" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="1">
+    <div class="product-img"><img src="images/magnets/26062501.jpg" alt="Thank You For Being Part of Ours" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">It Takes a Village - Thank You Gift</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(90+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Aluminum-Ornament-Suncatcher-Granddaughters/dp/B0FMJJ9PLZ" target="_blank" class="product-card fade-in" data-cat="suncatcher">
-            <div class="product-img"><div class="img-bg bg-warm">&#128150;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Aluminum Suncatcher</div>
-                <div class="product-title">Mothers and Daughters - Aluminum Ornament Suncatcher Keepsake</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-                <div class="product-price"><span class="from">from </span>$14.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Watching/dp/B0F3D8FY2C" target="_blank" class="product-card fade-in" data-cat="magnet pet" data-row="1">
+    <div class="product-img"><img src="images/magnets/28022505.jpg" alt="I'll Be Watching You" loading="lazy"><span class="product-badge badge-hot">Popular</span></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">I'll Be Watching You - Funny Pet Gift</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Glass-Suncatcher-Ornament-Sympathy/dp/B0FM7T7GLJ" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial">
-            <div class="product-img"><div class="img-bg bg-cool">&#127800;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Glass Suncatcher</div>
-                <div class="product-title">Those We Love Don't Go Away - Sympathy Comfort Keepsake</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
-                <div class="product-price"><span class="from">from </span>$17.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5CSK79" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="1">
+    <div class="product-img"><img src="images/magnets/27062504.jpg" alt="To My Love - Penguin Soulmates" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">To My Love - Penguin Soulmates Forever</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(75+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Thank-Gifts-Inspirational-Encouragement/dp/B0F8379VRX" target="_blank" class="product-card fade-in" data-cat="suncatcher">
-            <div class="product-img"><div class="img-bg bg-warm">&#127775;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Suncatcher Ornament</div>
-                <div class="product-title">The World is Brighter Because of You - Inspirational Gift</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5M3Q5R" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="1">
+    <div class="product-img"><img src="images/magnets/25062503.jpg" alt="My Sister Forever" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">My Sister Forever - Never Apart</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <!-- MEMORIAL -->
-        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7R3CMHX" target="_blank" class="product-card fade-in" data-cat="memorial">
-            <div class="product-img"><div class="img-bg bg-purple">&#128330;</div><span class="product-badge badge-best">Best Seller</span></div>
-            <div class="product-body">
-                <div class="product-cat">Memorial</div>
-                <div class="product-title">Memorial Suncatcher - Crystal Rainbow Maker - Sympathy Bereavement Gift</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(200+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Grandma-Ultrasound/dp/B0F3D92G57" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="1">
+    <div class="product-img"><img src="images/magnets/05032501.jpg" alt="Hi Grandma & Grandpa" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Hi Grandma & Grandpa - Pregnancy Announcement</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(85+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7QTWQHR" target="_blank" class="product-card fade-in" data-cat="memorial">
-            <div class="product-img"><div class="img-bg bg-pink">&#129419;</div><span class="product-badge badge-hot">Popular</span></div>
-            <div class="product-body">
-                <div class="product-cat">Memorial</div>
-                <div class="product-title">Butterfly Crystal Rainbow Maker - Hanging Crystal Decor - Sympathy Gift</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(150+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Awesome/dp/B0F3CZXXXN" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="1">
+    <div class="product-img"><img src="images/magnets/04032505.jpg" alt="Dear Dad You're Awesome" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Dear Dad, You're Awesome - Reminder</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7QLX8LN" target="_blank" class="product-card fade-in" data-cat="memorial">
-            <div class="product-img"><div class="img-bg bg-green">&#127807;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Memorial</div>
-                <div class="product-title">A Limb Has Fallen - Memorial Suncatcher Ornament - Loss of Loved One</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(90+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ4NMQ7Z" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="2">
+    <div class="product-img"><img src="images/magnets/24062503.jpg" alt="Daddy You Are The World" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Daddy - To Us You Are The World</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7XX3PRD" target="_blank" class="product-card fade-in" data-cat="memorial">
-            <div class="product-img"><div class="img-bg bg-pink">&#128038;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Memorial</div>
-                <div class="product-title">Cardinal Heart Rainbow Maker - Bereavement Keepsake - Loss of Mom Dad</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(75+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Daddy/dp/B0FJ4TJMV3" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="2">
+    <div class="product-img"><img src="images/magnets/18062501.jpg" alt="Daddy I Can't Wait to Meet You" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Daddy I Can't Wait to Meet You</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Aluminum-Ornament-Suncatcher-Bereavement/dp/B0FMJNK1MQ" target="_blank" class="product-card fade-in" data-cat="memorial">
-            <div class="product-img"><div class="img-bg bg-cool">&#9729;&#65039;</div><span class="product-badge badge-new">New</span></div>
-            <div class="product-body">
-                <div class="product-cat">Aluminum Memorial</div>
-                <div class="product-title">Bereavement Gift - Heaven Keepsake Aluminum Suncatcher Ornament</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
-                <div class="product-price"><span class="from">from </span>$14.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-GRANDPAW/dp/B0FJ535GKV" target="_blank" class="product-card fade-in" data-cat="magnet pet dad" data-row="2">
+    <div class="product-img"><img src="images/magnets/17062502.jpg" alt="Best GRANDPAW Ever" loading="lazy"><span class="product-badge badge-new">New</span></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Best GrandPAW Ever - Dog Grandpa Gift</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <!-- PET MEMORIAL -->
-        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7XSVNJP" target="_blank" class="product-card fade-in" data-cat="pet memorial">
-            <div class="product-img"><div class="img-bg bg-orange">&#128062;</div><span class="product-badge badge-best">Best Seller</span></div>
-            <div class="product-body">
-                <div class="product-cat">Pet Memorial</div>
-                <div class="product-title">Pet Memorial Paw Suncatcher - Rainbow Bridge Gift for Pet Owners</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(180+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0F3CZCB3B" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="2">
+    <div class="product-img"><img src="images/magnets/26022508.jpg" alt="Everything I Am You Help Me to Be" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Everything I Am, You Helped Me to Be</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(60+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7XRKRYC" target="_blank" class="product-card fade-in" data-cat="pet memorial">
-            <div class="product-img"><div class="img-bg bg-warm">&#128021;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Pet Memorial</div>
-                <div class="product-title">Pet Memorial Paws Print Ornament - Rainbow Bridge Sympathy Gift</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(110+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5JY52F" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="2">
+    <div class="product-img"><img src="images/magnets/23062502.jpg" alt="Always Close At Heart" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Friends Are Always Close At Heart</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Pet-Memorial-Suncatcher-Bereavement/dp/B0F7XK9KQR" target="_blank" class="product-card fade-in" data-cat="pet memorial">
-            <div class="product-img"><div class="img-bg bg-pink">&#127752;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Pet Memorial</div>
-                <div class="product-title">Your Light Will Always Shine in My Heart - Dog Memorial Gift</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(95+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ2FQKKF" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="2">
+    <div class="product-img"><img src="images/magnets/18062506.jpg" alt="Mom If You Were A Flower" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Mom - If You Were A Flower, I'd Pick You</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Loss-Sympathy/dp/B0F7WYSYVM" target="_blank" class="product-card fade-in" data-cat="pet memorial">
-            <div class="product-img"><div class="img-bg bg-cool">&#127749;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Pet Memorial</div>
-                <div class="product-title">I Crossed The Rainbow Bridge - Dog Memorial Crystal Suncatcher</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(80+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dad" target="_blank" class="product-card fade-in" data-cat="magnet dad" data-row="2">
+    <div class="product-img"><img src="images/magnets/04032501.jpg" alt="Being a Dad Papa" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Being a Dad is an Honor, Papa is Priceless</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Pet-Memorial-Suncatcher-Remembrance/dp/B0F7QZ57CX" target="_blank" class="product-card fade-in" data-cat="pet memorial">
-            <div class="product-img"><div class="img-bg bg-orange">&#127773;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Pet Memorial</div>
-                <div class="product-title">Pet Memorial Dog Sunset - Meaningful Heartfelt Remembrance Keepsake</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(60+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+mom+puzzle" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="2">
+    <div class="product-img"><img src="images/magnets/26022503.jpg" alt="Mom Puzzle Piece" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Mom - You Are The Piece That Holds Us Together</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Pet-Memorial-Suncatcher-Suncatchers/dp/B0F7X9XVX9" target="_blank" class="product-card fade-in" data-cat="pet memorial">
-            <div class="product-img"><div class="img-bg bg-purple">&#128142;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Pet Memorial</div>
-                <div class="product-title">Pet Memorial Crystal Prism - Rainbow Bereavement Keepsake</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-                <div class="product-price"><span class="from">from </span>$16.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog" target="_blank" class="product-card fade-in" data-cat="magnet pet" data-row="3">
+    <div class="product-img"><img src="images/magnets/16062501.jpg" alt="Woof Dog Frame" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Woof - Dog Lover Photo Frame</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <!-- MAGNETIC FRAMES -->
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0F3D1M8DW" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-green">&#128118;</div><span class="product-badge badge-best">Best Seller</span></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Our First Father's Day Together - Fridge Magnet Photo Frame</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(160+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog+stalker" target="_blank" class="product-card fade-in" data-cat="magnet pet" data-row="3">
+    <div class="product-img"><img src="images/magnets/21062501.jpg" alt="Personal Stalker Dog" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Personal Stalker - Funny Dog Gift</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(35+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Encouragement/dp/B0FJ4Q2ZC2" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-warm">&#127873;</div><span class="product-badge badge-hot">Popular</span></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Thank You For Being A Part of Ours - Appreciation Decor Gift</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(90+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+grandkids" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="3">
+    <div class="product-img"><img src="images/magnets/03032502.jpg" alt="Better with Grandkids" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Life Is Just Better With Grandkids</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ4ZTT8V" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-pink">&#128147;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Best Mom Ever - Birthday Gift for Mom - Magnetic Photo Frame</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(100+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+memorial+wings" target="_blank" class="product-card fade-in" data-cat="magnet memorial" data-row="3">
+    <div class="product-img"><img src="images/magnets/26022504.jpg" alt="Wings Were Ready" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Your Wings Were Ready, Our Hearts Were Not</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5CSK79" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-pink">&#128152;</div><span class="product-badge badge-new">New</span></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">To My Love - Valentine Gift for Couple - Magnet Photo Frame</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(75+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+dog+dad" target="_blank" class="product-card fade-in" data-cat="magnet pet dad" data-row="3">
+    <div class="product-img"><img src="images/magnets/24062501.jpg" alt="Best Dog Dad Ever" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Best Dog Dad Ever - I Love You Daddy</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ5M3Q5R" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-purple">&#128149;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">My Sister Forever - Birthday Gift for Sisters - Magnet Frame</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+family" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="3">
+    <div class="product-img"><img src="images/magnets/05032506.jpg" alt="Family Where Life Begins" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Family - Where Life Begins & Love Never Ends</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0FJ4NMQ7Z" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-cool">&#127760;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Daddy You Are The World - Mother's Day Gift for Dad</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+nana+grandma" target="_blank" class="product-card fade-in" data-cat="magnet mom" data-row="3">
+    <div class="product-img"><img src="images/magnets/18062505.jpg" alt="Greatest Gifts Call Me Nana" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">My Greatest Gifts Call Me Nana</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Grandma-Ultrasound/dp/B0F3D92G57" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-warm">&#128116;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Hi Grandma & Grandpa - Ultrasound Pregnancy Announcement Frame</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(85+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame+sister+funny" target="_blank" class="product-card fade-in" data-cat="magnet" data-row="3">
+    <div class="product-img"><img src="images/magnets/25062505.jpg" alt="Sister Lucky" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Magnetic Frame</div>
+        <div class="product-title">Congrats on Being My Sister - Funny Gift</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(35+)</span></div>
+        <div class="product-price"><span class="from">from </span>$12.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Watching/dp/B0F3D8FY2C" target="_blank" class="product-card fade-in" data-cat="frame pet">
-            <div class="product-img"><div class="img-bg bg-orange">&#128054;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">I'll Be Watching You - Funny Gift for Dog Cat Pet Lover</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<!-- ========== SUNCATCHERS ========== -->
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+sunshine" target="_blank" class="product-card fade-in" data-cat="suncatcher mom" data-row="1">
+    <div class="product-img"><img src="images/suncatchers/18032501.jpg" alt="You Are My Sunshine" loading="lazy"><span class="product-badge badge-best">Best Seller</span></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">You Are My Sunshine - Sunflower Suncatcher</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(120+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Daddy/dp/B0FJ4TJMV3" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-cool">&#128188;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Daddy I Can't Wait to Meet You - Gift for Dad-to-Be</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7XSVNJP" target="_blank" class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="1">
+    <div class="product-img"><img src="images/suncatchers/01082504.jpg" alt="Once by My Side" loading="lazy"><span class="product-badge badge-hot">Popular</span></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Once by My Side, Forever in My Heart - Pet Memorial</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(180+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-GRANDPAW/dp/B0FJ535GKV" target="_blank" class="product-card fade-in" data-cat="frame pet">
-            <div class="product-img"><div class="img-bg bg-green">&#128054;</div><span class="product-badge badge-new">New</span></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Best GRANDPAW Ever - Funny Gift for Dog Grandpa</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Glass-Suncatcher-Ornament-Sympathy/dp/B0FM7T7GLJ" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="1">
+    <div class="product-img"><img src="images/suncatchers/07082509.jpg" alt="Those We Love Don't Go Away" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Those We Love Don't Go Away - Memorial Angel</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Refrigerator/dp/B0F3CZCB3B" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-pink">&#129303;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Everything I Am You Help Me to Be - Birthday Gift for Mom</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(60+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+grandma+garden" target="_blank" class="product-card fade-in" data-cat="suncatcher mom" data-row="1">
+    <div class="product-img"><img src="images/suncatchers/18032502.jpg" alt="Grandma's Garden" loading="lazy"><span class="product-badge badge-new">New</span></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Grandma's Garden - Heart Suncatcher</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
-        <a href="https://www.amazon.com/GIFTELIX-Magnetic-Picture-Frames-Awesome/dp/B0F3CZXXXN" target="_blank" class="product-card fade-in" data-cat="frame">
-            <div class="product-img"><div class="img-bg bg-cool">&#128170;</div></div>
-            <div class="product-body">
-                <div class="product-cat">Magnetic Frame</div>
-                <div class="product-title">Dear Dad You're Awesome - Funny Cute Fridge Magnet Photo Frame</div>
-                <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
-                <div class="product-price"><span class="from">from </span>$12.99</div>
-            </div>
-            <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
-        </a>
+<a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7R3CMHX" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="1">
+    <div class="product-img"><img src="images/suncatchers/06082504.jpg" alt="Look For Me In The Sunshine" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Look For Me In The Sunshine - Memorial Gift</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(200+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+friendship" target="_blank" class="product-card fade-in" data-cat="suncatcher" data-row="1">
+    <div class="product-img"><img src="images/suncatchers/01082507.jpg" alt="Thank You For Being In My Circle" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Thank You For Being In My Circle - Friendship</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/GIFTELIX-Memorial-Suncatcher-Ornament-Bereavement/dp/B0F7QLX8LN" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="2">
+    <div class="product-img"><img src="images/suncatchers/17032503.jpg" alt="Look For Me In Rainbows" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Look For Me In Rainbows - Rainbow Arch Memorial</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(90+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+sky+different" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="2">
+    <div class="product-img"><img src="images/suncatchers/11082502.jpg" alt="The Sky Looks Different" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">The Sky Looks Different When You Have Someone Up There</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(60+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+guardian+angel" target="_blank" class="product-card fade-in" data-cat="suncatcher" data-row="2">
+    <div class="product-img"><img src="images/suncatchers/07082504.jpg" alt="Guardian Angels" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Guardian Angels - Protect & Guide</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+cat+memorial" target="_blank" class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="2">
+    <div class="product-img"><img src="images/suncatchers/01082511.jpg" alt="Cat Memorial Moon" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Cat Angel on Moon - Pet Memorial Suncatcher</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+mom+memories" target="_blank" class="product-card fade-in" data-cat="suncatcher mom memorial" data-row="2">
+    <div class="product-img"><img src="images/suncatchers/17032513.jpg" alt="Mom Memorial" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Mom - Your Memories Are The Light That Leads My Way</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(75+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+hummingbird" target="_blank" class="product-card fade-in" data-cat="suncatcher" data-row="2">
+    <div class="product-img"><img src="images/suncatchers/17032508.jpg" alt="Hummingbird Suncatcher" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Hummingbird - Stained Glass Crystal Suncatcher</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+dog+memorial+rainbow" target="_blank" class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="2">
+    <div class="product-img"><img src="images/suncatchers/07082505.jpg" alt="Look For Me In Rainbows Pet" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Look For Me In The Rainbows - Cat Memorial Paw</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(85+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+tree+of+life" target="_blank" class="product-card fade-in" data-cat="suncatcher" data-row="2">
+    <div class="product-img"><img src="images/suncatchers/11082501.jpg" alt="Tree of Life" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Tree of Life - Stained Glass Crystal Suncatcher</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+cardinal" target="_blank" class="product-card fade-in" data-cat="suncatcher memorial" data-row="3">
+    <div class="product-img"><img src="images/suncatchers/19032512.jpg" alt="Cardinal Suncatcher" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Red Cardinal - Memorial Crystal Suncatcher</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher+dog+memorial+moon" target="_blank" class="product-card fade-in" data-cat="suncatcher pet memorial" data-row="3">
+    <div class="product-img"><img src="images/suncatchers/17032512.jpg" alt="Dog Angel Moon" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Crystal Suncatcher</div>
+        <div class="product-title">Dog Angel on Moon - Pet Memorial Suncatcher</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
+        <div class="product-price"><span class="from">from </span>$16.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<!-- ========== GLASS ORNAMENTS ========== -->
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+hummingbird" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+    <div class="product-img"><img src="images/ornaments/047202503.jpg" alt="Hummingbird Ornament" loading="lazy"><span class="product-badge badge-best">Best Seller</span></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Hummingbird - Stained Glass Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(95+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+butterfly" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+    <div class="product-img"><img src="images/ornaments/047202504.jpg" alt="Butterfly Ornament" loading="lazy"><span class="product-badge badge-hot">Popular</span></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Blue Morpho Butterfly - Stained Glass Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(80+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+dragonfly" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+    <div class="product-img"><img src="images/ornaments/04072506.jpg" alt="Dragonfly Ornament" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Dragonfly Garden - Stained Glass Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(70+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+cardinal" target="_blank" class="product-card fade-in" data-cat="ornament memorial" data-row="1">
+    <div class="product-img"><img src="images/ornaments/05072506.jpg" alt="Cardinal Birds" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Red Cardinals & Cherry Blossoms - Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(60+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+tree+of+life" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+    <div class="product-img"><img src="images/ornaments/05072507.jpg" alt="Tree of Life" loading="lazy"><span class="product-badge badge-new">New</span></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Rainbow Tree of Life - Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+lighthouse" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="1">
+    <div class="product-img"><img src="images/ornaments/05072503.jpg" alt="Lighthouse Ornament" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Coastal Lighthouse - Stained Glass Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(45+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+dragon" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+    <div class="product-img"><img src="images/ornaments/047202501.jpg" alt="Dragon Ornament" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Majestic Dragon - Stained Glass Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(55+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+christmas+bells" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+    <div class="product-img"><img src="images/ornaments/047202502.jpg" alt="Christmas Bells" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Christmas Bells & Holly - Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(65+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+sunset+mountain" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+    <div class="product-img"><img src="images/ornaments/05072501.jpg" alt="Sunset Mountains" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Rainbow Mountain Sunrise - Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+angel+butterfly" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+    <div class="product-img"><img src="images/ornaments/05072502.jpg" alt="Angel Butterfly Wings" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Angel with Butterfly Wings - Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(50+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+gnome+coffee" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+    <div class="product-img"><img src="images/ornaments/04072508.jpg" alt="Coffee Gnome" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Coffee Gnome - Cute Crystal Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(35+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
+
+<a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament+lily+flower" target="_blank" class="product-card fade-in" data-cat="ornament" data-row="2">
+    <div class="product-img"><img src="images/ornaments/05072505.jpg" alt="Lily of the Valley" loading="lazy"></div>
+    <div class="product-body">
+        <div class="product-cat">Glass Ornament</div>
+        <div class="product-title">Lily of the Valley - Stained Glass Ornament</div>
+        <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(40+)</span></div>
+        <div class="product-price"><span class="from">from </span>$14.99</div>
+    </div>
+    <div class="product-footer"><span class="product-btn">View on Amazon</span></div>
+</a>
 
     </div>
 
     <div class="view-all fade-in">
-        <a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="btn btn-primary">View All Products on Amazon &rarr;</a>
-    </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="section">
-    <div class="section-header fade-in">
-        <div class="section-tag">How It Works</div>
-        <h2>Gift-Giving Made Easy</h2>
-    </div>
-    <div class="steps-grid">
-        <div class="step fade-in">
-            <div class="step-num">1</div>
-            <h3>Choose Your Gift</h3>
-            <p>Browse our curated collections and find the perfect piece for your occasion.</p>
-        </div>
-        <div class="step fade-in">
-            <div class="step-num">2</div>
-            <h3>Order on Amazon</h3>
-            <p>Enjoy Amazon's trusted checkout, Prime shipping, and easy returns.</p>
-        </div>
-        <div class="step fade-in">
-            <div class="step-num">3</div>
-            <h3>Make Their Day</h3>
-            <p>Arrives gift-ready in beautiful packaging. Just add love and give.</p>
-        </div>
+        <a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="btn btn-primary">View All 100+ Products on Amazon &rarr;</a>
     </div>
 </section>
 
 <!-- WHY US -->
-<section class="section section-gray">
+<section class="section">
     <div class="section-header fade-in">
         <div class="section-tag">Why You'll Love Us</div>
         <h2>Crafted to Last. Designed to Move.</h2>
     </div>
     <div class="features-grid">
-        <div class="feature-card fade-in">
-            <div class="feature-icon">&#128142;</div>
-            <h3>Premium Crystals</h3>
-            <p>Faceted crystal prisms that cast stunning rainbows across your room every sunny day.</p>
-        </div>
-        <div class="feature-card fade-in">
-            <div class="feature-icon">&#127912;</div>
-            <h3>UV-Printed Art</h3>
-            <p>Vivid, fade-resistant prints on high-grade aluminum. Beautiful for years.</p>
-        </div>
-        <div class="feature-card fade-in">
-            <div class="feature-icon">&#127873;</div>
-            <h3>Gift-Ready</h3>
-            <p>Elegant packaging included. No wrapping needed &mdash; ready to give straight from the box.</p>
-        </div>
-        <div class="feature-card fade-in">
-            <div class="feature-icon">&#128588;</div>
-            <h3>Amazon Trusted</h3>
-            <p>Prime shipping, easy returns, and thousands of 5-star reviews from happy customers.</p>
-        </div>
+        <div class="feature-card fade-in"><div class="feature-icon">&#128142;</div><h3>Premium Crystals</h3><p>Faceted crystal prisms that cast stunning rainbows across your room every sunny day.</p></div>
+        <div class="feature-card fade-in"><div class="feature-icon">&#127912;</div><h3>UV-Printed Art</h3><p>Vivid, fade-resistant stained glass prints on high-grade aluminum. Beautiful for years.</p></div>
+        <div class="feature-card fade-in"><div class="feature-icon">&#127873;</div><h3>Gift-Ready</h3><p>Elegant packaging included. No wrapping needed &mdash; ready to give straight from the box.</p></div>
+        <div class="feature-card fade-in"><div class="feature-icon">&#128588;</div><h3>Amazon Trusted</h3><p>Prime shipping, easy returns, and thousands of 5-star reviews from happy customers.</p></div>
     </div>
 </section>
 
 <!-- REVIEWS -->
-<section class="section" id="reviews">
+<section class="section section-gray" id="reviews">
     <div class="section-header fade-in">
-        <div class="section-tag">Customer Reviews</div>
+        <div class="section-tag">Customer Love</div>
         <h2>Loved by Thousands</h2>
-        <p>See why gift-givers across America choose GIFTELIX.</p>
     </div>
     <div class="reviews-grid">
         <div class="review-card fade-in">
             <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="review-text">"Bought this for my mom's birthday and she literally cried. The rainbows it casts on the wall every morning are magical. Such amazing quality for the price."</div>
-            <div class="review-author">
-                <div class="review-avatar" style="background:#E53E3E">S</div>
-                <div><div class="review-name">Sarah M.</div><div class="review-label">Verified Purchase &bull; Mom Suncatcher</div></div>
-            </div>
+            <div class="review-text">"Bought the Mom suncatcher for Mother's Day and she literally cried. The rainbows it casts on the wall every morning are magical. Such amazing quality."</div>
+            <div class="review-author"><div class="review-avatar" style="background:#E53E3E">S</div><div><div class="review-name">Sarah M.</div><div class="review-label">Verified Purchase &bull; Crystal Suncatcher</div></div></div>
         </div>
         <div class="review-card fade-in">
             <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="review-text">"After losing our dog Max, this pet memorial brought so much comfort. Every rainbow feels like a little visit from him. The packaging was beautiful too."</div>
-            <div class="review-author">
-                <div class="review-avatar" style="background:#3182CE">J</div>
-                <div><div class="review-name">Jennifer K.</div><div class="review-label">Verified Purchase &bull; Pet Memorial</div></div>
-            </div>
+            <div class="review-text">"After losing our dog Max, this pet memorial suncatcher brought so much comfort. Every rainbow feels like a little visit from him. Beautiful packaging too."</div>
+            <div class="review-author"><div class="review-avatar" style="background:#3182CE">J</div><div><div class="review-name">Jennifer K.</div><div class="review-label">Verified Purchase &bull; Pet Memorial</div></div></div>
         </div>
         <div class="review-card fade-in">
             <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="review-text">"The magnetic frame is perfect! Strong magnet, adorable design, and the message made my husband tear up on Father's Day. Already ordered 5 more as gifts for friends."</div>
-            <div class="review-author">
-                <div class="review-avatar" style="background:#38A169">A</div>
-                <div><div class="review-name">Amanda R.</div><div class="review-label">Verified Purchase &bull; Father's Day Frame</div></div>
-            </div>
+            <div class="review-text">"The magnetic frame is perfect! Strong magnet, adorable design, and the message made my husband tear up on Father's Day. Already ordered 5 more as gifts!"</div>
+            <div class="review-author"><div class="review-avatar" style="background:#38A169">A</div><div><div class="review-name">Amanda R.</div><div class="review-label">Verified Purchase &bull; Magnetic Frame</div></div></div>
         </div>
     </div>
 </section>
 
 <!-- OCCASIONS -->
-<section class="section section-gray" id="occasions">
+<section class="section" id="occasions">
     <div class="section-header fade-in">
         <div class="section-tag">Perfect For</div>
         <h2>Every Occasion, Every Emotion</h2>
     </div>
     <div class="occasions-grid">
-        <a href="https://www.amazon.com/s?k=GIFTELIX+mom+mother" target="_blank" class="occasion fade-in">
-            <div class="occasion-icon">&#127801;</div>
-            <h4>Mother's Day</h4>
-            <p>Show Mom she's the light of your life</p>
-        </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+dad+father" target="_blank" class="occasion fade-in">
-            <div class="occasion-icon">&#128084;</div>
-            <h4>Father's Day</h4>
-            <p>Tell Dad he means the world</p>
-        </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+christmas+ornament" target="_blank" class="occasion fade-in">
-            <div class="occasion-icon">&#127876;</div>
-            <h4>Christmas</h4>
-            <p>Ornaments that sparkle on any tree</p>
-        </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+birthday+gift" target="_blank" class="occasion fade-in">
-            <div class="occasion-icon">&#127874;</div>
-            <h4>Birthdays</h4>
-            <p>Keepsakes they'll treasure forever</p>
-        </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+sympathy+memorial" target="_blank" class="occasion fade-in">
-            <div class="occasion-icon">&#128330;</div>
-            <h4>Sympathy</h4>
-            <p>Comfort in their hardest moments</p>
-        </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+pet+memorial" target="_blank" class="occasion fade-in">
-            <div class="occasion-icon">&#128062;</div>
-            <h4>Pet Loss</h4>
-            <p>Honor their paw prints on your heart</p>
-        </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+baby+pregnancy" target="_blank" class="occasion fade-in">
-            <div class="occasion-icon">&#128118;</div>
-            <h4>New Baby</h4>
-            <p>Celebrate the newest family member</p>
-        </a>
-        <a href="https://www.amazon.com/s?k=GIFTELIX+valentine+love" target="_blank" class="occasion fade-in">
-            <div class="occasion-icon">&#128152;</div>
-            <h4>Valentine's Day</h4>
-            <p>Show your love in a special way</p>
-        </a>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+mom+mother" target="_blank" class="occasion fade-in"><div class="occasion-icon">&#127801;</div><h4>Mother's Day</h4><p>Show Mom she's your sunshine</p></a>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+dad+father" target="_blank" class="occasion fade-in"><div class="occasion-icon">&#128084;</div><h4>Father's Day</h4><p>Tell Dad he's the world</p></a>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+christmas+ornament" target="_blank" class="occasion fade-in"><div class="occasion-icon">&#127876;</div><h4>Christmas</h4><p>Ornaments that dazzle any tree</p></a>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+birthday" target="_blank" class="occasion fade-in"><div class="occasion-icon">&#127874;</div><h4>Birthdays</h4><p>Keepsakes they'll treasure</p></a>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+sympathy+memorial" target="_blank" class="occasion fade-in"><div class="occasion-icon">&#128330;</div><h4>Sympathy</h4><p>Comfort in hard moments</p></a>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+pet+memorial" target="_blank" class="occasion fade-in"><div class="occasion-icon">&#128062;</div><h4>Pet Loss</h4><p>Honor their paw prints</p></a>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+baby+pregnancy" target="_blank" class="occasion fade-in"><div class="occasion-icon">&#128118;</div><h4>New Baby</h4><p>Welcome the newest member</p></a>
+        <a href="https://www.amazon.com/s?k=GIFTELIX+valentine+love" target="_blank" class="occasion fade-in"><div class="occasion-icon">&#128152;</div><h4>Valentine's</h4><p>Love that shines forever</p></a>
     </div>
 </section>
 
@@ -1246,8 +931,8 @@
 <section class="cta-banner">
     <div class="fade-in">
         <h2>Ready to Make Someone's Day?</h2>
-        <p>Browse our full collection on Amazon. Free Prime shipping, easy returns, and gifts that arrive ready to give.</p>
-        <a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="btn btn-primary">Shop All Products on Amazon &rarr;</a>
+        <p>Browse 100+ designs on Amazon. Free Prime shipping, easy returns, and gifts that arrive ready to give.</p>
+        <a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank" class="btn btn-primary" style="font-size:16px;padding:16px 40px">Shop All Products on Amazon &rarr;</a>
     </div>
 </section>
 
@@ -1256,15 +941,15 @@
     <div class="footer-grid">
         <div class="footer-brand">
             <div class="logo" style="color:white">GIFTEL<b>IX</b></div>
-            <p>Creating meaningful gifts that celebrate love, honor memories, and brighten everyday moments. Proudly designed in the USA and available on Amazon.</p>
+            <p>Creating meaningful gifts that celebrate love, honor memories, and brighten everyday moments. Proudly designed in the USA.</p>
         </div>
         <div class="footer-col">
             <h4>Collections</h4>
             <ul>
-                <li><a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher" target="_blank">Suncatchers</a></li>
-                <li><a href="https://www.amazon.com/s?k=GIFTELIX+memorial" target="_blank">Memorial Gifts</a></li>
-                <li><a href="https://www.amazon.com/s?k=GIFTELIX+pet+memorial" target="_blank">Pet Memorial</a></li>
+                <li><a href="https://www.amazon.com/s?k=GIFTELIX+suncatcher" target="_blank">Crystal Suncatchers</a></li>
+                <li><a href="https://www.amazon.com/s?k=GIFTELIX+glass+ornament" target="_blank">Glass Ornaments</a></li>
                 <li><a href="https://www.amazon.com/s?k=GIFTELIX+magnetic+frame" target="_blank">Magnetic Frames</a></li>
+                <li><a href="https://www.amazon.com/s?k=GIFTELIX+pet+memorial" target="_blank">Pet Memorial</a></li>
                 <li><a href="https://www.amazon.com/stores/page/28B41EB9-708A-426B-AB45-95750403EE8A" target="_blank">All Products</a></li>
             </ul>
         </div>
@@ -1272,10 +957,10 @@
             <h4>Occasions</h4>
             <ul>
                 <li><a href="https://www.amazon.com/s?k=GIFTELIX+mom" target="_blank">Mother's Day</a></li>
-                <li><a href="https://www.amazon.com/s?k=GIFTELIX+dad+father" target="_blank">Father's Day</a></li>
+                <li><a href="https://www.amazon.com/s?k=GIFTELIX+dad" target="_blank">Father's Day</a></li>
                 <li><a href="https://www.amazon.com/s?k=GIFTELIX+christmas" target="_blank">Christmas</a></li>
                 <li><a href="https://www.amazon.com/s?k=GIFTELIX+sympathy" target="_blank">Sympathy</a></li>
-                <li><a href="https://www.amazon.com/s?k=GIFTELIX+valentine" target="_blank">Valentine's Day</a></li>
+                <li><a href="https://www.amazon.com/s?k=GIFTELIX+valentine" target="_blank">Valentine's</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -1292,48 +977,32 @@
     <div class="footer-bottom">
         <span>&copy; 2025 GIFTELIX LLC. All rights reserved. &bull; 7901 4th St N #7104, St. Petersburg, FL 33702 &bull; <a href="mailto:admin@giftelix.com" style="color:var(--gray-500)">admin@giftelix.com</a></span>
         <div class="footer-social">
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Pinterest">PI</a>
-            <a href="#" aria-label="TikTok">TK</a>
+            <a href="#">IG</a><a href="#">FB</a><a href="#">PI</a><a href="#">TK</a>
         </div>
     </div>
 </footer>
 
 <script>
-// Sticky header shadow
-window.addEventListener('scroll', () => {
-    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
-});
+window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>10)});
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 
-// Intersection Observer for fade-in
-const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-
-// Product filter
-function filterProducts(cat) {
-    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-    event.target.classList.add('active');
-    document.querySelectorAll('.product-card').forEach(card => {
-        if (cat === 'all') {
-            card.style.display = '';
-        } else {
-            const cats = card.dataset.cat || '';
-            card.style.display = cats.includes(cat) ? '' : 'none';
-        }
+function filterProducts(cat){
+    document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+    if(event&&event.target)event.target.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(c=>{
+        if(cat==='all'){c.style.display='';return}
+        const cats=c.dataset.cat||'';
+        c.style.display=cats.includes(cat)?'':'none';
     });
 }
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function(e) {
-        const h = this.getAttribute('href');
-        if (h === '#') return;
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+        const h=this.getAttribute('href');if(h==='#')return;
         e.preventDefault();
-        const t = document.querySelector(h);
-        if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        const t=document.querySelector(h);
+        if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
         document.getElementById('navMenu').classList.remove('active');
     });
 });
