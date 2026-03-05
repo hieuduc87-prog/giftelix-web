@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIFTELIX - Admin</title>
+    <title>GIFTELIX - Admin Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,243 +12,385 @@
         body{font-family:'Poppins',sans-serif;background:#0F172A;color:#E2E8F0;min-height:100vh;-webkit-font-smoothing:antialiased}
 
         /* LOGIN */
-        .login{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-        .login-box{background:#1E293B;padding:48px;border-radius:16px;max-width:380px;width:100%;text-align:center;border:1px solid #334155}
-        .login-logo{font-size:28px;font-weight:700;letter-spacing:2px;margin-bottom:4px;color:#fff}.login-logo b{color:#E53E3E}
-        .login-sub{font-size:12px;color:#64748B;margin-bottom:32px;text-transform:uppercase;letter-spacing:2px;font-weight:600}
-        .login-input{width:100%;padding:14px 18px;background:#0F172A;border:1px solid #334155;border-radius:10px;color:#fff;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border .2s}
+        .login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+        .login-box{background:#1E293B;padding:48px 40px;border-radius:20px;max-width:400px;width:100%;text-align:center;border:1px solid #334155}
+        .login-logo{font-size:32px;font-weight:700;letter-spacing:2px;margin-bottom:4px;color:#F8FAFC}.login-logo b{color:#E53E3E}
+        .login-tag{font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:3px;font-weight:600;margin-bottom:32px}
+        .login-input{width:100%;padding:14px 18px;border:2px solid #334155;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border .2s;text-align:center;background:#0F172A;color:#F8FAFC}
         .login-input:focus{border-color:#E53E3E}
         .login-input::placeholder{color:#475569}
-        .login-btn{width:100%;padding:14px;margin-top:14px;background:#E53E3E;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;transition:all .2s}
-        .login-btn:hover{background:#DC2626;transform:translateY(-1px);box-shadow:0 4px 16px rgba(229,62,62,.3)}
-        .login-err{color:#F87171;font-size:13px;margin-top:10px;display:none}
+        .login-btn{width:100%;padding:14px;margin-top:14px;background:#E53E3E;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;transition:all .2s}
+        .login-btn:hover{background:#DC2626;transform:translateY(-1px);box-shadow:0 6px 20px rgba(229,62,62,.3)}
+        .login-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+        .login-err{color:#EF4444;font-size:13px;margin-top:10px;display:none}
 
         /* DASHBOARD */
-        .dash{display:none}
-        .dash-header{background:#1E293B;border-bottom:1px solid #334155;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
-        .dash-logo{font-size:20px;font-weight:700;letter-spacing:2px;color:#fff;display:flex;align-items:center;gap:12px}
-        .dash-logo b{color:#E53E3E}
-        .dash-badge{background:#E53E3E;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:1px}
-        .dash-actions{display:flex;gap:10px;align-items:center}
-        .dash-link{font-size:12px;color:#94A3B8;text-decoration:none;padding:8px 14px;border-radius:8px;border:1px solid #334155;transition:all .2s}
-        .dash-link:hover{border-color:#E53E3E;color:#E53E3E}
+        .dashboard{display:none}
+        .topbar{background:#1E293B;border-bottom:1px solid #334155;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+        .topbar-left{display:flex;align-items:center;gap:16px}
+        .topbar .logo{font-size:20px;font-weight:700;letter-spacing:2px;color:#F8FAFC}.topbar .logo b{color:#E53E3E}
+        .topbar-badge{font-size:10px;padding:3px 10px;border-radius:50px;background:#334155;color:#94A3B8;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+        .topbar-right{display:flex;gap:10px;align-items:center}
+        .topbar-link{font-size:13px;color:#94A3B8;text-decoration:none;transition:color .2s;padding:6px 12px;border-radius:6px}
+        .topbar-link:hover{color:#F8FAFC;background:#334155}
+        .logout-btn{background:none;border:1px solid #475569;color:#94A3B8;padding:6px 16px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s}
+        .logout-btn:hover{border-color:#EF4444;color:#EF4444}
 
-        .dash-body{max-width:900px;margin:0 auto;padding:32px 24px}
+        .content{max-width:1200px;margin:0 auto;padding:32px 24px}
 
-        /* CARDS */
-        .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
-        .card{background:#1E293B;border:1px solid #334155;border-radius:14px;padding:24px;transition:all .3s}
-        .card:hover{border-color:#475569;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
-        .card-icon{font-size:28px;margin-bottom:12px}
-        .card h3{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
-        .card p{font-size:13px;color:#64748B;line-height:1.5;margin-bottom:16px}
-        .card-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;font-family:'Poppins',sans-serif;border:none;cursor:pointer}
-        .card-btn:hover{transform:translateY(-1px)}
-        .btn-red{background:#E53E3E;color:#fff}.btn-red:hover{background:#DC2626;box-shadow:0 4px 12px rgba(229,62,62,.3)}
-        .btn-blue{background:#3B82F6;color:#fff}.btn-blue:hover{background:#2563EB;box-shadow:0 4px 12px rgba(59,130,246,.3)}
-        .btn-green{background:#10B981;color:#fff}.btn-green:hover{background:#059669;box-shadow:0 4px 12px rgba(16,185,129,.3)}
-        .btn-ghost{background:transparent;color:#94A3B8;border:1px solid #334155}.btn-ghost:hover{border-color:#94A3B8;color:#fff}
+        /* STATS */
+        .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+        .stat-card{background:#1E293B;border:1px solid #334155;border-radius:14px;padding:24px;transition:all .2s}
+        .stat-card:hover{border-color:#475569}
+        .stat-label{font-size:12px;color:#64748B;font-weight:500;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+        .stat-value{font-size:28px;font-weight:700;color:#F8FAFC}
+        .stat-value.green{color:#10B981}
+        .stat-value.yellow{color:#F59E0B}
+        .stat-value.blue{color:#3B82F6}
+        .stat-sub{font-size:12px;color:#64748B;margin-top:4px}
 
-        /* QUICK SETUP */
-        .setup-card{background:#1E293B;border:1px solid #334155;border-radius:14px;overflow:hidden;margin-bottom:24px}
-        .setup-title{padding:20px 24px;font-size:16px;font-weight:600;color:#fff;border-bottom:1px solid #334155;display:flex;align-items:center;gap:10px}
-        .setup-body{padding:24px}
-        .setup-step{display:flex;gap:16px;padding:16px;background:#0F172A;border-radius:10px;margin-bottom:10px}
-        .setup-step:last-child{margin-bottom:0}
-        .step-n{width:28px;height:28px;border-radius:50%;background:#E53E3E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
-        .step-n.done{background:#10B981}
-        .step-text h4{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
-        .step-text p{font-size:13px;color:#64748B;line-height:1.5}
-        .step-text a{color:#3B82F6;text-decoration:none;font-weight:500}
-        .step-text a:hover{text-decoration:underline}
+        /* SECTIONS */
+        .section{background:#1E293B;border:1px solid #334155;border-radius:14px;margin-bottom:24px;overflow:hidden}
+        .section-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #334155}
+        .section-header h3{font-size:16px;font-weight:600;color:#F8FAFC}
+        .section-body{padding:20px 24px}
+        .refresh-btn{background:#334155;border:none;color:#94A3B8;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s}
+        .refresh-btn:hover{background:#475569;color:#F8FAFC}
 
-        .quick-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+        /* ORDERS TABLE */
+        .orders-table{width:100%;border-collapse:collapse}
+        .orders-table th{text-align:left;font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:1px;padding:10px 12px;border-bottom:1px solid #334155;font-weight:600}
+        .orders-table td{padding:14px 12px;border-bottom:1px solid rgba(51,65,85,.5);font-size:13px;color:#CBD5E0}
+        .orders-table tr:hover td{background:rgba(51,65,85,.3)}
+        .order-status{font-size:11px;font-weight:600;padding:3px 10px;border-radius:50px;display:inline-block}
+        .status-paid{background:rgba(16,185,129,.15);color:#10B981}
+        .status-unpaid{background:rgba(245,158,11,.15);color:#F59E0B}
+        .order-email{color:#94A3B8;font-size:12px}
+        .order-amount{font-weight:600;color:#F8FAFC}
+        .no-orders{text-align:center;padding:40px;color:#64748B}
 
-        .sep{border:none;border-top:1px solid #334155;margin:32px 0}
+        /* QUICK LINKS */
+        .links-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+        .quick-link{display:flex;align-items:center;gap:12px;padding:16px;border-radius:10px;border:1px solid #334155;text-decoration:none;color:#CBD5E0;transition:all .2s}
+        .quick-link:hover{border-color:#E53E3E;background:rgba(229,62,62,.05);color:#F8FAFC}
+        .quick-link-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+        .quick-link-text{font-size:13px;font-weight:500}
+        .quick-link-desc{font-size:11px;color:#64748B}
 
-        /* DNS STATUS */
-        .dns-check{display:flex;align-items:center;gap:10px;margin-top:16px}
-        .dns-input{padding:10px 14px;background:#0F172A;border:1px solid #334155;border-radius:8px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none;width:180px}
-        .dns-input:focus{border-color:#3B82F6}
-        .dns-btn{padding:10px 18px;background:#3B82F6;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif}
-        .dns-result{font-size:13px;margin-top:10px;padding:10px 14px;border-radius:8px;display:none}
-        .dns-ok{background:rgba(16,185,129,.15);color:#34D399;display:block}
-        .dns-wait{background:rgba(245,158,11,.15);color:#FBBF24;display:block}
+        /* STATUS DOTS */
+        .status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+        .dot-green{background:#10B981}
+        .dot-yellow{background:#F59E0B}
+        .dot-red{background:#EF4444}
+        .dot-gray{background:#475569}
 
-        @media(max-width:768px){.grid{grid-template-columns:1fr}}
+        /* LOADING */
+        .loading{text-align:center;padding:30px;color:#64748B;font-size:13px}
+
+        @media(max-width:768px){
+            .stats{grid-template-columns:repeat(2,1fr)}
+            .links-grid{grid-template-columns:1fr}
+            .topbar-link{display:none}
+            .orders-table{font-size:12px}
+            .orders-table th:nth-child(4),.orders-table td:nth-child(4){display:none}
+        }
+        @media(max-width:480px){
+            .stats{grid-template-columns:1fr}
+            .stat-card{padding:16px}
+        }
     </style>
 </head>
 <body>
 
 <!-- LOGIN -->
-<div class="login" id="loginScreen">
+<div class="login-wrap" id="loginScreen">
     <div class="login-box">
         <div class="login-logo">GIFTEL<b>IX</b></div>
-        <div class="login-sub">Admin Panel</div>
-        <input type="password" class="login-input" id="passInput" placeholder="Enter password" onkeypress="if(event.key==='Enter')login()" autofocus>
-        <button class="login-btn" onclick="login()">Sign In</button>
-        <div class="login-err" id="loginErr">Wrong password</div>
+        <div class="login-tag">Admin Dashboard</div>
+        <input type="password" class="login-input" id="passInput" placeholder="Admin password" onkeypress="if(event.key==='Enter')doLogin()">
+        <button class="login-btn" id="loginBtn" onclick="doLogin()">Sign In</button>
+        <div class="login-err" id="loginErr">Invalid password. Try again.</div>
     </div>
 </div>
 
 <!-- DASHBOARD -->
-<div class="dash" id="dashboard">
-<div class="dash-header">
-    <div class="dash-logo">GIFTEL<b>IX</b> <span class="dash-badge">Admin</span></div>
-    <div class="dash-actions">
-        <a href="index.html" class="dash-link">View Site</a>
-        <a href="setup.html" class="dash-link">DNS Page</a>
-        <a href="#" class="dash-link" onclick="logout();return false">Sign Out</a>
-    </div>
-</div>
-
-<div class="dash-body">
-
-    <!-- TOP CARDS -->
-    <div class="grid">
-        <div class="card">
-            <div class="card-icon">&#128722;</div>
-            <h3>Snipcart</h3>
-            <p>Manage your store, products, and checkout settings.</p>
-            <a href="https://app.snipcart.com/dashboard" target="_blank" class="card-btn btn-red">Open Dashboard &#8599;</a>
+<div class="dashboard" id="dashboard">
+    <div class="topbar">
+        <div class="topbar-left">
+            <span class="logo">GIFTEL<b>IX</b></span>
+            <span class="topbar-badge">Admin</span>
         </div>
-        <div class="card">
-            <div class="card-icon">&#128179;</div>
-            <h3>Orders</h3>
-            <p>View orders, refunds, and customer transactions.</p>
-            <a href="https://app.snipcart.com/dashboard/orders" target="_blank" class="card-btn btn-blue">View Orders &#8599;</a>
-        </div>
-        <div class="card">
-            <div class="card-icon">&#9881;</div>
-            <h3>Deployment</h3>
-            <p>Vercel hosting, builds, domains, and environment variables.</p>
-            <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web" target="_blank" class="card-btn btn-green">Vercel Dashboard &#8599;</a>
+        <div class="topbar-right">
+            <a href="index.html" class="topbar-link" target="_blank">View Store</a>
+            <a href="setup.html" class="topbar-link" target="_blank">Setup Wizard</a>
+            <button class="logout-btn" onclick="doLogout()">Logout</button>
         </div>
     </div>
 
-    <!-- SETUP GUIDE -->
-    <div class="setup-card">
-        <div class="setup-title">&#128640; Quick Setup Guide</div>
-        <div class="setup-body">
-            <div class="setup-step">
-                <div class="step-n">1</div>
-                <div class="step-text">
-                    <h4>Create Snipcart Account</h4>
-                    <p><a href="https://app.snipcart.com/register" target="_blank">Sign up at snipcart.com</a> &rarr; go to <a href="https://app.snipcart.com/dashboard/account/credentials" target="_blank">Account &rarr; API Keys</a> &rarr; copy the <strong>Public API Key</strong></p>
-                </div>
+    <div class="content">
+        <!-- STATS -->
+        <div class="stats" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-label">Total Orders</div>
+                <div class="stat-value" id="statOrders">-</div>
             </div>
-            <div class="setup-step">
-                <div class="step-n">2</div>
-                <div class="step-text">
-                    <h4>Add API Key to Vercel</h4>
-                    <p>Go to <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/environment-variables" target="_blank">Vercel &rarr; Settings &rarr; Environment Variables</a><br>
-                    Add: Name = <code style="background:#0F172A;padding:2px 6px;border-radius:4px;color:#FBBF24">SNIPCART_API_KEY</code> &nbsp; Value = your API key<br>
-                    Click Save &rarr; site auto-redeploys with the key!</p>
-                </div>
+            <div class="stat-card">
+                <div class="stat-label">Revenue</div>
+                <div class="stat-value green" id="statRevenue">-</div>
             </div>
-            <div class="setup-step">
-                <div class="step-n">3</div>
-                <div class="step-text">
-                    <h4>Connect Stripe (accept payments)</h4>
-                    <p><a href="https://dashboard.stripe.com/register" target="_blank">Create Stripe account</a> &rarr; go to <a href="https://app.snipcart.com/dashboard/account/gateway" target="_blank">Snipcart &rarr; Payment Gateway</a> &rarr; connect Stripe</p>
-                </div>
+            <div class="stat-card">
+                <div class="stat-label">Available Balance</div>
+                <div class="stat-value blue" id="statBalance">-</div>
             </div>
-            <div class="setup-step">
-                <div class="step-n">4</div>
-                <div class="step-text">
-                    <h4>Add Domain</h4>
-                    <p>Go to <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/domains" target="_blank">Vercel &rarr; Domains</a> &rarr; add your domain (e.g. giftelix.com)<br>
-                    Then send <a href="setup.html"><strong>setup.html</strong></a> link to your friend for DNS records</p>
-                </div>
+            <div class="stat-card">
+                <div class="stat-label">Pending</div>
+                <div class="stat-value yellow" id="statPending">-</div>
             </div>
-            <div class="setup-step">
-                <div class="step-n">5</div>
-                <div class="step-text">
-                    <h4>Go Live!</h4>
-                    <p>In Snipcart: switch from <strong>Test Mode</strong> to <strong>Live Mode</strong> &rarr; update API key in Vercel with the Live key<br>
-                    Add your domain in <a href="https://app.snipcart.com/dashboard/account/domains" target="_blank">Snipcart &rarr; Domains</a></p>
+        </div>
+
+        <!-- SYSTEM STATUS -->
+        <div class="section">
+            <div class="section-header">
+                <h3>System Status</h3>
+                <button class="refresh-btn" onclick="checkSystem()">Refresh</button>
+            </div>
+            <div class="section-body" id="systemStatus">
+                <div class="loading">Checking systems...</div>
+            </div>
+        </div>
+
+        <!-- RECENT ORDERS -->
+        <div class="section">
+            <div class="section-header">
+                <h3>Recent Orders</h3>
+                <button class="refresh-btn" onclick="loadOrders()">Refresh</button>
+            </div>
+            <div class="section-body" id="ordersBody" style="padding:0">
+                <div class="loading">Loading orders...</div>
+            </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="section">
+            <div class="section-header"><h3>Quick Links</h3></div>
+            <div class="section-body">
+                <div class="links-grid">
+                    <a href="https://dashboard.stripe.com/" target="_blank" class="quick-link">
+                        <div class="quick-link-icon" style="background:rgba(99,91,255,.15)">&#128179;</div>
+                        <div><div class="quick-link-text">Stripe Dashboard</div><div class="quick-link-desc">Orders, payouts, customers</div></div>
+                    </a>
+                    <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web" target="_blank" class="quick-link">
+                        <div class="quick-link-icon" style="background:rgba(255,255,255,.08)">&#9650;</div>
+                        <div><div class="quick-link-text">Vercel Dashboard</div><div class="quick-link-desc">Deployments, domains, logs</div></div>
+                    </a>
+                    <a href="https://github.com/hieuduc87-prog/giftelix-web" target="_blank" class="quick-link">
+                        <div class="quick-link-icon" style="background:rgba(255,255,255,.08)">&#128187;</div>
+                        <div><div class="quick-link-text">GitHub Repo</div><div class="quick-link-desc">Source code, commits</div></div>
+                    </a>
+                    <a href="https://dashboard.stripe.com/apikeys" target="_blank" class="quick-link">
+                        <div class="quick-link-icon" style="background:rgba(229,62,62,.15)">&#128273;</div>
+                        <div><div class="quick-link-text">Stripe API Keys</div><div class="quick-link-desc">Manage secret keys</div></div>
+                    </a>
+                    <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/environment-variables" target="_blank" class="quick-link">
+                        <div class="quick-link-icon" style="background:rgba(16,185,129,.15)">&#128272;</div>
+                        <div><div class="quick-link-text">Environment Vars</div><div class="quick-link-desc">Manage secrets & config</div></div>
+                    </a>
+                    <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/domains" target="_blank" class="quick-link">
+                        <div class="quick-link-icon" style="background:rgba(59,130,246,.15)">&#127760;</div>
+                        <div><div class="quick-link-text">Domains</div><div class="quick-link-desc">DNS & domain settings</div></div>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- DNS CHECK -->
-    <div class="setup-card">
-        <div class="setup-title">&#127760; DNS Status</div>
-        <div class="setup-body">
-            <p style="font-size:13px;color:#64748B;margin-bottom:10px">Check if your friend has added the DNS records correctly:</p>
-            <div class="dns-check">
-                <input type="text" class="dns-input" id="dnsInput" placeholder="giftelix.com" value="giftelix.com">
-                <button class="dns-btn" onclick="checkDNS()">Check</button>
-            </div>
-            <div class="dns-result" id="dnsResult"></div>
-        </div>
-    </div>
-
-    <!-- QUICK LINKS -->
-    <div class="setup-card">
-        <div class="setup-title">&#128279; Quick Links</div>
-        <div class="setup-body">
-            <div class="quick-links">
-                <a href="https://app.snipcart.com/dashboard" target="_blank" class="card-btn btn-ghost">Snipcart &#8599;</a>
-                <a href="https://app.snipcart.com/dashboard/account/credentials" target="_blank" class="card-btn btn-ghost">API Keys &#8599;</a>
-                <a href="https://app.snipcart.com/dashboard/account/gateway" target="_blank" class="card-btn btn-ghost">Payment &#8599;</a>
-                <a href="https://app.snipcart.com/dashboard/orders" target="_blank" class="card-btn btn-ghost">Orders &#8599;</a>
-                <a href="https://app.snipcart.com/dashboard/customers" target="_blank" class="card-btn btn-ghost">Customers &#8599;</a>
-                <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web" target="_blank" class="card-btn btn-ghost">Vercel &#8599;</a>
-                <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/environment-variables" target="_blank" class="card-btn btn-ghost">Env Vars &#8599;</a>
-                <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/domains" target="_blank" class="card-btn btn-ghost">Domains &#8599;</a>
-                <a href="https://github.com/hieuduc87-prog/giftelix-web" target="_blank" class="card-btn btn-ghost">GitHub &#8599;</a>
-            </div>
-        </div>
-    </div>
-
-</div>
 </div>
 
 <script>
-function login(){
-    const pass=document.getElementById('passInput').value;
-    if(pass==='giftelix2025'||pass==='admin'){
-        localStorage.setItem('gfx_auth',Date.now());
-        showDash();
-    } else {
-        document.getElementById('loginErr').style.display='block';
-        document.getElementById('passInput').value='';
+async function doLogin() {
+    const pass = document.getElementById('passInput').value;
+    if (!pass) return;
+    const btn = document.getElementById('loginBtn');
+    btn.disabled = true; btn.textContent = 'Signing in...';
+
+    try {
+        const resp = await fetch('/api/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ action: 'login', password: pass })
+        });
+
+        if (resp.ok) {
+            showDashboard();
+        } else {
+            document.getElementById('loginErr').style.display = 'block';
+            document.getElementById('passInput').value = '';
+        }
+    } catch (e) {
+        // Fallback: local check
+        if (pass === 'giftelix2025' || pass === 'admin') {
+            showDashboard();
+        } else {
+            document.getElementById('loginErr').style.display = 'block';
+        }
     }
-}
-function logout(){localStorage.removeItem('gfx_auth');location.reload()}
-function showDash(){document.getElementById('loginScreen').style.display='none';document.getElementById('dashboard').style.display='block'}
-window.onload=function(){
-    const t=localStorage.getItem('gfx_auth');
-    if(t&&Date.now()-parseInt(t)<86400000)showDash();
+
+    btn.disabled = false; btn.textContent = 'Sign In';
 }
 
-async function checkDNS(){
-    const d=document.getElementById('dnsInput').value.trim();
-    const r=document.getElementById('dnsResult');
-    if(!d)return;
-    r.className='dns-result';r.style.display='none';
-    try{
-        const resp=await fetch('https://dns.google/resolve?name='+d+'&type=A');
-        const data=await resp.json();
-        const ips=(data.Answer||[]).map(a=>a.data);
-        if(ips.includes('76.76.21.21')){
-            r.className='dns-result dns-ok';
-            r.innerHTML='&#10003; <strong>DNS OK!</strong> Domain is pointing to Vercel correctly.';
-        } else if(ips.length){
-            r.className='dns-result dns-wait';
-            r.innerHTML='&#9888; Points to '+ips.join(', ')+' (expected 76.76.21.21). Not configured yet.';
-        } else {
-            r.className='dns-result dns-wait';
-            r.innerHTML='&#9203; No A record found. DNS still propagating or not set up yet.';
-        }
-    }catch(e){
-        r.className='dns-result dns-wait';
-        r.innerHTML='Could not check. Try <a href="https://dnschecker.org/#A/'+d+'" target="_blank" style="color:#FBBF24">dnschecker.org</a>';
-    }
-    r.style.display='block';
+async function doLogout() {
+    try {
+        await fetch('/api/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ action: 'logout' })
+        });
+    } catch(e) {}
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('passInput').value = '';
 }
+
+function showDashboard() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadOrders();
+    checkSystem();
+}
+
+async function loadOrders() {
+    const body = document.getElementById('ordersBody');
+    body.innerHTML = '<div class="loading">Loading orders from Stripe...</div>';
+
+    try {
+        const resp = await fetch('/api/orders?limit=20', { credentials: 'include' });
+
+        if (resp.status === 401) {
+            body.innerHTML = '<div class="no-orders">Session expired. <a href="#" onclick="doLogout()" style="color:#E53E3E">Login again</a></div>';
+            return;
+        }
+
+        const data = await resp.json();
+
+        if (data.error) {
+            body.innerHTML = '<div class="no-orders">' + data.error + '</div>';
+            return;
+        }
+
+        // Update stats
+        const paid = (data.orders || []).filter(o => o.status === 'paid');
+        document.getElementById('statOrders').textContent = data.total || 0;
+        document.getElementById('statRevenue').textContent = '$' + paid.reduce((s, o) => s + o.amount, 0).toFixed(2);
+        document.getElementById('statBalance').textContent = '$' + (data.balance?.available || 0).toFixed(2);
+        document.getElementById('statPending').textContent = '$' + (data.balance?.pending || 0).toFixed(2);
+
+        if (!data.orders || !data.orders.length) {
+            body.innerHTML = '<div class="no-orders">No orders yet. Orders will appear here after customers purchase.</div>';
+            return;
+        }
+
+        let html = `<table class="orders-table">
+            <thead><tr><th>Status</th><th>Customer</th><th>Items</th><th>Amount</th><th>Date</th></tr></thead><tbody>`;
+
+        data.orders.forEach(o => {
+            const statusClass = o.status === 'paid' ? 'status-paid' : 'status-unpaid';
+            const date = new Date(o.created * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            const items = o.items.map(i => i.name).join(', ') || '-';
+
+            html += `<tr>
+                <td><span class="order-status ${statusClass}">${o.status}</span></td>
+                <td>${o.name || 'Guest'}<br><span class="order-email">${o.email || ''}</span></td>
+                <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${items}">${items}</td>
+                <td class="order-amount">$${o.amount.toFixed(2)}</td>
+                <td style="white-space:nowrap">${date}</td>
+            </tr>`;
+        });
+
+        html += '</tbody></table>';
+        body.innerHTML = html;
+
+    } catch (e) {
+        body.innerHTML = '<div class="no-orders">Could not load orders. Make sure Stripe is configured.</div>';
+        document.getElementById('statOrders').textContent = '-';
+        document.getElementById('statRevenue').textContent = '-';
+    }
+}
+
+async function checkSystem() {
+    const el = document.getElementById('systemStatus');
+    el.innerHTML = '<div class="loading">Checking...</div>';
+
+    const checks = [];
+
+    // Check Stripe
+    try {
+        const resp = await fetch('/api/setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: 'check', action: 'check-status' })
+        });
+        // Even if password is wrong, a 401 means the API works
+        if (resp.ok) {
+            const data = await resp.json();
+            checks.push({ name: 'Stripe Payment', ok: data.stripeConfigured, detail: data.stripeConfigured ? 'Connected' : 'Not configured' });
+        } else {
+            checks.push({ name: 'Stripe Payment', ok: false, detail: 'Check setup' });
+        }
+    } catch(e) {
+        checks.push({ name: 'Stripe Payment', ok: false, detail: 'API unreachable' });
+    }
+
+    // Check DNS
+    try {
+        const resp = await fetch('https://dns.google/resolve?name=giftelix.com&type=A');
+        const data = await resp.json();
+        const ips = (data.Answer || []).map(a => a.data);
+        const ok = ips.includes('76.76.21.21');
+        checks.push({ name: 'DNS (giftelix.com)', ok, detail: ok ? '76.76.21.21' : (ips.join(', ') || 'Not set') });
+    } catch(e) {
+        checks.push({ name: 'DNS', ok: false, detail: 'Check failed' });
+    }
+
+    // Check Checkout API
+    try {
+        const resp = await fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+        checks.push({ name: 'Checkout API', ok: resp.status !== 500, detail: resp.status === 500 ? 'Server error' : 'Online' });
+    } catch(e) {
+        checks.push({ name: 'Checkout API', ok: false, detail: 'Unreachable' });
+    }
+
+    // Check website
+    checks.push({ name: 'Website', ok: true, detail: window.location.hostname });
+
+    el.innerHTML = checks.map(c => {
+        const dot = c.ok ? 'dot-green' : 'dot-red';
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(51,65,85,.5)">
+            <span><span class="status-dot ${dot}"></span>${c.name}</span>
+            <span style="font-size:12px;color:${c.ok ? '#10B981' : '#EF4444'}">${c.detail}</span>
+        </div>`;
+    }).join('');
+}
+
+// Auto-check session on load
+window.onload = async function() {
+    try {
+        const resp = await fetch('/api/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ action: 'check' })
+        });
+        if (resp.ok) {
+            const data = await resp.json();
+            if (data.authenticated) {
+                showDashboard();
+                return;
+            }
+        }
+    } catch(e) {}
+    document.getElementById('passInput').focus();
+};
 </script>
 </body>
 </html>
