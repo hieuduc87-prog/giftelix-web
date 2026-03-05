@@ -173,26 +173,45 @@
         </div>
     </div>
 
-    <!-- STEP 2: CONNECT STRIPE (OAuth - no key pasting!) -->
+    <!-- STEP 2: CONNECT STRIPE -->
     <div class="step" id="step2">
         <div class="step-badge">Step 2 of 3</div>
-        <h2>Connect Payment Account</h2>
-        <p>Click the button below to securely connect your Stripe account. You'll be redirected to Stripe's website to log in &mdash; just like any trusted service.</p>
-
-        <div id="stripeNotConnected">
-            <a href="/api/stripe-connect" class="stripe-connect-btn" id="stripeConnectBtn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
-                Connect with Stripe
-            </a>
-            <p style="text-align:center;font-size:12px;color:#94A3B8;margin-top:10px">You'll be redirected to Stripe to log in securely</p>
-        </div>
+        <h2>Connect Your Stripe Account</h2>
+        <p>You already have a Stripe account &mdash; great! Just paste your Secret Key below to connect payments.</p>
 
         <div id="stripeAlreadyConnected" class="stripe-connected" style="display:none">
             <h4>&#10003; Stripe Connected!</h4>
             <p>Your payment account is set up. Customers can now pay securely.</p>
         </div>
 
-        <div id="stripeError" class="alert alert-err" style="display:none">
+        <div id="stripeNotConnected">
+            <div class="action-box">
+                <h4><span class="action-num">1</span> Open your Stripe API Keys page</h4>
+                <p>Log in to your Stripe Dashboard and go to API Keys:</p>
+                <a href="https://dashboard.stripe.com/apikeys" target="_blank" class="btn btn-dark btn-sm">Open Stripe API Keys &#8599;</a>
+            </div>
+
+            <div class="action-box">
+                <h4><span class="action-num">2</span> Copy your Secret Key</h4>
+                <p>Click <strong>"Reveal test key"</strong> or <strong>"Reveal live key"</strong>, then copy it. It starts with <code>sk_</code></p>
+            </div>
+
+            <div class="action-box">
+                <h4><span class="action-num">3</span> Paste it here</h4>
+                <div class="input-wrap" style="margin-bottom:0">
+                    <input type="password" id="stripeKeyInput" placeholder="sk_live_... or sk_test_..." autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+
+            <div id="stripeStatus" class="status-msg"></div>
+
+            <button class="stripe-connect-btn" style="margin-top:16px;background:#E53E3E" id="saveStripeBtn" onclick="saveStripeKey()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Save &amp; Activate Payments
+            </button>
+        </div>
+
+        <div id="stripeError" class="alert alert-err" style="display:none;margin-top:16px">
             <span class="alert-icon">&#9888;</span>
             <span id="stripeErrorMsg"></span>
         </div>
@@ -200,21 +219,15 @@
         <div class="alert alert-ok" style="margin-top:20px">
             <span class="alert-icon">&#128274;</span>
             <div>
-                <strong>100% Secure &mdash; No risk at all:</strong>
+                <strong>100% Safe &mdash; Here's why:</strong>
                 <ul class="security-list">
-                    <li>You log in on Stripe's own website (stripe.com) &mdash; we never see your password</li>
-                    <li>No API keys or secrets are shared &mdash; just a secure connection</li>
-                    <li>Customer payments go directly to YOUR Stripe account</li>
-                    <li>Credit card data is handled 100% by Stripe &mdash; never touches this site</li>
-                    <li>You can disconnect anytime from your Stripe dashboard</li>
-                    <li>Same process used by Shopify, Squarespace, and millions of websites</li>
+                    <li>Your key is <strong>encrypted</strong> and stored on the server &mdash; never in website code</li>
+                    <li>Customer credit cards go directly to Stripe &mdash; never touch this site</li>
+                    <li>All payments go to YOUR Stripe account &mdash; you have full control</li>
+                    <li>You can change or revoke the key anytime from your Stripe dashboard</li>
+                    <li>This is the same method used by Shopify, WooCommerce, and millions of sites</li>
                 </ul>
             </div>
-        </div>
-
-        <div class="alert alert-info">
-            <span class="alert-icon">&#128161;</span>
-            <span>Don't have a Stripe account? <a href="https://dashboard.stripe.com/register" target="_blank" style="color:#1E40AF;font-weight:600">Create one free here</a>. You only pay when you make sales (2.9% + 30&cent; per transaction).</span>
         </div>
 
         <div class="btn-row">
@@ -295,25 +308,63 @@ function showWizard() {
     goStep(1);
 }
 
-// Handle Stripe OAuth callback params
 function handleUrlParams() {
     const params = new URLSearchParams(window.location.search);
-
     if (params.get('stripe_connected') === 'true') {
         document.getElementById('stripeNotConnected').style.display = 'none';
         document.getElementById('stripeAlreadyConnected').style.display = 'block';
         goStep(2);
-        // Clean URL
         history.replaceState({}, '', '/setup.html');
     }
-
     if (params.get('stripe_error')) {
-        const errEl = document.getElementById('stripeError');
-        errEl.style.display = 'flex';
-        document.getElementById('stripeErrorMsg').textContent = 'Connection failed: ' + decodeURIComponent(params.get('stripe_error')) + '. Please try again.';
+        document.getElementById('stripeError').style.display = 'flex';
+        document.getElementById('stripeErrorMsg').textContent = 'Error: ' + decodeURIComponent(params.get('stripe_error'));
         goStep(2);
         history.replaceState({}, '', '/setup.html');
     }
+}
+
+async function saveStripeKey() {
+    const key = document.getElementById('stripeKeyInput').value.trim();
+    const status = document.getElementById('stripeStatus');
+    const btn = document.getElementById('saveStripeBtn');
+
+    if (!key || !key.startsWith('sk_')) {
+        status.className = 'status-msg alert-err';
+        status.textContent = 'Please paste a valid Stripe Secret Key (starts with sk_)';
+        status.style.display = 'block';
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '&#9203; Saving securely...';
+    status.className = 'status-msg alert-info';
+    status.innerHTML = 'Encrypting and saving your key...';
+    status.style.display = 'block';
+
+    try {
+        const resp = await fetch('/api/setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: authPass, stripeKey: key, action: 'set-stripe-key' })
+        });
+        const data = await resp.json();
+        if (resp.ok && data.success) {
+            status.className = 'status-msg alert-ok';
+            status.innerHTML = '&#10003; <strong>Stripe connected!</strong> Website is redeploying (~30 seconds).';
+            document.getElementById('stripeNotConnected').style.display = 'none';
+            document.getElementById('stripeAlreadyConnected').style.display = 'block';
+            setTimeout(() => goStep(3), 2500);
+        } else {
+            status.className = 'status-msg alert-err';
+            status.textContent = data.error || 'Failed. Please try again.';
+        }
+    } catch (e) {
+        status.className = 'status-msg alert-warn';
+        status.innerHTML = 'Could not reach server. Please try again.';
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Save &amp; Activate Payments';
 }
 
 function goStep(n) {
