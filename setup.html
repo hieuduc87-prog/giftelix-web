@@ -30,7 +30,7 @@
 
         /* PROGRESS */
         .progress{display:flex;justify-content:center;gap:6px;margin-bottom:40px}
-        .prog-dot{width:40px;height:5px;border-radius:3px;background:#E2E8F0;transition:all .3s}
+        .prog-dot{width:48px;height:5px;border-radius:3px;background:#E2E8F0;transition:all .3s}
         .prog-dot.active{background:#E53E3E}
         .prog-dot.done{background:#10B981}
 
@@ -98,8 +98,11 @@
         .reg-link{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid #E2E8F0;color:#475569;background:#fff;text-decoration:none;transition:all .2s}
         .reg-link:hover{border-color:#E53E3E;color:#E53E3E}
 
-        /* DONE */
         .done-icon{font-size:64px;margin-bottom:16px}
+
+        .security-list{list-style:none;padding:0;margin:12px 0}
+        .security-list li{font-size:13px;color:#065F46;padding:6px 0;display:flex;align-items:center;gap:8px}
+        .security-list li::before{content:"\2713";color:#10B981;font-weight:700;font-size:14px}
 
         @media(max-width:480px){
             .step{padding:24px}
@@ -133,101 +136,76 @@
         <div class="prog-dot"></div>
         <div class="prog-dot"></div>
         <div class="prog-dot"></div>
-        <div class="prog-dot"></div>
     </div>
 
-    <!-- STEP 1: SNIPCART -->
+    <!-- STEP 1: CREATE STRIPE ACCOUNT -->
     <div class="step active" id="step1">
-        <div class="step-badge">Step 1 of 5</div>
-        <h2>Create Your Shopping Cart Account</h2>
-        <p>Snipcart powers the checkout on your website. Create a free account to get started (no credit card needed).</p>
+        <div class="step-badge">Step 1 of 4</div>
+        <h2>Create Your Stripe Account</h2>
+        <p>Stripe securely handles all payments. Create your own account - you keep full control of your money and customer data.</p>
 
         <div class="action-box">
-            <h4><span class="action-num">1</span> Sign up for Snipcart</h4>
-            <p>Click below to create your free account:</p>
-            <a href="https://app.snipcart.com/register" target="_blank" class="btn btn-dark btn-sm">Create Snipcart Account &#8599;</a>
-        </div>
-
-        <div class="action-box">
-            <h4><span class="action-num">2</span> After signing up, get your API Key</h4>
-            <p>In Snipcart dashboard: click your name (top-right) &rarr; <strong>API Keys</strong>. Copy the <strong>Public Test API Key</strong>.</p>
-            <a href="https://app.snipcart.com/dashboard/account/credentials" target="_blank" class="btn btn-outline btn-sm">Open API Keys Page &#8599;</a>
-        </div>
-
-        <div class="alert alert-info">
-            <span class="alert-icon">&#128274;</span>
-            <span><strong>Security note:</strong> The Public API Key is safe to use — it only allows adding items to cart. Your secret key and payment info stay protected in Snipcart's secure dashboard.</span>
-        </div>
-
-        <div class="btn-row">
-            <button class="btn btn-primary" onclick="goStep(2)">I have my API Key &rarr;</button>
-        </div>
-    </div>
-
-    <!-- STEP 2: API KEY -->
-    <div class="step" id="step2">
-        <div class="step-badge">Step 2 of 5</div>
-        <h2>Connect API Key to Website</h2>
-        <p>Paste your Snipcart Public API Key below. It will be securely saved and the website will automatically update.</p>
-
-        <div class="input-wrap">
-            <label>Snipcart Public API Key</label>
-            <input type="text" id="apiKeyInput" placeholder="Paste your API key here..." autocomplete="off" spellcheck="false">
-            <div class="input-hint">Starts with letters/numbers, about 36 characters long. Example: MjM4N2...</div>
-        </div>
-
-        <div class="alert alert-warn">
-            <span class="alert-icon">&#128272;</span>
-            <span><strong>Your key is encrypted</strong> and stored as a server-side environment variable. It is never visible in the website source code.</span>
-        </div>
-
-        <div id="apiStatus" class="status-msg"></div>
-
-        <div class="btn-row">
-            <button class="btn btn-outline" onclick="goStep(1)">&larr; Back</button>
-            <button class="btn btn-primary" id="saveKeyBtn" onclick="saveApiKey()">Save &amp; Deploy &#128640;</button>
-        </div>
-    </div>
-
-    <!-- STEP 3: PAYMENT -->
-    <div class="step" id="step3">
-        <div class="step-badge">Step 3 of 5</div>
-        <h2>Connect Payment Method</h2>
-        <p>Connect Stripe or PayPal so you can accept real payments from customers.</p>
-
-        <div class="action-box">
-            <h4><span class="action-num">1</span> Create a Stripe account (if you don't have one)</h4>
-            <p>Stripe handles credit/debit card payments. Free to sign up, you only pay per transaction.</p>
+            <h4><span class="action-num">1</span> Sign up for Stripe</h4>
+            <p>Free account. You only pay a small fee per transaction (2.9% + 30&cent;).</p>
             <a href="https://dashboard.stripe.com/register" target="_blank" class="btn btn-dark btn-sm">Create Stripe Account &#8599;</a>
         </div>
 
         <div class="action-box">
-            <h4><span class="action-num">2</span> Connect Stripe to Snipcart</h4>
-            <p>In Snipcart: go to <strong>Account &rarr; Payment Gateway</strong> &rarr; click <strong>Connect</strong> next to Stripe.</p>
-            <a href="https://app.snipcart.com/dashboard/account/gateway" target="_blank" class="btn btn-outline btn-sm">Open Payment Settings &#8599;</a>
+            <h4><span class="action-num">2</span> Get your Secret API Key</h4>
+            <p>After creating your account, go to: <strong>Developers &rarr; API Keys</strong>. Copy the <strong>Secret key</strong> (starts with <code>sk_</code>).</p>
+            <a href="https://dashboard.stripe.com/apikeys" target="_blank" class="btn btn-outline btn-sm">Open API Keys &#8599;</a>
         </div>
 
-        <div class="action-box">
-            <h4><span class="action-num">&#10003;</span> Optional: Add PayPal</h4>
-            <p>You can also add PayPal as a second payment option on the same page.</p>
-        </div>
-
-        <div class="alert alert-info">
-            <span class="alert-icon">&#128161;</span>
-            <span>You can skip this step and come back later. The cart will work in <strong>Test Mode</strong> without a payment gateway connected.</span>
+        <div class="alert alert-ok">
+            <span class="alert-icon">&#128274;</span>
+            <div>
+                <strong>100% Secure - Here's why:</strong>
+                <ul class="security-list">
+                    <li>You create your OWN Stripe account - nobody else has access</li>
+                    <li>Customer payments go directly to YOUR Stripe account</li>
+                    <li>Credit card numbers never touch this website (Stripe handles it)</li>
+                    <li>Your API key is stored encrypted on the server, not in code</li>
+                    <li>You can revoke/change the key anytime from your Stripe dashboard</li>
+                    <li>PCI DSS compliance is handled entirely by Stripe</li>
+                </ul>
+            </div>
         </div>
 
         <div class="btn-row">
-            <button class="btn btn-outline" onclick="goStep(2)">&larr; Back</button>
-            <button class="btn btn-primary" onclick="goStep(4)">Continue &rarr;</button>
+            <button class="btn btn-primary" onclick="goStep(2)">I have my Secret Key &rarr;</button>
         </div>
     </div>
 
-    <!-- STEP 4: DNS -->
-    <div class="step" id="step4">
-        <div class="step-badge">Step 4 of 5</div>
+    <!-- STEP 2: PASTE STRIPE KEY -->
+    <div class="step" id="step2">
+        <div class="step-badge">Step 2 of 4</div>
+        <h2>Connect Stripe to Website</h2>
+        <p>Paste your Stripe Secret Key below. It will be encrypted and stored securely on the server.</p>
+
+        <div class="input-wrap">
+            <label>Stripe Secret Key</label>
+            <input type="password" id="stripeKeyInput" placeholder="sk_live_... or sk_test_..." autocomplete="off" spellcheck="false">
+            <div class="input-hint">Starts with <code>sk_live_</code> (real payments) or <code>sk_test_</code> (test mode). About 100+ characters.</div>
+        </div>
+
+        <div class="alert alert-warn">
+            <span class="alert-icon">&#128272;</span>
+            <span><strong>Your key is encrypted</strong> and stored as a server environment variable. It is never visible in website source code. Only the server uses it to create checkout sessions.</span>
+        </div>
+
+        <div id="stripeStatus" class="status-msg"></div>
+
+        <div class="btn-row">
+            <button class="btn btn-outline" onclick="goStep(1)">&larr; Back</button>
+            <button class="btn btn-primary" id="saveStripeBtn" onclick="saveStripeKey()">Save &amp; Deploy &#128640;</button>
+        </div>
+    </div>
+
+    <!-- STEP 3: DNS -->
+    <div class="step" id="step3">
+        <div class="step-badge">Step 3 of 4</div>
         <h2>Connect Your Domain</h2>
-        <p>Add these 2 DNS records at your domain registrar to point your domain to the website.</p>
+        <p>Add these 2 DNS records at your domain registrar to point giftelix.com to the website.</p>
 
         <div class="dns-row">
             <span class="dns-type dns-a">A</span>
@@ -268,44 +246,44 @@
         </div>
 
         <div class="btn-row">
-            <button class="btn btn-outline" onclick="goStep(3)">&larr; Back</button>
-            <button class="btn btn-primary" onclick="goStep(5)">Continue &rarr;</button>
+            <button class="btn btn-outline" onclick="goStep(2)">&larr; Back</button>
+            <button class="btn btn-primary" onclick="goStep(4)">Continue &rarr;</button>
         </div>
     </div>
 
-    <!-- STEP 5: GO LIVE -->
-    <div class="step" id="step5">
-        <div class="step-badge done-badge">Step 5 of 5</div>
+    <!-- STEP 4: GO LIVE -->
+    <div class="step" id="step4">
+        <div class="step-badge done-badge">Step 4 of 4</div>
         <h2 style="text-align:center">Go Live Checklist</h2>
         <p style="text-align:center">Review everything before launching your store.</p>
 
-        <div class="action-box" id="checkApi" style="cursor:pointer" onclick="recheckStatus()">
-            <h4><span id="chk1" style="font-size:18px">&#9203;</span> Snipcart API Key</h4>
+        <div class="action-box" id="checkStripe" style="cursor:pointer" onclick="recheckStatus()">
+            <h4><span id="chk1" style="font-size:18px">&#9203;</span> Stripe Payment</h4>
             <p id="chk1txt">Checking...</p>
         </div>
 
         <div class="action-box">
-            <h4><span style="font-size:18px">&#128179;</span> Payment Gateway</h4>
-            <p>Verify at <a href="https://app.snipcart.com/dashboard/account/gateway" target="_blank" style="color:#3B82F6">Snipcart &rarr; Payment Gateway</a> that Stripe or PayPal is connected.</p>
-        </div>
-
-        <div class="action-box">
             <h4><span style="font-size:18px">&#127760;</span> Domain &amp; DNS</h4>
-            <p>After DNS propagates, add your domain in <a href="https://app.snipcart.com/dashboard/account/domains" target="_blank" style="color:#3B82F6">Snipcart &rarr; Domains & URLs</a> too.</p>
+            <p>After DNS propagates, your store will be live at <strong>giftelix.com</strong>. Free SSL certificate is automatic.</p>
         </div>
 
         <div class="action-box">
-            <h4><span style="font-size:18px">&#128640;</span> Switch to Live Mode</h4>
-            <p>When ready for real payments: in Snipcart toggle from <strong>Test</strong> to <strong>Live</strong>. Copy the new <strong>Live Public API Key</strong> and go back to Step 2 to update it.</p>
+            <h4><span style="font-size:18px">&#128179;</span> Your Stripe Dashboard</h4>
+            <p>View all orders, revenue, and customer data at <a href="https://dashboard.stripe.com/" target="_blank" style="color:#3B82F6">dashboard.stripe.com</a>. You have full control.</p>
+        </div>
+
+        <div class="action-box">
+            <h4><span style="font-size:18px">&#128640;</span> Test Mode &rarr; Live Mode</h4>
+            <p>If you used a <code>sk_test_</code> key, switch to <code>sk_live_</code> when ready for real payments. Go back to Step 2 to update.</p>
         </div>
 
         <div class="alert alert-ok" style="margin-top:16px">
             <span class="alert-icon">&#127881;</span>
-            <span><strong>That's it!</strong> Your GIFTELIX store is ready. Customers can browse products, add to cart, and checkout securely.</span>
+            <span><strong>That's it!</strong> Your GIFTELIX store is ready. Customers browse products, add to cart, and pay securely via Stripe Checkout.</span>
         </div>
 
         <div class="btn-row">
-            <button class="btn btn-outline" onclick="goStep(4)">&larr; Back</button>
+            <button class="btn btn-outline" onclick="goStep(3)">&larr; Back</button>
             <a href="index.html" class="btn btn-green">View Your Store &#8599;</a>
         </div>
     </div>
@@ -313,14 +291,13 @@
 
 <script>
 let currentStep = 1;
-const TOTAL = 5;
+const TOTAL = 4;
 let authPass = '';
 
 function doLogin() {
     const pass = document.getElementById('passInput').value;
     if (!pass) return;
     authPass = pass;
-    // Try checking with server
     fetch('/api/setup', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
@@ -334,7 +311,6 @@ function doLogin() {
             document.getElementById('passInput').value = '';
         }
     }).catch(() => {
-        // If API not available, fallback to local check
         if (pass === 'giftelix2025' || pass === 'admin') {
             localStorage.setItem('gfx_setup_auth', JSON.stringify({ p: pass, t: Date.now() }));
             showWizard();
@@ -361,17 +337,17 @@ function goStep(n) {
         d.className = 'prog-dot' + (i < n - 1 ? ' done' : (i === n - 1 ? ' active' : ''));
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (n === 5) recheckStatus();
+    if (n === 4) recheckStatus();
 }
 
-async function saveApiKey() {
-    const key = document.getElementById('apiKeyInput').value.trim();
-    const status = document.getElementById('apiStatus');
-    const btn = document.getElementById('saveKeyBtn');
+async function saveStripeKey() {
+    const key = document.getElementById('stripeKeyInput').value.trim();
+    const status = document.getElementById('stripeStatus');
+    const btn = document.getElementById('saveStripeBtn');
 
-    if (!key || key.length < 5) {
+    if (!key || !key.startsWith('sk_')) {
         status.className = 'status-msg alert-err';
-        status.textContent = 'Please paste a valid API key.';
+        status.textContent = 'Please paste a valid Stripe Secret Key (starts with sk_)';
         status.style.display = 'block';
         return;
     }
@@ -379,20 +355,20 @@ async function saveApiKey() {
     btn.disabled = true;
     btn.textContent = 'Saving...';
     status.className = 'status-msg alert-info';
-    status.innerHTML = '<span class="alert-icon">&#9203;</span> Saving API key securely...';
+    status.innerHTML = '&#9203; Saving Stripe key securely...';
     status.style.display = 'block';
 
     try {
         const resp = await fetch('/api/setup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ password: authPass, apiKey: key, action: 'set-api-key' })
+            body: JSON.stringify({ password: authPass, stripeKey: key, action: 'set-stripe-key' })
         });
         const data = await resp.json();
 
         if (resp.ok && data.success) {
             status.className = 'status-msg alert-ok';
-            status.innerHTML = '&#10003; <strong>API key saved!</strong> Website is redeploying (takes ~30 seconds).';
+            status.innerHTML = '&#10003; <strong>Stripe key saved!</strong> Website is redeploying (~30 seconds).';
             setTimeout(() => goStep(3), 2000);
         } else {
             status.className = 'status-msg alert-err';
@@ -400,7 +376,7 @@ async function saveApiKey() {
         }
     } catch (e) {
         status.className = 'status-msg alert-warn';
-        status.innerHTML = 'Could not reach server. The API key was not saved automatically.<br><br><strong>Manual option:</strong> Go to <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/environment-variables" target="_blank" style="color:#92400E;text-decoration:underline">Vercel Environment Variables</a>, add <code>SNIPCART_API_KEY</code> = your key, and click Save.';
+        status.innerHTML = 'Could not reach server. Please try again later or contact the developer.';
     }
 
     btn.disabled = false;
@@ -420,12 +396,12 @@ async function recheckStatus() {
             body: JSON.stringify({ password: authPass, action: 'check-status' })
         });
         const data = await resp.json();
-        if (data.snipcartConfigured) {
+        if (data.stripeConfigured) {
             chk.textContent = '\u2705';
-            txt.innerHTML = '<strong style="color:#059669">Configured!</strong> Snipcart API key is set.';
+            txt.innerHTML = '<strong style="color:#059669">Configured!</strong> Stripe payment is connected.';
         } else {
             chk.textContent = '\u274C';
-            txt.innerHTML = 'Not set yet. <a href="#" onclick="goStep(2);return false" style="color:#3B82F6">Go to Step 2</a> to add your API key.';
+            txt.innerHTML = 'Not set yet. <a href="#" onclick="goStep(2);return false" style="color:#3B82F6">Go to Step 2</a> to add your Stripe key.';
         }
     } catch (e) {
         chk.textContent = '\u2753';
@@ -456,10 +432,10 @@ async function checkDNS() {
             result.innerHTML = '<span class="alert-icon">&#10003;</span><span><strong>DNS is correct!</strong> ' + domain + ' points to Vercel.</span>';
         } else if (ips.length) {
             result.className = 'check-result alert alert-warn';
-            result.innerHTML = '<span class="alert-icon">&#9888;</span><span>Points to ' + ips.join(', ') + ' — expected 76.76.21.21</span>';
+            result.innerHTML = '<span class="alert-icon">&#9888;</span><span>Points to ' + ips.join(', ') + ' &mdash; expected 76.76.21.21. DNS may still be propagating.</span>';
         } else {
             result.className = 'check-result alert alert-warn';
-            result.innerHTML = '<span class="alert-icon">&#9203;</span><span>No A record yet. Still propagating or not set.</span>';
+            result.innerHTML = '<span class="alert-icon">&#9203;</span><span>No A record found yet. Still propagating or not set.</span>';
         }
     } catch (e) {
         result.style.display = 'block';

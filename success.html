@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - GIFTELIX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;background:#F8FAFC;color:#1E293B;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+        header{background:#fff;border-bottom:1px solid #E2E8F0;padding:12px 24px;text-align:center}
+        .logo{font-size:24px;font-weight:700;letter-spacing:2px;text-decoration:none;color:#1E293B}.logo b{color:#E53E3E}
+        main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px}
+        .card{background:#fff;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.06);padding:48px 40px;max-width:520px;width:100%;text-align:center}
+        .check{width:80px;height:80px;border-radius:50%;background:#ECFDF5;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:40px}
+        h1{font-size:28px;font-weight:700;margin-bottom:8px}
+        .sub{font-size:15px;color:#64748B;line-height:1.7;margin-bottom:24px}
+        .order-id{background:#F1F5F9;border-radius:10px;padding:14px 20px;font-size:13px;color:#475569;margin-bottom:24px}
+        .order-id strong{color:#1E293B}
+        .info{display:flex;flex-direction:column;gap:12px;text-align:left;margin-bottom:28px}
+        .info-row{display:flex;align-items:center;gap:12px;font-size:14px;color:#475569}
+        .info-icon{width:36px;height:36px;border-radius:8px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:10px;font-size:15px;font-weight:600;font-family:'Poppins',sans-serif;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+        .btn-primary{background:#E53E3E;color:#fff}.btn-primary:hover{background:#DC2626;transform:translateY(-1px);box-shadow:0 6px 20px rgba(229,62,62,.25)}
+        footer{text-align:center;padding:24px;font-size:13px;color:#94A3B8}
+        footer a{color:#94A3B8}
+    </style>
+</head>
+<body>
+<header><a href="index.html" class="logo">GIFTEL<b>IX</b></a></header>
+<main>
+    <div class="card">
+        <div class="check">&#10003;</div>
+        <h1>Thank You for Your Order!</h1>
+        <p class="sub">Your payment was processed securely by Stripe. You'll receive a confirmation email shortly.</p>
+        <div class="order-id" id="orderInfo">
+            Processing your order...
+        </div>
+        <div class="info">
+            <div class="info-row">
+                <div class="info-icon">&#128230;</div>
+                <span>Your order will ship within 1-2 business days</span>
+            </div>
+            <div class="info-row">
+                <div class="info-icon">&#128666;</div>
+                <span>Free shipping - arrives in 3-7 business days</span>
+            </div>
+            <div class="info-row">
+                <div class="info-icon">&#128231;</div>
+                <span>Tracking number sent to your email</span>
+            </div>
+        </div>
+        <a href="index.html" class="btn btn-primary">Continue Shopping &#8594;</a>
+    </div>
+</main>
+<footer>&copy; 2025 GIFTELIX LLC. All rights reserved. &bull; <a href="mailto:admin@giftelix.com">Contact Support</a></footer>
+<script>
+// Show session info if available
+const params = new URLSearchParams(window.location.search);
+const sessionId = params.get('session_id');
+const el = document.getElementById('orderInfo');
+if (sessionId) {
+    el.innerHTML = 'Order reference: <strong>' + sessionId.slice(0, 20) + '...</strong>';
+} else {
+    el.innerHTML = 'Your order has been placed successfully!';
+}
+// Clear any remaining cart
+try { localStorage.setItem('gfx_cart', '[]'); } catch(e) {}
+</script>
+</body>
+</html>

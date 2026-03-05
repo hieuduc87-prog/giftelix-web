@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-    const { password, apiKey, action } = req.body || {};
+    const { password, apiKey, stripeKey, action } = req.body || {};
     const PASS = process.env.SETUP_PASSWORD || 'giftelix2025';
 
     if (password !== PASS) {
@@ -24,75 +24,100 @@ export default async function handler(req, res) {
     const TEAM_ID = process.env.VERCEL_TEAM_ID || 'team_io5B4D9gkpivVZ1IknFk2qH0';
     const headers = { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
 
+    // Helper: set or update an env var
+    async function setEnvVar(key, value) {
+        const listResp = await fetch(
+            `https://api.vercel.com/v9/projects/${PROJECT_ID}/env?teamId=${TEAM_ID}`,
+            { headers }
+        );
+        const envData = await listResp.json();
+        const existing = (envData.envs || []).find(e => e.key === key);
+
+        if (existing) {
+            const updateResp = await fetch(
+                `https://api.vercel.com/v9/projects/${PROJECT_ID}/env/${existing.id}?teamId=${TEAM_ID}`,
+                { method: 'PATCH', headers, body: JSON.stringify({ value }) }
+            );
+            if (!updateResp.ok) {
+                const err = await updateResp.text();
+                throw new Error(`Failed to update ${key}: ${err}`);
+            }
+        } else {
+            const createResp = await fetch(
+                `https://api.vercel.com/v10/projects/${PROJECT_ID}/env?teamId=${TEAM_ID}`,
+                {
+                    method: 'POST', headers,
+                    body: JSON.stringify({
+                        key,
+                        value,
+                        type: 'encrypted',
+                        target: ['production', 'preview', 'development']
+                    })
+                }
+            );
+            if (!createResp.ok) {
+                const err = await createResp.text();
+                throw new Error(`Failed to create ${key}: ${err}`);
+            }
+        }
+    }
+
+    // Helper: trigger redeploy
+    async function triggerRedeploy() {
+        const HOOK = process.env.VERCEL_DEPLOY_HOOK;
+        if (HOOK) {
+            await fetch(HOOK, { method: 'POST' });
+            return true;
+        }
+        return false;
+    }
+
     try {
+        // --- Set Stripe Secret Key ---
+        if (action === 'set-stripe-key') {
+            if (!stripeKey || stripeKey.length < 10) {
+                return res.status(400).json({ error: 'Invalid Stripe key' });
+            }
+            await setEnvVar('STRIPE_SECRET_KEY', stripeKey);
+            const redeployed = await triggerRedeploy();
+
+            return res.json({
+                success: true,
+                message: 'Stripe secret key saved securely. Site is redeploying...',
+                redeployed
+            });
+        }
+
+        // --- Set Snipcart API Key (legacy, kept for compatibility) ---
         if (action === 'set-api-key') {
             if (!apiKey || apiKey.length < 10) {
                 return res.status(400).json({ error: 'Invalid API key' });
             }
-
-            // List existing env vars
-            const listResp = await fetch(
-                `https://api.vercel.com/v9/projects/${PROJECT_ID}/env?teamId=${TEAM_ID}`,
-                { headers }
-            );
-            const envData = await listResp.json();
-            const existing = (envData.envs || []).find(e => e.key === 'SNIPCART_API_KEY');
-
-            if (existing) {
-                // Update existing
-                const updateResp = await fetch(
-                    `https://api.vercel.com/v9/projects/${PROJECT_ID}/env/${existing.id}?teamId=${TEAM_ID}`,
-                    { method: 'PATCH', headers, body: JSON.stringify({ value: apiKey }) }
-                );
-                if (!updateResp.ok) {
-                    const err = await updateResp.text();
-                    return res.status(500).json({ error: 'Failed to update env var', detail: err });
-                }
-            } else {
-                // Create new
-                const createResp = await fetch(
-                    `https://api.vercel.com/v10/projects/${PROJECT_ID}/env?teamId=${TEAM_ID}`,
-                    {
-                        method: 'POST', headers,
-                        body: JSON.stringify({
-                            key: 'SNIPCART_API_KEY',
-                            value: apiKey,
-                            type: 'encrypted',
-                            target: ['production', 'preview', 'development']
-                        })
-                    }
-                );
-                if (!createResp.ok) {
-                    const err = await createResp.text();
-                    return res.status(500).json({ error: 'Failed to create env var', detail: err });
-                }
-            }
-
-            // Trigger redeploy via deploy hook
-            const HOOK = process.env.VERCEL_DEPLOY_HOOK;
-            if (HOOK) {
-                await fetch(HOOK, { method: 'POST' });
-            }
+            await setEnvVar('SNIPCART_API_KEY', apiKey);
+            const redeployed = await triggerRedeploy();
 
             return res.json({
                 success: true,
                 message: 'API key saved securely. Site is redeploying...',
-                redeployed: !!HOOK
+                redeployed
             });
         }
 
+        // --- Check Status ---
         if (action === 'check-status') {
-            // Check if SNIPCART_API_KEY is set
             const listResp = await fetch(
                 `https://api.vercel.com/v9/projects/${PROJECT_ID}/env?teamId=${TEAM_ID}`,
                 { headers }
             );
             const envData = await listResp.json();
-            const hasKey = (envData.envs || []).some(e => e.key === 'SNIPCART_API_KEY');
+            const envs = envData.envs || [];
+            const hasStripe = envs.some(e => e.key === 'STRIPE_SECRET_KEY');
+            const hasSnipcart = envs.some(e => e.key === 'SNIPCART_API_KEY');
 
             return res.json({
-                snipcartConfigured: hasKey,
-                message: hasKey ? 'Snipcart API key is configured' : 'Snipcart API key not set yet'
+                stripeConfigured: hasStripe,
+                snipcartConfigured: hasSnipcart,
+                message: hasStripe ? 'Stripe is configured' : 'Stripe not set up yet'
             });
         }
 

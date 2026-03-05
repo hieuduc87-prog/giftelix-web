@@ -3,7 +3,6 @@ const path = require('path');
 
 const SRC = process.cwd();
 const DIST = path.join(SRC, 'dist');
-const API_KEY = process.env.SNIPCART_API_KEY || 'YOUR_SNIPCART_PUBLIC_API_KEY';
 
 const SKIP = new Set(['.git', '.github', '.vercel', 'node_modules', 'dist', 'scripts', 'build.py', '__pycache__', '.gitignore', 'api']);
 
@@ -21,25 +20,38 @@ function copyDir(src, dst) {
     }
 }
 
-function replaceInHtml(dir) {
+function processHtml(dir) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         const p = path.join(dir, entry.name);
         if (entry.isDirectory()) {
-            replaceInHtml(p);
+            processHtml(p);
         } else if (entry.name.endsWith('.html')) {
-            let content = fs.readFileSync(p, 'utf8');
-            content = content.replace(/YOUR_SNIPCART_PUBLIC_API_KEY/g, API_KEY);
-            fs.writeFileSync(p, content);
+            let c = fs.readFileSync(p, 'utf8');
+
+            // Remove Snipcart CSS
+            c = c.replace(/<link[^>]*snipcart[^>]*\.css[^>]*\/?\s*>/gi, '');
+
+            // Remove Snipcart hidden div
+            c = c.replace(/<div[^>]*id="snipcart"[^>]*><\/div>/gi, '');
+
+            // Remove Snipcart JS
+            c = c.replace(/<script[^>]*snipcart[^>]*\.js[^>]*><\/script>/gi, '');
+
+            // Add cart.js before </body>
+            if (!c.includes('cart.js')) {
+                c = c.replace('</body>', '<script src="/js/cart.js"></script>\n</body>');
+            }
+
+            fs.writeFileSync(p, c);
         }
     }
 }
 
 console.log('Building GIFTELIX...');
-console.log(`API Key: ${API_KEY === 'YOUR_SNIPCART_PUBLIC_API_KEY' ? '(placeholder - set SNIPCART_API_KEY env var)' : '***configured***'}`);
 
 if (fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true });
 copyDir(SRC, DIST);
-replaceInHtml(DIST);
+processHtml(DIST);
 
 const htmlCount = [];
 (function count(d) {
@@ -50,4 +62,4 @@ const htmlCount = [];
     }
 })(DIST);
 
-console.log(`Done! ${htmlCount.length} HTML files processed.`);
+console.log(`Done! ${htmlCount.length} HTML files processed. Snipcart replaced with Stripe cart.`);
