@@ -185,50 +185,30 @@
         </div>
 
         <div id="stripeNotConnected">
-            <!-- OPTION A: OAuth Login -->
-            <div style="margin-bottom:24px">
-                <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#94A3B8;margin-bottom:12px">Option 1 &mdash; Recommended</p>
-                <a href="/api/stripe-connect" class="stripe-connect-btn" id="stripeConnectBtn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
-                    Connect with Stripe
+            <div class="action-box">
+                <h4><span class="action-num">1</span> Open your Stripe Dashboard</h4>
+                <p>Log in to Stripe, then go to <strong>Developers &rarr; API Keys</strong>:</p>
+                <a href="https://dashboard.stripe.com/apikeys" target="_blank" class="stripe-connect-btn" style="max-width:320px">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+                    Open Stripe Dashboard &#8599;
                 </a>
-                <p style="text-align:center;font-size:12px;color:#94A3B8;margin-top:8px">Login to your Stripe account securely &mdash; no keys needed</p>
             </div>
 
-            <!-- DIVIDER -->
-            <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
-                <div style="flex:1;height:1px;background:#E2E8F0"></div>
-                <span style="font-size:12px;color:#94A3B8;font-weight:600">OR</span>
-                <div style="flex:1;height:1px;background:#E2E8F0"></div>
+            <div class="action-box">
+                <h4><span class="action-num">2</span> Copy your Secret Key</h4>
+                <p>In the API Keys page, find <strong>"Secret key"</strong> &rarr; click <strong>"Reveal live key"</strong> &rarr; Copy.</p>
+                <p style="font-size:12px;color:#94A3B8;margin-bottom:0">It looks like: <code>sk_live_51Hx...</code> (about 100 characters)</p>
             </div>
 
-            <!-- OPTION B: Paste Key -->
-            <div>
-                <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#94A3B8;margin-bottom:12px">Option 2 &mdash; Manual</p>
-                <div class="action-box" style="cursor:pointer" onclick="document.getElementById('manualKey').style.display=document.getElementById('manualKey').style.display==='none'?'block':'none'">
-                    <h4 style="margin-bottom:0">&#128273; Paste Secret Key manually <span style="font-size:11px;color:#94A3B8;font-weight:400;margin-left:4px">&#9660;</span></h4>
+            <div class="action-box" style="border-color:#CBD5E0">
+                <h4><span class="action-num">3</span> Paste it here &amp; activate</h4>
+                <div class="input-wrap" style="margin-bottom:12px">
+                    <input type="password" id="stripeKeyInput" placeholder="sk_live_..." autocomplete="off" spellcheck="false" style="font-size:15px;padding:14px 16px">
                 </div>
-                <div id="manualKey" style="display:none">
-                    <div class="action-box">
-                        <h4><span class="action-num">1</span> Open Stripe API Keys</h4>
-                        <p>Dashboard &rarr; Developers &rarr; API Keys</p>
-                        <a href="https://dashboard.stripe.com/apikeys" target="_blank" class="btn btn-dark btn-sm">Open API Keys &#8599;</a>
-                    </div>
-                    <div class="action-box">
-                        <h4><span class="action-num">2</span> Copy Secret Key</h4>
-                        <p>Click <strong>"Reveal"</strong> next to the Secret key, then copy. Starts with <code>sk_</code></p>
-                    </div>
-                    <div class="action-box">
-                        <h4><span class="action-num">3</span> Paste here</h4>
-                        <div class="input-wrap" style="margin-bottom:0">
-                            <input type="password" id="stripeKeyInput" placeholder="sk_live_... or sk_test_..." autocomplete="off" spellcheck="false">
-                        </div>
-                    </div>
-                    <button class="stripe-connect-btn" style="margin-top:16px;background:#E53E3E" id="saveStripeBtn" onclick="saveStripeKey()">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        Save &amp; Activate Payments
-                    </button>
-                </div>
+                <button class="stripe-connect-btn" style="background:#E53E3E" id="saveStripeBtn" onclick="saveStripeKey()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Encrypt &amp; Save Securely
+                </button>
             </div>
 
             <div id="stripeStatus" class="status-msg"></div>
@@ -242,14 +222,15 @@
         <div class="alert alert-ok" style="margin-top:20px">
             <span class="alert-icon">&#128274;</span>
             <div>
-                <strong>100% Safe &mdash; Zero risk:</strong>
+                <strong>AN TOAN TUYET DOI &mdash; Khong co rui ro:</strong>
                 <ul class="security-list">
-                    <li><strong>Option 1:</strong> You log in on Stripe.com &mdash; we never see your password</li>
-                    <li><strong>Option 2:</strong> Key is encrypted on server &mdash; never in website code</li>
-                    <li>Customer credit cards go directly to Stripe &mdash; never touch this site</li>
-                    <li>All payments go to YOUR Stripe account &mdash; you have full control</li>
-                    <li>You can disconnect or change key anytime from Stripe dashboard</li>
-                    <li>Same process used by Shopify, Squarespace &amp; millions of sites</li>
+                    <li>Key duoc <strong>ma hoa AES-256</strong> tren server &mdash; khong ai doc duoc, ke ca developer</li>
+                    <li>Key <strong>khong bao gio xuat hien</strong> trong source code website</li>
+                    <li>Thong tin the khach hang di <strong>thang vao Stripe</strong> &mdash; website khong cham vao</li>
+                    <li>Tien thanh toan vao <strong>truc tiep tai khoan Stripe cua ban</strong></li>
+                    <li>Ban co the <strong>doi hoac huy key</strong> bat cu luc nao tai dashboard.stripe.com</li>
+                    <li>Day la cach <strong>Shopify, WooCommerce, va hang trieu website</strong> su dung</li>
+                    <li>Stripe dat chuan <strong>PCI DSS Level 1</strong> &mdash; bao mat cao nhat nganh tai chinh</li>
                 </ul>
             </div>
         </div>
