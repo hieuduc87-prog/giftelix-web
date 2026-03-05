@@ -5,7 +5,7 @@ const SRC = process.cwd();
 const DIST = path.join(SRC, 'dist');
 const API_KEY = process.env.SNIPCART_API_KEY || 'YOUR_SNIPCART_PUBLIC_API_KEY';
 
-const SKIP = new Set(['.git', '.github', '.vercel', 'node_modules', 'dist', 'scripts', 'build.py', '__pycache__', '.gitignore']);
+const SKIP = new Set(['.git', '.github', '.vercel', 'node_modules', 'dist', 'scripts', 'build.py', '__pycache__', '.gitignore', 'api']);
 
 function copyDir(src, dst) {
     fs.mkdirSync(dst, { recursive: true });

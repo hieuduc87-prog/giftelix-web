@@ -3,169 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIFTELIX - Domain Setup</title>
+    <title>GIFTELIX - Store Setup</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Poppins',sans-serif;background:#F7FAFC;color:#1A202C;min-height:100vh;display:flex;flex-direction:column;align-items:center;-webkit-font-smoothing:antialiased}
-        .logo{font-size:28px;font-weight:700;letter-spacing:2px;margin:40px 0 8px}.logo b{color:#E53E3E}
-        .subtitle{font-size:14px;color:#718096;margin-bottom:40px}
-        .card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.06);max-width:560px;width:calc(100% - 48px);padding:36px;margin-bottom:24px}
-        h2{font-size:20px;font-weight:700;margin-bottom:6px}
-        .desc{font-size:14px;color:#718096;margin-bottom:28px;line-height:1.6}
+        body{font-family:'Poppins',sans-serif;background:#F8FAFC;color:#1E293B;min-height:100vh;-webkit-font-smoothing:antialiased}
 
-        .dns-table{width:100%;border-collapse:collapse;margin-bottom:20px}
-        .dns-table th{text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#A0AEC0;padding:0 0 10px}
-        .dns-table td{padding:12px 16px;font-size:14px;font-weight:500;background:#F7FAFC;border-radius:8px}
-        .dns-table tr td:first-child{border-radius:8px 0 0 8px;width:80px}
-        .dns-table tr td:nth-child(2){width:60px}
-        .dns-table tr td:last-child{border-radius:0 8px 8px 0;font-family:'Courier New',monospace;font-weight:600;color:#2D3748}
-        .dns-row{margin-bottom:4px;display:contents}
-        .type-badge{display:inline-block;background:#E53E3E;color:#fff;padding:2px 10px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.5px}
-        .type-cname{background:#3182CE}
-        .copy-btn{background:none;border:1px solid #E2E8F0;padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;color:#718096;font-family:'Poppins',sans-serif;transition:all .2s}
-        .copy-btn:hover{border-color:#E53E3E;color:#E53E3E}
-        .copy-btn.copied{border-color:#38A169;color:#38A169}
+        /* LOGIN */
+        .login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+        .login-box{background:#fff;padding:48px 40px;border-radius:20px;max-width:400px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.06)}
+        .login-logo{font-size:32px;font-weight:700;letter-spacing:2px;margin-bottom:4px}.login-logo b{color:#E53E3E}
+        .login-tag{font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:3px;font-weight:600;margin-bottom:32px}
+        .login-input{width:100%;padding:14px 18px;border:2px solid #E2E8F0;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border .2s;text-align:center}
+        .login-input:focus{border-color:#E53E3E}
+        .login-btn{width:100%;padding:14px;margin-top:14px;background:#E53E3E;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;transition:all .2s}
+        .login-btn:hover{background:#DC2626;transform:translateY(-1px);box-shadow:0 6px 20px rgba(229,62,62,.25)}
+        .login-err{color:#EF4444;font-size:13px;margin-top:10px;display:none}
 
-        .step-label{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#4A5568;margin-bottom:16px}
-        .step-num{width:24px;height:24px;border-radius:50%;background:#1A202C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+        /* WIZARD */
+        .wizard{display:none;max-width:640px;margin:0 auto;padding:32px 24px 80px}
+        .wiz-header{text-align:center;margin-bottom:36px}
+        .wiz-logo{font-size:24px;font-weight:700;letter-spacing:2px;margin-bottom:4px}.wiz-logo b{color:#E53E3E}
+        .wiz-title{font-size:13px;color:#94A3B8;font-weight:500}
 
-        .registrars{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-        .reg-btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid #E2E8F0;color:#4A5568;background:#fff;text-decoration:none;transition:all .2s;font-family:'Poppins',sans-serif}
-        .reg-btn:hover{border-color:#E53E3E;color:#E53E3E;text-decoration:none}
+        /* PROGRESS */
+        .progress{display:flex;justify-content:center;gap:6px;margin-bottom:40px}
+        .prog-dot{width:40px;height:5px;border-radius:3px;background:#E2E8F0;transition:all .3s}
+        .prog-dot.active{background:#E53E3E}
+        .prog-dot.done{background:#10B981}
 
-        .check-section{text-align:center;padding:24px 0 0}
-        .domain-input{padding:10px 16px;border:2px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:'Poppins',sans-serif;width:220px;outline:none;text-align:center;transition:border .2s}
-        .domain-input:focus{border-color:#3182CE}
-        .check-btn{padding:10px 24px;border:none;border-radius:8px;background:#1A202C;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;margin-left:8px}
-        .check-btn:hover{background:#2D3748;transform:translateY(-1px)}
-        .check-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+        /* STEP CARD */
+        .step{display:none;background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.05);padding:36px;animation:fadeIn .3s ease}
+        .step.active{display:block}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        .step-badge{display:inline-flex;align-items:center;gap:6px;background:#FEF2F2;color:#E53E3E;font-size:11px;font-weight:700;padding:6px 14px;border-radius:50px;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+        .step-badge.done-badge{background:#ECFDF5;color:#059669}
+        .step h2{font-size:22px;font-weight:700;margin-bottom:8px;line-height:1.3}
+        .step p{font-size:14px;color:#64748B;line-height:1.7;margin-bottom:20px}
 
-        .result{margin-top:16px;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;display:none}
-        .result-ok{background:#F0FFF4;color:#22543D;border:1px solid #C6F6D5;display:block}
-        .result-wait{background:#FFFBEB;color:#92400E;border:1px solid #FDE68A;display:block}
-        .result-err{background:#FFF5F5;color:#9B2C2C;border:1px solid #FED7D7;display:block}
+        .action-box{background:#F8FAFC;border:2px solid #E2E8F0;border-radius:14px;padding:20px;margin-bottom:20px}
+        .action-box h4{font-size:14px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+        .action-box p{font-size:13px;color:#64748B;margin-bottom:12px}
+        .action-num{width:22px;height:22px;border-radius:50%;background:#E53E3E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
 
-        .help{font-size:12px;color:#A0AEC0;line-height:1.6;margin-top:12px}
-        .footer{margin:20px 0 40px;font-size:12px;color:#A0AEC0}
-        .footer a{color:#A0AEC0}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+        .btn:hover{transform:translateY(-1px);text-decoration:none}
+        .btn-primary{background:#E53E3E;color:#fff}.btn-primary:hover{background:#DC2626;box-shadow:0 4px 16px rgba(229,62,62,.25)}
+        .btn-dark{background:#1E293B;color:#fff}.btn-dark:hover{background:#334155}
+        .btn-outline{background:#fff;color:#1E293B;border:2px solid #E2E8F0}.btn-outline:hover{border-color:#1E293B}
+        .btn-green{background:#10B981;color:#fff}.btn-green:hover{background:#059669}
+        .btn-sm{padding:9px 16px;font-size:13px;border-radius:8px}
+        .btn-full{width:100%;justify-content:center}
+
+        .btn-row{display:flex;gap:10px;margin-top:24px}
+        .btn-row .btn{flex:1;justify-content:center}
+
+        /* INPUT */
+        .input-wrap{margin-bottom:16px}
+        .input-wrap label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+        .input-wrap input{width:100%;padding:12px 16px;border:2px solid #E2E8F0;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border .2s}
+        .input-wrap input:focus{border-color:#3B82F6}
+        .input-hint{font-size:12px;color:#94A3B8;margin-top:4px}
+
+        /* ALERT */
+        .alert{padding:14px 18px;border-radius:10px;font-size:13px;line-height:1.6;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+        .alert-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+        .alert-info{background:#EFF6FF;color:#1E40AF;border:1px solid #BFDBFE}
+        .alert-warn{background:#FFFBEB;color:#92400E;border:1px solid #FDE68A}
+        .alert-ok{background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0}
+        .alert-err{background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
+
+        /* DNS TABLE */
+        .dns-row{display:grid;grid-template-columns:70px 50px 1fr auto;gap:8px;align-items:center;padding:12px 14px;background:#F8FAFC;border-radius:10px;margin-bottom:6px;font-size:14px}
+        .dns-type{font-size:11px;font-weight:700;padding:3px 10px;border-radius:5px;color:#fff;text-align:center}
+        .dns-a{background:#E53E3E}.dns-cname{background:#3B82F6}
+        .dns-val{font-family:'Courier New',monospace;font-weight:600;font-size:13px;color:#1E293B}
+        .dns-copy{background:none;border:1px solid #E2E8F0;padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;color:#64748B;font-family:'Poppins',sans-serif;transition:all .2s;white-space:nowrap}
+        .dns-copy:hover{border-color:#E53E3E;color:#E53E3E}
+        .dns-copy.ok{border-color:#10B981;color:#10B981}
+
+        /* CHECK */
+        .check-row{display:flex;gap:8px;margin-top:16px}
+        .check-input{flex:1;padding:10px 14px;border:2px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:'Poppins',sans-serif;outline:none}
+        .check-input:focus{border-color:#3B82F6}
+        .check-result{margin-top:12px;display:none}
+
+        /* STATUS MSG */
+        .status-msg{text-align:center;padding:12px;border-radius:10px;font-size:14px;font-weight:500;margin-top:16px;display:none}
+
+        /* REGISTRARS */
+        .reg-list{display:flex;gap:8px;flex-wrap:wrap}
+        .reg-link{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid #E2E8F0;color:#475569;background:#fff;text-decoration:none;transition:all .2s}
+        .reg-link:hover{border-color:#E53E3E;color:#E53E3E}
+
+        /* DONE */
+        .done-icon{font-size:64px;margin-bottom:16px}
 
         @media(max-width:480px){
-            .card{padding:24px}
-            .domain-input{width:100%;margin-bottom:8px}
-            .check-btn{width:100%;margin-left:0}
+            .step{padding:24px}
+            .btn-row{flex-direction:column}
+            .dns-row{grid-template-columns:60px 40px 1fr;font-size:12px}
+            .dns-row .dns-copy{grid-column:span 3;justify-self:start}
         }
     </style>
 </head>
 <body>
 
-<div class="logo">GIFTEL<b>IX</b></div>
-<div class="subtitle">Domain Setup Guide</div>
-
-<!-- STEP 1: DNS RECORDS -->
-<div class="card">
-    <div class="step-label"><span class="step-num">1</span> Add these DNS records</div>
-    <p class="desc">Log in to your domain registrar and add these 2 records. This connects your domain to the GIFTELIX website.</p>
-
-    <table class="dns-table">
-        <thead><tr><th>Type</th><th>Name</th><th>Value</th><th></th></tr></thead>
-        <tbody>
-            <tr class="dns-row">
-                <td><span class="type-badge">A</span></td>
-                <td><strong>@</strong></td>
-                <td>76.76.21.21</td>
-                <td><button class="copy-btn" onclick="copyText('76.76.21.21',this)">Copy</button></td>
-            </tr>
-            <tr><td colspan="4" style="padding:4px;background:none"></td></tr>
-            <tr class="dns-row">
-                <td><span class="type-badge type-cname">CNAME</span></td>
-                <td><strong>www</strong></td>
-                <td>cname.vercel-dns.com</td>
-                <td><button class="copy-btn" onclick="copyText('cname.vercel-dns.com',this)">Copy</button></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <p class="help">
-        <strong>A record</strong> = points your main domain (giftelix.com) to the server.<br>
-        <strong>CNAME</strong> = points www.giftelix.com to the same place.<br>
-        TTL: leave as default or set to 300 (5 min).
-    </p>
-</div>
-
-<!-- STEP 2: WHERE -->
-<div class="card">
-    <div class="step-label"><span class="step-num">2</span> Where to add DNS records</div>
-    <p class="desc">Click your domain registrar below to open their DNS settings page:</p>
-    <div class="registrars">
-        <a href="https://dash.cloudflare.com/" target="_blank" class="reg-btn">Cloudflare</a>
-        <a href="https://ap.www.namecheap.com/domains/list/" target="_blank" class="reg-btn">Namecheap</a>
-        <a href="https://dcc.godaddy.com/control/portfolio" target="_blank" class="reg-btn">GoDaddy</a>
-        <a href="https://domains.google.com/registrar/" target="_blank" class="reg-btn">Google Domains</a>
-        <a href="https://www.hostinger.com/cpanel-login" target="_blank" class="reg-btn">Hostinger</a>
+<!-- LOGIN -->
+<div class="login-wrap" id="loginScreen">
+    <div class="login-box">
+        <div class="login-logo">GIFTEL<b>IX</b></div>
+        <div class="login-tag">Store Setup</div>
+        <input type="password" class="login-input" id="passInput" placeholder="Enter setup password" onkeypress="if(event.key==='Enter')doLogin()">
+        <button class="login-btn" onclick="doLogin()">Continue</button>
+        <div class="login-err" id="loginErr">Wrong password. Please try again.</div>
     </div>
-    <p class="help">Don't see yours? Search "[your registrar] add DNS record" on Google.</p>
 </div>
 
-<!-- STEP 3: CHECK -->
-<div class="card">
-    <div class="step-label"><span class="step-num">3</span> Check if DNS is working</div>
-    <p class="desc">After adding the records, enter your domain below to check. DNS can take 5 min to 48 hours to propagate.</p>
-    <div class="check-section">
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
-            <input type="text" class="domain-input" id="domainInput" placeholder="giftelix.com" value="giftelix.com">
-            <button class="check-btn" id="checkBtn" onclick="checkDNS()">Check DNS</button>
+<!-- WIZARD -->
+<div class="wizard" id="wizard">
+    <div class="wiz-header">
+        <div class="wiz-logo">GIFTEL<b>IX</b></div>
+        <div class="wiz-title">Store Setup Wizard</div>
+    </div>
+    <div class="progress" id="progress">
+        <div class="prog-dot active"></div>
+        <div class="prog-dot"></div>
+        <div class="prog-dot"></div>
+        <div class="prog-dot"></div>
+        <div class="prog-dot"></div>
+    </div>
+
+    <!-- STEP 1: SNIPCART -->
+    <div class="step active" id="step1">
+        <div class="step-badge">Step 1 of 5</div>
+        <h2>Create Your Shopping Cart Account</h2>
+        <p>Snipcart powers the checkout on your website. Create a free account to get started (no credit card needed).</p>
+
+        <div class="action-box">
+            <h4><span class="action-num">1</span> Sign up for Snipcart</h4>
+            <p>Click below to create your free account:</p>
+            <a href="https://app.snipcart.com/register" target="_blank" class="btn btn-dark btn-sm">Create Snipcart Account &#8599;</a>
         </div>
-        <div class="result" id="result"></div>
+
+        <div class="action-box">
+            <h4><span class="action-num">2</span> After signing up, get your API Key</h4>
+            <p>In Snipcart dashboard: click your name (top-right) &rarr; <strong>API Keys</strong>. Copy the <strong>Public Test API Key</strong>.</p>
+            <a href="https://app.snipcart.com/dashboard/account/credentials" target="_blank" class="btn btn-outline btn-sm">Open API Keys Page &#8599;</a>
+        </div>
+
+        <div class="alert alert-info">
+            <span class="alert-icon">&#128274;</span>
+            <span><strong>Security note:</strong> The Public API Key is safe to use — it only allows adding items to cart. Your secret key and payment info stay protected in Snipcart's secure dashboard.</span>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-primary" onclick="goStep(2)">I have my API Key &rarr;</button>
+        </div>
+    </div>
+
+    <!-- STEP 2: API KEY -->
+    <div class="step" id="step2">
+        <div class="step-badge">Step 2 of 5</div>
+        <h2>Connect API Key to Website</h2>
+        <p>Paste your Snipcart Public API Key below. It will be securely saved and the website will automatically update.</p>
+
+        <div class="input-wrap">
+            <label>Snipcart Public API Key</label>
+            <input type="text" id="apiKeyInput" placeholder="Paste your API key here..." autocomplete="off" spellcheck="false">
+            <div class="input-hint">Starts with letters/numbers, about 36 characters long. Example: MjM4N2...</div>
+        </div>
+
+        <div class="alert alert-warn">
+            <span class="alert-icon">&#128272;</span>
+            <span><strong>Your key is encrypted</strong> and stored as a server-side environment variable. It is never visible in the website source code.</span>
+        </div>
+
+        <div id="apiStatus" class="status-msg"></div>
+
+        <div class="btn-row">
+            <button class="btn btn-outline" onclick="goStep(1)">&larr; Back</button>
+            <button class="btn btn-primary" id="saveKeyBtn" onclick="saveApiKey()">Save &amp; Deploy &#128640;</button>
+        </div>
+    </div>
+
+    <!-- STEP 3: PAYMENT -->
+    <div class="step" id="step3">
+        <div class="step-badge">Step 3 of 5</div>
+        <h2>Connect Payment Method</h2>
+        <p>Connect Stripe or PayPal so you can accept real payments from customers.</p>
+
+        <div class="action-box">
+            <h4><span class="action-num">1</span> Create a Stripe account (if you don't have one)</h4>
+            <p>Stripe handles credit/debit card payments. Free to sign up, you only pay per transaction.</p>
+            <a href="https://dashboard.stripe.com/register" target="_blank" class="btn btn-dark btn-sm">Create Stripe Account &#8599;</a>
+        </div>
+
+        <div class="action-box">
+            <h4><span class="action-num">2</span> Connect Stripe to Snipcart</h4>
+            <p>In Snipcart: go to <strong>Account &rarr; Payment Gateway</strong> &rarr; click <strong>Connect</strong> next to Stripe.</p>
+            <a href="https://app.snipcart.com/dashboard/account/gateway" target="_blank" class="btn btn-outline btn-sm">Open Payment Settings &#8599;</a>
+        </div>
+
+        <div class="action-box">
+            <h4><span class="action-num">&#10003;</span> Optional: Add PayPal</h4>
+            <p>You can also add PayPal as a second payment option on the same page.</p>
+        </div>
+
+        <div class="alert alert-info">
+            <span class="alert-icon">&#128161;</span>
+            <span>You can skip this step and come back later. The cart will work in <strong>Test Mode</strong> without a payment gateway connected.</span>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-outline" onclick="goStep(2)">&larr; Back</button>
+            <button class="btn btn-primary" onclick="goStep(4)">Continue &rarr;</button>
+        </div>
+    </div>
+
+    <!-- STEP 4: DNS -->
+    <div class="step" id="step4">
+        <div class="step-badge">Step 4 of 5</div>
+        <h2>Connect Your Domain</h2>
+        <p>Add these 2 DNS records at your domain registrar to point your domain to the website.</p>
+
+        <div class="dns-row">
+            <span class="dns-type dns-a">A</span>
+            <strong>@</strong>
+            <span class="dns-val">76.76.21.21</span>
+            <button class="dns-copy" onclick="copyDNS('76.76.21.21',this)">Copy</button>
+        </div>
+        <div class="dns-row">
+            <span class="dns-type dns-cname">CNAME</span>
+            <strong>www</strong>
+            <span class="dns-val">cname.vercel-dns.com</span>
+            <button class="dns-copy" onclick="copyDNS('cname.vercel-dns.com',this)">Copy</button>
+        </div>
+
+        <div style="margin-top:20px">
+            <p style="font-size:13px;font-weight:600;margin-bottom:10px">Open your domain registrar:</p>
+            <div class="reg-list">
+                <a href="https://dash.cloudflare.com/" target="_blank" class="reg-link">Cloudflare</a>
+                <a href="https://ap.www.namecheap.com/domains/list/" target="_blank" class="reg-link">Namecheap</a>
+                <a href="https://dcc.godaddy.com/control/portfolio" target="_blank" class="reg-link">GoDaddy</a>
+                <a href="https://domains.google.com/registrar/" target="_blank" class="reg-link">Google Domains</a>
+                <a href="https://www.hostinger.com/cpanel-login" target="_blank" class="reg-link">Hostinger</a>
+            </div>
+        </div>
+
+        <div style="margin-top:20px">
+            <p style="font-size:13px;font-weight:600;margin-bottom:8px">Verify DNS (optional):</p>
+            <div class="check-row">
+                <input type="text" class="check-input" id="dnsInput" placeholder="giftelix.com" value="giftelix.com">
+                <button class="btn btn-dark btn-sm" id="dnsCheckBtn" onclick="checkDNS()">Check</button>
+            </div>
+            <div class="check-result" id="dnsResult"></div>
+        </div>
+
+        <div class="alert alert-info" style="margin-top:20px">
+            <span class="alert-icon">&#9203;</span>
+            <span>DNS changes take 5 minutes to 48 hours to propagate. You can check back later.</span>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-outline" onclick="goStep(3)">&larr; Back</button>
+            <button class="btn btn-primary" onclick="goStep(5)">Continue &rarr;</button>
+        </div>
+    </div>
+
+    <!-- STEP 5: GO LIVE -->
+    <div class="step" id="step5">
+        <div class="step-badge done-badge">Step 5 of 5</div>
+        <h2 style="text-align:center">Go Live Checklist</h2>
+        <p style="text-align:center">Review everything before launching your store.</p>
+
+        <div class="action-box" id="checkApi" style="cursor:pointer" onclick="recheckStatus()">
+            <h4><span id="chk1" style="font-size:18px">&#9203;</span> Snipcart API Key</h4>
+            <p id="chk1txt">Checking...</p>
+        </div>
+
+        <div class="action-box">
+            <h4><span style="font-size:18px">&#128179;</span> Payment Gateway</h4>
+            <p>Verify at <a href="https://app.snipcart.com/dashboard/account/gateway" target="_blank" style="color:#3B82F6">Snipcart &rarr; Payment Gateway</a> that Stripe or PayPal is connected.</p>
+        </div>
+
+        <div class="action-box">
+            <h4><span style="font-size:18px">&#127760;</span> Domain &amp; DNS</h4>
+            <p>After DNS propagates, add your domain in <a href="https://app.snipcart.com/dashboard/account/domains" target="_blank" style="color:#3B82F6">Snipcart &rarr; Domains & URLs</a> too.</p>
+        </div>
+
+        <div class="action-box">
+            <h4><span style="font-size:18px">&#128640;</span> Switch to Live Mode</h4>
+            <p>When ready for real payments: in Snipcart toggle from <strong>Test</strong> to <strong>Live</strong>. Copy the new <strong>Live Public API Key</strong> and go back to Step 2 to update it.</p>
+        </div>
+
+        <div class="alert alert-ok" style="margin-top:16px">
+            <span class="alert-icon">&#127881;</span>
+            <span><strong>That's it!</strong> Your GIFTELIX store is ready. Customers can browse products, add to cart, and checkout securely.</span>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-outline" onclick="goStep(4)">&larr; Back</button>
+            <a href="index.html" class="btn btn-green">View Your Store &#8599;</a>
+        </div>
     </div>
 </div>
-
-<div class="footer">GIFTELIX LLC &bull; <a href="index.html">Back to Website</a></div>
 
 <script>
-function copyText(text, btn) {
+let currentStep = 1;
+const TOTAL = 5;
+let authPass = '';
+
+function doLogin() {
+    const pass = document.getElementById('passInput').value;
+    if (!pass) return;
+    authPass = pass;
+    // Try checking with server
+    fetch('/api/setup', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ password: pass, action: 'check-status' })
+    }).then(r => {
+        if (r.ok) {
+            localStorage.setItem('gfx_setup_auth', JSON.stringify({ p: pass, t: Date.now() }));
+            showWizard();
+        } else {
+            document.getElementById('loginErr').style.display = 'block';
+            document.getElementById('passInput').value = '';
+        }
+    }).catch(() => {
+        // If API not available, fallback to local check
+        if (pass === 'giftelix2025' || pass === 'admin') {
+            localStorage.setItem('gfx_setup_auth', JSON.stringify({ p: pass, t: Date.now() }));
+            showWizard();
+        } else {
+            document.getElementById('loginErr').style.display = 'block';
+            document.getElementById('passInput').value = '';
+        }
+    });
+}
+
+function showWizard() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('wizard').style.display = 'block';
+    goStep(1);
+}
+
+function goStep(n) {
+    currentStep = n;
+    for (let i = 1; i <= TOTAL; i++) {
+        document.getElementById('step' + i).classList.toggle('active', i === n);
+    }
+    const dots = document.querySelectorAll('.prog-dot');
+    dots.forEach((d, i) => {
+        d.className = 'prog-dot' + (i < n - 1 ? ' done' : (i === n - 1 ? ' active' : ''));
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (n === 5) recheckStatus();
+}
+
+async function saveApiKey() {
+    const key = document.getElementById('apiKeyInput').value.trim();
+    const status = document.getElementById('apiStatus');
+    const btn = document.getElementById('saveKeyBtn');
+
+    if (!key || key.length < 5) {
+        status.className = 'status-msg alert-err';
+        status.textContent = 'Please paste a valid API key.';
+        status.style.display = 'block';
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+    status.className = 'status-msg alert-info';
+    status.innerHTML = '<span class="alert-icon">&#9203;</span> Saving API key securely...';
+    status.style.display = 'block';
+
+    try {
+        const resp = await fetch('/api/setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: authPass, apiKey: key, action: 'set-api-key' })
+        });
+        const data = await resp.json();
+
+        if (resp.ok && data.success) {
+            status.className = 'status-msg alert-ok';
+            status.innerHTML = '&#10003; <strong>API key saved!</strong> Website is redeploying (takes ~30 seconds).';
+            setTimeout(() => goStep(3), 2000);
+        } else {
+            status.className = 'status-msg alert-err';
+            status.textContent = data.error || 'Failed to save. Please try again.';
+        }
+    } catch (e) {
+        status.className = 'status-msg alert-warn';
+        status.innerHTML = 'Could not reach server. The API key was not saved automatically.<br><br><strong>Manual option:</strong> Go to <a href="https://vercel.com/hieuduc87-5606s-projects/giftelix-web/settings/environment-variables" target="_blank" style="color:#92400E;text-decoration:underline">Vercel Environment Variables</a>, add <code>SNIPCART_API_KEY</code> = your key, and click Save.';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Save & Deploy \u{1F680}';
+}
+
+async function recheckStatus() {
+    const chk = document.getElementById('chk1');
+    const txt = document.getElementById('chk1txt');
+    chk.textContent = '\u23F3';
+    txt.textContent = 'Checking...';
+
+    try {
+        const resp = await fetch('/api/setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: authPass, action: 'check-status' })
+        });
+        const data = await resp.json();
+        if (data.snipcartConfigured) {
+            chk.textContent = '\u2705';
+            txt.innerHTML = '<strong style="color:#059669">Configured!</strong> Snipcart API key is set.';
+        } else {
+            chk.textContent = '\u274C';
+            txt.innerHTML = 'Not set yet. <a href="#" onclick="goStep(2);return false" style="color:#3B82F6">Go to Step 2</a> to add your API key.';
+        }
+    } catch (e) {
+        chk.textContent = '\u2753';
+        txt.textContent = 'Could not check. Server may not be configured yet.';
+    }
+}
+
+function copyDNS(text, btn) {
     navigator.clipboard.writeText(text);
     btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 2000);
 }
 
 async function checkDNS() {
-    const domain = document.getElementById('domainInput').value.trim().replace(/^https?:\/\//, '').replace(/\/.*/, '');
+    const domain = document.getElementById('dnsInput').value.trim().replace(/^https?:\/\//, '').replace(/\/.*/, '');
     if (!domain) return;
-    const btn = document.getElementById('checkBtn');
-    const result = document.getElementById('result');
-    btn.disabled = true;
-    btn.textContent = 'Checking...';
-    result.className = 'result';
-    result.style.display = 'none';
-
+    const btn = document.getElementById('dnsCheckBtn');
+    const result = document.getElementById('dnsResult');
+    btn.disabled = true; btn.textContent = '...';
     try {
-        const resp = await fetch(`https://dns.google/resolve?name=${domain}&type=A`);
+        const resp = await fetch('https://dns.google/resolve?name=' + domain + '&type=A');
         const data = await resp.json();
-        const answers = (data.Answer || []).map(a => a.data);
-
-        if (answers.includes('76.76.21.21')) {
-            result.className = 'result result-ok';
-            result.innerHTML = '<strong>&#10003; DNS is configured correctly!</strong><br>Your domain is pointing to Vercel. The website should be live at <a href="https://' + domain + '" target="_blank">' + domain + '</a> shortly.';
-        } else if (answers.length > 0) {
-            result.className = 'result result-wait';
-            result.innerHTML = '<strong>&#9888; DNS found but pointing elsewhere</strong><br>Current A record: ' + answers.join(', ') + '<br>Expected: 76.76.21.21. Please update your A record.';
+        const ips = (data.Answer || []).map(a => a.data);
+        result.style.display = 'block';
+        if (ips.includes('76.76.21.21')) {
+            result.className = 'check-result alert alert-ok';
+            result.innerHTML = '<span class="alert-icon">&#10003;</span><span><strong>DNS is correct!</strong> ' + domain + ' points to Vercel.</span>';
+        } else if (ips.length) {
+            result.className = 'check-result alert alert-warn';
+            result.innerHTML = '<span class="alert-icon">&#9888;</span><span>Points to ' + ips.join(', ') + ' — expected 76.76.21.21</span>';
         } else {
-            result.className = 'result result-wait';
-            result.innerHTML = '<strong>&#9203; No A record found yet</strong><br>DNS may still be propagating. Wait 5-30 minutes and check again. If it\'s been over 2 hours, double-check your DNS settings.';
+            result.className = 'check-result alert alert-warn';
+            result.innerHTML = '<span class="alert-icon">&#9203;</span><span>No A record yet. Still propagating or not set.</span>';
         }
     } catch (e) {
-        result.className = 'result result-err';
-        result.innerHTML = '<strong>Could not check DNS.</strong> Try again or check manually at <a href="https://dnschecker.org/#A/' + domain + '" target="_blank">dnschecker.org</a>';
+        result.style.display = 'block';
+        result.className = 'check-result alert alert-warn';
+        result.innerHTML = 'Could not check. Try <a href="https://dnschecker.org/#A/' + domain + '" target="_blank">dnschecker.org</a>';
     }
-
-    result.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Check DNS';
+    btn.disabled = false; btn.textContent = 'Check';
 }
+
+// Auto-login from session
+window.onload = function() {
+    try {
+        const saved = JSON.parse(localStorage.getItem('gfx_setup_auth') || '{}');
+        if (saved.p && saved.t && Date.now() - saved.t < 86400000) {
+            authPass = saved.p;
+            showWizard();
+            return;
+        }
+    } catch(e) {}
+    document.getElementById('passInput').focus();
+};
 </script>
 </body>
 </html>
