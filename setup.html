@@ -346,6 +346,12 @@ function handleUrlParams() {
         goStep(2);
         history.replaceState({}, '', '/setup.html');
     }
+    if (params.get('use_manual') === 'true') {
+        // OAuth not available - auto-expand manual key section
+        document.getElementById('manualKey').style.display = 'block';
+        goStep(2);
+        history.replaceState({}, '', '/setup.html');
+    }
 }
 
 async function saveStripeKey() {
