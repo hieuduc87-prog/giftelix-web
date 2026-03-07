@@ -1,2 +1,7 @@
 .vercel
 dist
+.env
+.env.*
+.env.local
+node_modules
+*.log

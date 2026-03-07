@@ -46,11 +46,11 @@ export default async function handler(req, res) {
 
         // Store connected account ID as encrypted env var on Vercel
         const TOKEN = process.env.VERCEL_TOKEN;
-        const PROJECT_ID = process.env.VERCEL_PROJECT_ID || 'prj_HNy8GwgiUoID3NcmOkZBJYDA2nTg';
-        const TEAM_ID = process.env.VERCEL_TEAM_ID || 'team_io5B4D9gkpivVZ1IknFk2qH0';
+        const PROJECT_ID = process.env.VERCEL_PROJECT_ID;
+        const TEAM_ID = process.env.VERCEL_TEAM_ID;
         const headers = { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
 
-        if (TOKEN) {
+        if (TOKEN && PROJECT_ID && TEAM_ID) {
             const listResp = await fetch(
                 `https://api.vercel.com/v9/projects/${PROJECT_ID}/env?teamId=${TEAM_ID}`,
                 { headers }

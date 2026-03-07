@@ -282,27 +282,28 @@ let authPass = '';
 function doLogin() {
     const pass = document.getElementById('passInput').value;
     if (!pass) return;
-    authPass = pass;
+    const err = document.getElementById('loginErr');
+    err.style.display = 'none';
+
     fetch('/api/setup', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({ password: pass, action: 'check-status' })
-    }).then(r => {
+    }).then(async r => {
         if (r.ok) {
-            localStorage.setItem('gfx_setup_auth', JSON.stringify({ p: pass, t: Date.now() }));
+            authPass = pass;
+            // Store only a flag, never the password
+            sessionStorage.setItem('gfx_setup_ok', '1');
             showWizard();
         } else {
-            document.getElementById('loginErr').style.display = 'block';
+            const data = await r.json().catch(() => ({}));
+            err.textContent = data.error || 'Wrong password. Please try again.';
+            err.style.display = 'block';
             document.getElementById('passInput').value = '';
         }
     }).catch(() => {
-        if (pass === 'giftelix2025' || pass === 'admin') {
-            localStorage.setItem('gfx_setup_auth', JSON.stringify({ p: pass, t: Date.now() }));
-            showWizard();
-        } else {
-            document.getElementById('loginErr').style.display = 'block';
-            document.getElementById('passInput').value = '';
-        }
+        err.textContent = 'Cannot reach server. Check your connection.';
+        err.style.display = 'block';
     });
 }
 
@@ -476,16 +477,10 @@ async function checkDNS() {
     btn.disabled = false; btn.textContent = 'Check';
 }
 
-// Auto-login
+// Clear any old insecure auth data
+try { localStorage.removeItem('gfx_setup_auth'); } catch(e) {}
+
 window.onload = function() {
-    try {
-        const saved = JSON.parse(localStorage.getItem('gfx_setup_auth') || '{}');
-        if (saved.p && saved.t && Date.now() - saved.t < 86400000) {
-            authPass = saved.p;
-            showWizard();
-            return;
-        }
-    } catch(e) {}
     document.getElementById('passInput').focus();
 };
 </script>

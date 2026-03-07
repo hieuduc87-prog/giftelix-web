@@ -206,11 +206,17 @@
 </div>
 
 <script>
+function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
 async function doLogin() {
     const pass = document.getElementById('passInput').value;
     if (!pass) return;
     const btn = document.getElementById('loginBtn');
+    const err = document.getElementById('loginErr');
     btn.disabled = true; btn.textContent = 'Signing in...';
+    err.style.display = 'none';
 
     try {
         const resp = await fetch('/api/auth', {
@@ -223,16 +229,14 @@ async function doLogin() {
         if (resp.ok) {
             showDashboard();
         } else {
-            document.getElementById('loginErr').style.display = 'block';
+            const data = await resp.json().catch(() => ({}));
+            err.textContent = data.error || 'Invalid password. Try again.';
+            err.style.display = 'block';
             document.getElementById('passInput').value = '';
         }
     } catch (e) {
-        // Fallback: local check
-        if (pass === 'giftelix2025' || pass === 'admin') {
-            showDashboard();
-        } else {
-            document.getElementById('loginErr').style.display = 'block';
-        }
+        err.textContent = 'Cannot reach server. Check your connection.';
+        err.style.display = 'block';
     }
 
     btn.disabled = false; btn.textContent = 'Sign In';
@@ -274,7 +278,7 @@ async function loadOrders() {
         const data = await resp.json();
 
         if (data.error) {
-            body.innerHTML = '<div class="no-orders">' + data.error + '</div>';
+            body.innerHTML = '<div class="no-orders">' + esc(data.error) + '</div>';
             return;
         }
 
@@ -296,14 +300,14 @@ async function loadOrders() {
         data.orders.forEach(o => {
             const statusClass = o.status === 'paid' ? 'status-paid' : 'status-unpaid';
             const date = new Date(o.created * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-            const items = o.items.map(i => i.name).join(', ') || '-';
+            const items = o.items.map(i => esc(i.name)).join(', ') || '-';
 
             html += `<tr>
-                <td><span class="order-status ${statusClass}">${o.status}</span></td>
-                <td>${o.name || 'Guest'}<br><span class="order-email">${o.email || ''}</span></td>
-                <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${items}">${items}</td>
-                <td class="order-amount">$${o.amount.toFixed(2)}</td>
-                <td style="white-space:nowrap">${date}</td>
+                <td><span class="order-status ${statusClass}">${esc(o.status)}</span></td>
+                <td>${esc(o.name || 'Guest')}<br><span class="order-email">${esc(o.email)}</span></td>
+                <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(items)}">${items}</td>
+                <td class="order-amount">$${Number(o.amount).toFixed(2)}</td>
+                <td style="white-space:nowrap">${esc(date)}</td>
             </tr>`;
         });
 

@@ -34,23 +34,21 @@ export default async function handler(req, res) {
             return res.status(404).json({ error: 'Order not found' });
         }
 
-        // Return only safe, limited info
+        // Return minimal info — no full email, no shipping address
+        const email = session.customer_details?.email || '';
+        const maskedEmail = email ? email.replace(/^(.{2})(.*)(@.*)$/, '$1***$3') : '';
+
         return res.json({
             status: session.payment_status,
             amount: session.amount_total / 100,
             currency: (session.currency || 'usd').toUpperCase(),
-            email: session.customer_details?.email || '',
-            name: session.customer_details?.name || '',
+            email: maskedEmail,
+            name: session.customer_details?.name ? session.customer_details.name.split(' ')[0] : '',
             items: (session.line_items?.data || []).map(li => ({
                 name: li.description,
                 qty: li.quantity,
                 amount: li.amount_total / 100
-            })),
-            shipping: session.shipping_details ? {
-                name: session.shipping_details.name,
-                city: session.shipping_details.address?.city,
-                state: session.shipping_details.address?.state
-            } : null
+            }))
         });
     } catch (err) {
         return res.status(500).json({ error: 'Failed to fetch order' });

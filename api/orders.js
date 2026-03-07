@@ -1,14 +1,32 @@
 // Vercel Serverless - Fetch orders from Stripe
-// Env: STRIPE_SECRET_KEY, optional STRIPE_CONNECTED_ACCOUNT
-import { createHmac } from 'crypto';
+// Env: STRIPE_SECRET_KEY, JWT_SECRET (required), optional STRIPE_CONNECTED_ACCOUNT
+import { createHmac, timingSafeEqual } from 'crypto';
 
-const SECRET = () => process.env.JWT_SECRET || process.env.ADMIN_PASSWORD || 'giftelix2025-secret';
+const ALLOWED_ORIGINS = ['https://giftelix.com', 'https://www.giftelix.com'];
+
+function getAllowedOrigin(req) {
+    const origin = req.headers.origin;
+    if (origin && ALLOWED_ORIGINS.includes(origin)) return origin;
+    return ALLOWED_ORIGINS[0];
+}
+
+function safeEqual(a, b) {
+    const bufA = Buffer.from(String(a));
+    const bufB = Buffer.from(String(b));
+    if (bufA.length !== bufB.length) {
+        timingSafeEqual(bufA, bufA);
+        return false;
+    }
+    return timingSafeEqual(bufA, bufB);
+}
 
 function verifyToken(token) {
+    const secret = process.env.JWT_SECRET;
+    if (!secret) return null;
     try {
         const [header, body, sig] = token.split('.');
-        const expected = createHmac('sha256', SECRET()).update(`${header}.${body}`).digest('base64url');
-        if (sig !== expected) return null;
+        const expected = createHmac('sha256', secret).update(`${header}.${body}`).digest('base64url');
+        if (!safeEqual(sig, expected)) return null;
         const payload = JSON.parse(Buffer.from(body, 'base64url').toString());
         if (payload.exp && Date.now() > payload.exp) return null;
         return payload;
@@ -21,11 +39,17 @@ function requireAuth(req) {
     return match ? verifyToken(match[1]) : null;
 }
 
+function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
+    const origin = getAllowedOrigin(req);
+    res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Vary', 'Origin');
     if (req.method === 'OPTIONS') return res.status(200).end();
 
     if (!requireAuth(req)) {
@@ -44,7 +68,7 @@ export default async function handler(req, res) {
         if (CONNECTED) headers['Stripe-Account'] = CONNECTED;
 
         // Fetch recent checkout sessions
-        const limit = req.query.limit || 20;
+        const limit = Math.min(parseInt(req.query.limit) || 20, 100);
         const resp = await fetch(
             `https://api.stripe.com/v1/checkout/sessions?limit=${limit}&expand[]=data.line_items`,
             { headers }
@@ -52,7 +76,7 @@ export default async function handler(req, res) {
         const data = await resp.json();
 
         if (data.error) {
-            return res.status(400).json({ error: data.error.message });
+            return res.status(400).json({ error: 'Failed to fetch orders' });
         }
 
         const orders = (data.data || []).map(session => ({
@@ -78,6 +102,6 @@ export default async function handler(req, res) {
 
         return res.json({ orders, balance: { available, pending }, total: data.data?.length || 0 });
     } catch (err) {
-        return res.status(500).json({ error: 'Failed to fetch orders', detail: err.message });
+        return res.status(500).json({ error: 'Failed to fetch orders' });
     }
 }

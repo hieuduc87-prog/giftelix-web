@@ -145,8 +145,8 @@
             return;
         }
 
-        // Escape for safe HTML
-        const esc = s => s.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        // Escape for safe HTML (prevent XSS)
+        const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 
         itemsEl.innerHTML = cart.map(item => {
             const imgTag = item.image ? `<img src="${item.image}" class="gfx-ci-img" alt="${esc(item.name)}" onerror="this.style.display='none'">` : '';
@@ -212,6 +212,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     items: cart.map(item => ({
+                        id: item.id,
                         name: item.name,
                         price: item.price,
                         quantity: item.quantity,
