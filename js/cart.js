@@ -6,6 +6,20 @@
     'use strict';
 
     const CART_KEY = 'gfx_cart';
+    const STRIPE_PK = 'pk_live_PqM11RT0NuFQjINCJ9Y91K2u00wLL5K2kS';
+    let stripeInstance = null;
+
+    // Load Stripe.js
+    function loadStripe() {
+        if (window.Stripe) { stripeInstance = window.Stripe(STRIPE_PK); return Promise.resolve(); }
+        return new Promise((resolve, reject) => {
+            const s = document.createElement('script');
+            s.src = 'https://js.stripe.com/v3/';
+            s.onload = () => { stripeInstance = window.Stripe(STRIPE_PK); resolve(); };
+            s.onerror = () => reject(new Error('Failed to load Stripe'));
+            document.head.appendChild(s);
+        });
+    }
     let cart = [];
 
     // --- Storage ---
@@ -189,6 +203,9 @@
         btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="animation:gfx-spin 1s linear infinite"><circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="15"/></svg> Redirecting to Stripe...';
 
         try {
+            // Load Stripe.js if not loaded yet
+            await loadStripe();
+
             const origin = window.location.origin;
             const resp = await fetch('/api/checkout', {
                 method: 'POST',
@@ -208,7 +225,13 @@
 
             const data = await resp.json();
 
-            if (data.url) {
+            if (data.sessionId && stripeInstance) {
+                // Use Stripe.js redirectToCheckout (recommended by Stripe)
+                localStorage.setItem(CART_KEY, '[]');
+                const { error } = await stripeInstance.redirectToCheckout({ sessionId: data.sessionId });
+                if (error) throw new Error(error.message);
+            } else if (data.url) {
+                // Fallback to direct URL redirect
                 localStorage.setItem(CART_KEY, '[]');
                 window.location.href = data.url;
             } else {

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /setup.html
+Disallow: /api/
+
+Sitemap: https://giftelix.com/sitemap.xml

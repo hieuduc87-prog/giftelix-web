@@ -19,9 +19,18 @@
         .sub{font-size:15px;color:#64748B;line-height:1.7;margin-bottom:24px}
         .order-id{background:#F1F5F9;border-radius:10px;padding:14px 20px;font-size:13px;color:#475569;margin-bottom:24px}
         .order-id strong{color:#1E293B}
+        .order-items{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin-bottom:24px;text-align:left}
+        .order-items h4{font-size:13px;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+        .oi-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9;font-size:14px}
+        .oi-row:last-child{border-bottom:none}
+        .oi-name{color:#1E293B;font-weight:500}.oi-qty{color:#94A3B8;font-size:12px;margin-left:4px}
+        .oi-price{color:#E53E3E;font-weight:600}
+        .oi-total{display:flex;justify-content:space-between;padding:12px 0 0;border-top:2px solid #E2E8F0;margin-top:4px;font-weight:700;font-size:16px}
         .info{display:flex;flex-direction:column;gap:12px;text-align:left;margin-bottom:28px}
         .info-row{display:flex;align-items:center;gap:12px;font-size:14px;color:#475569}
         .info-icon{width:36px;height:36px;border-radius:8px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+        .loading-spinner{display:inline-block;width:20px;height:20px;border:2px solid #E2E8F0;border-top-color:#E53E3E;border-radius:50%;animation:spin .6s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
         .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:10px;font-size:15px;font-weight:600;font-family:'Poppins',sans-serif;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
         .btn-primary{background:#E53E3E;color:#fff}.btn-primary:hover{background:#DC2626;transform:translateY(-1px);box-shadow:0 6px 20px rgba(229,62,62,.25)}
         footer{text-align:center;padding:24px;font-size:13px;color:#94A3B8}
@@ -36,8 +45,9 @@
         <h1>Thank You for Your Order!</h1>
         <p class="sub">Your payment was processed securely by Stripe. You'll receive a confirmation email shortly.</p>
         <div class="order-id" id="orderInfo">
-            Processing your order...
+            <span class="loading-spinner"></span> Loading order details...
         </div>
+        <div id="orderItems"></div>
         <div class="info">
             <div class="info-row">
                 <div class="info-icon">&#128230;</div>
@@ -47,7 +57,7 @@
                 <div class="info-icon">&#128666;</div>
                 <span>Free shipping - arrives in 3-7 business days</span>
             </div>
-            <div class="info-row">
+            <div class="info-row" id="emailInfo">
                 <div class="info-icon">&#128231;</div>
                 <span>Tracking number sent to your email</span>
             </div>
@@ -55,19 +65,66 @@
         <a href="index.html" class="btn btn-primary">Continue Shopping &#8594;</a>
     </div>
 </main>
-<footer>&copy; 2025 GIFTELIX LLC. All rights reserved. &bull; <a href="mailto:admin@giftelix.com">Contact Support</a></footer>
+<footer style="text-align:center">
+    <div style="margin-bottom:8px"><strong style="color:white;font-size:14px;letter-spacing:.5px">GIFTELIX LLC</strong><br><span style="font-size:12px">7901 4th St N #7104, St. Petersburg, FL 33702 &bull; <a href="mailto:admin@giftelix.com" style="color:#999">admin@giftelix.com</a></span></div>
+    <div>&copy; 2025 GIFTELIX LLC. All rights reserved. &bull; <a href="mailto:admin@giftelix.com">Contact Support</a></div>
+</footer>
 <script>
-// Show session info if available
+// Clear cart immediately
+try { localStorage.setItem('gfx_cart', '[]'); } catch(e) {}
+
 const params = new URLSearchParams(window.location.search);
 const sessionId = params.get('session_id');
 const el = document.getElementById('orderInfo');
+const itemsEl = document.getElementById('orderItems');
+
 if (sessionId) {
-    el.innerHTML = 'Order reference: <strong>' + sessionId.slice(0, 20) + '...</strong>';
+    // Fetch real order details from Stripe
+    fetch('/api/order-status?session_id=' + encodeURIComponent(sessionId))
+        .then(r => r.json())
+        .then(data => {
+            if (data.error) {
+                el.innerHTML = 'Order reference: <strong>' + sessionId.slice(0, 20) + '...</strong>';
+                return;
+            }
+
+            // Order info
+            const paid = data.status === 'paid' ? '<span style="color:#10B981;font-weight:600">Paid</span>' : data.status;
+            el.innerHTML = (data.name ? '<strong>' + data.name + '</strong> &mdash; ' : '') +
+                paid + ' &bull; Order ref: <strong>' + sessionId.slice(0, 16) + '...</strong>';
+
+            // Items breakdown
+            if (data.items && data.items.length) {
+                let html = '<div class="order-items"><h4>Order Summary</h4>';
+                data.items.forEach(item => {
+                    html += '<div class="oi-row"><span class="oi-name">' + item.name +
+                        '<span class="oi-qty"> x' + item.qty + '</span></span>' +
+                        '<span class="oi-price">$' + item.amount.toFixed(2) + '</span></div>';
+                });
+                html += '<div class="oi-total"><span>Total</span><span>$' + data.amount.toFixed(2) + '</span></div></div>';
+                itemsEl.innerHTML = html;
+            }
+
+            // Update email info if available
+            if (data.email) {
+                document.getElementById('emailInfo').querySelector('span').textContent =
+                    'Confirmation sent to ' + data.email;
+            }
+
+            // Show shipping city/state
+            if (data.shipping && data.shipping.city) {
+                const shipText = 'Shipping to ' + data.shipping.name +
+                    (data.shipping.city ? ', ' + data.shipping.city : '') +
+                    (data.shipping.state ? ', ' + data.shipping.state : '');
+                document.querySelector('.info .info-row:first-child span').textContent = shipText;
+            }
+        })
+        .catch(() => {
+            el.innerHTML = 'Order reference: <strong>' + sessionId.slice(0, 20) + '...</strong>';
+        });
 } else {
     el.innerHTML = 'Your order has been placed successfully!';
 }
-// Clear any remaining cart
-try { localStorage.setItem('gfx_cart', '[]'); } catch(e) {}
 </script>
 </body>
 </html>
