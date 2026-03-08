@@ -1,5 +1,5 @@
 // Vercel Serverless - Admin Authentication
-// Env: ADMIN_PASSWORD (required), JWT_SECRET (required)
+// Env: ADMIN_USERNAME (required), ADMIN_PASSWORD (required), JWT_SECRET (required)
 import { createHmac, timingSafeEqual, randomBytes } from 'crypto';
 
 const ALLOWED_ORIGINS = ['https://giftelix.com', 'https://www.giftelix.com'];
@@ -76,7 +76,7 @@ export default async function handler(req, res) {
     res.setHeader('Vary', 'Origin');
     if (req.method === 'OPTIONS') return res.status(200).end();
 
-    const { action, password } = req.body || {};
+    const { action, username, password } = req.body || {};
 
     // POST /api/auth - login
     if (req.method === 'POST' && action === 'login') {
@@ -86,12 +86,14 @@ export default async function handler(req, res) {
         }
 
         try {
+            const ADMIN_USER = process.env.ADMIN_USERNAME;
             const PASS = getPassword();
-            if (!safeEqual(password || '', PASS)) {
-                return res.status(401).json({ error: 'Wrong password' });
+            if (!ADMIN_USER || !PASS) throw new Error('Not configured');
+            if (!safeEqual(username || '', ADMIN_USER) || !safeEqual(password || '', PASS)) {
+                return res.status(401).json({ error: 'Wrong username or password' });
             }
         } catch (e) {
-            return res.status(503).json({ error: 'Admin not configured. Set ADMIN_PASSWORD env var.' });
+            return res.status(503).json({ error: 'Admin not configured. Set ADMIN_USERNAME and ADMIN_PASSWORD env vars.' });
         }
 
         try {

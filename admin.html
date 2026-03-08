@@ -107,9 +107,10 @@
     <div class="login-box">
         <div class="login-logo">GIFTEL<b>IX</b></div>
         <div class="login-tag">Admin Dashboard</div>
-        <input type="password" class="login-input" id="passInput" placeholder="Admin password" onkeypress="if(event.key==='Enter')doLogin()">
+        <input type="text" class="login-input" id="userInput" placeholder="Username" style="margin-bottom:10px" onkeypress="if(event.key==='Enter')document.getElementById('passInput').focus()">
+        <input type="password" class="login-input" id="passInput" placeholder="Password" onkeypress="if(event.key==='Enter')doLogin()">
         <button class="login-btn" id="loginBtn" onclick="doLogin()">Sign In</button>
-        <div class="login-err" id="loginErr">Invalid password. Try again.</div>
+        <div class="login-err" id="loginErr">Invalid username or password.</div>
     </div>
 </div>
 
@@ -211,8 +212,9 @@ function esc(s) {
 }
 
 async function doLogin() {
+    const user = document.getElementById('userInput').value;
     const pass = document.getElementById('passInput').value;
-    if (!pass) return;
+    if (!user || !pass) return;
     const btn = document.getElementById('loginBtn');
     const err = document.getElementById('loginErr');
     btn.disabled = true; btn.textContent = 'Signing in...';
@@ -223,7 +225,7 @@ async function doLogin() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
-            body: JSON.stringify({ action: 'login', password: pass })
+            body: JSON.stringify({ action: 'login', username: user, password: pass })
         });
 
         if (resp.ok) {
@@ -240,6 +242,10 @@ async function doLogin() {
     }
 
     btn.disabled = false; btn.textContent = 'Sign In';
+}
+
+function focusLogin() {
+    document.getElementById('userInput').focus();
 }
 
 async function doLogout() {
@@ -393,7 +399,7 @@ window.onload = async function() {
             }
         }
     } catch(e) {}
-    document.getElementById('passInput').focus();
+    document.getElementById('userInput').focus();
 };
 </script>
 </body>
